@@ -8,5 +8,5 @@ import com.sms.studentTracker.entity.UserEntity;
 public interface UserService {
 //    UserDTO getUserDetailsForLogin(String email);
 //
-//    UserEntity saveUser(AddUserRequestDTO addNewUserRequestDTO);
+    UserDTO saveUser(AddUserRequestDTO addNewUserRequestDTO);
 }

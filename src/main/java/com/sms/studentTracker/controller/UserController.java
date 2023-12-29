@@ -1,9 +1,12 @@
 package com.sms.studentTracker.controller;
 
 import com.sms.studentTracker.dto.UserDTO;
+import com.sms.studentTracker.dto.request.AddUserRequestDTO;
 import com.sms.studentTracker.service.UserService;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.web.bind.annotation.*;
 
@@ -24,11 +27,12 @@ public class UserController {
     public String listUser(){
         return "Hello";
     }
-//
-//    @PostMapping(value = "/user")
-//    public UserDTO saveUser(@RequestBody User user){
-//        return userService.save(user);
-//    }
+
+    @PostMapping("/save")
+    public ResponseEntity saveUser(@RequestBody AddUserRequestDTO user){
+        UserDTO userDTO = userService.saveUser(user);
+        return new ResponseEntity<>(userDTO, HttpStatus.OK);
+    }
 //
 //    @PutMapping("/user/{id}")
 //    public User updateUser(@RequestBody User user){
