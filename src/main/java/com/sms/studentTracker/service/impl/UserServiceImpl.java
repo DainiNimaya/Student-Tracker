@@ -4,6 +4,7 @@ import com.fasterxml.jackson.databind.JsonNode;
 import com.sms.studentTracker.dto.UserDTO;
 import com.sms.studentTracker.dto.request.AddUserRequestDTO;
 import com.sms.studentTracker.entity.UserEntity;
+import com.sms.studentTracker.exception.CustomOauthException;
 import com.sms.studentTracker.repository.UserRepository;
 import com.sms.studentTracker.service.UserService;
 import com.sms.studentTracker.utils.EmailValidator;
@@ -21,8 +22,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.util.Arrays;
-import java.util.List;
+import java.util.*;
 
 @Service(value = "userService")
 @RequiredArgsConstructor
@@ -31,7 +31,7 @@ import java.util.List;
 public class UserServiceImpl implements UserDetailsService, UserService {
 
     private final UserRepository userRepository;
-    private final BCryptPasswordEncoder encoder;
+//    private final BCryptPasswordEncoder encoder;
     private final ModelMapper modelMapper;
 
     @Autowired
@@ -49,12 +49,29 @@ public class UserServiceImpl implements UserDetailsService, UserService {
 
     public UserDetails loadUserByUsername(String userId) throws UsernameNotFoundException {
 
-        System.out.println("Start function loadUserByUsernamel : {}");
-        UserEntity user = userRepository.findByEmail(userId);
-        if(user == null){
-            throw new UsernameNotFoundException("Invalid username or password.");
+        try{
+            System.out.println("Start function loadUserByUsernamel : {}");
+            Optional<UserEntity> user = userRepository.findByEmail(userId);
+            if(user == null){
+                throw new UsernameNotFoundException("Invalid username or password.");
+            }
+            UserEntity userEntity = user.get();
+            String roleString = userEntity.getUserRole().toString(); // Assuming user type is an Enum
+
+            // Create authorities for the user
+            Collection<SimpleGrantedAuthority> authorities = new ArrayList<>();
+            authorities.add(new SimpleGrantedAuthority("ROLE_" + roleString));
+
+            return new org.springframework.security.core.userdetails.User(
+                    userEntity.getEmail(),
+                    userEntity.getPassword(),
+                    authorities);
+        } catch (Exception e) {
+            // Log and handle any exceptions
+            log.error("Error in loadUserByUsername: " + e.getMessage(), e);
+            throw new RuntimeException("An error occurred while loading user details.", e);
         }
-        return new org.springframework.security.core.userdetails.User(user.getEmail(), user.getPassword(), getAuthority(user));
+
     }
 
 //    private List getAuthority() {
@@ -90,5 +107,31 @@ public class UserServiceImpl implements UserDetailsService, UserService {
             return userDTO;
         }
         return null;
+    }
+
+    @Override
+    public UserDTO getUserDetailsByUserEmail(String userEmail) {
+        try {
+            // Check if a user with the given email exists
+            Optional<UserEntity> byUserEmail = userRepository.findByEmail(userEmail);
+            if (!byUserEmail.isPresent()) {
+                throw new CustomOauthException("User email not found.");
+            } else {
+                // Create and return UserDto
+                return new UserDTO(
+                        byUserEmail.get().getId(),
+                        byUserEmail.get().getFirstName(),
+                        byUserEmail.get().getLastName(),
+                        byUserEmail.get().getEmail(),
+                        byUserEmail.get().getMobileNumber(),
+                        byUserEmail.get().getPassword(),
+                        byUserEmail.get().getUserRole()
+                );
+            }
+        } catch (Exception e) {
+            // Log and handle any exceptions
+            log.error("Method getUserDetailsByUserEmail : " + e.getMessage(), e);
+            throw e;
+        }
     }
 }

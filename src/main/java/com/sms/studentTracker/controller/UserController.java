@@ -14,7 +14,7 @@ import java.util.List;
 
 @RestController
 @Log4j2
-@RequestMapping("/use")
+@RequestMapping("/uses")
 public class UserController {
 
     private UserService userService;
@@ -24,8 +24,8 @@ public class UserController {
     }
 
     @GetMapping
-    public String listUser(){
-        return "Hello";
+    public ResponseEntity listUser(){
+        return new ResponseEntity<>("Hello", HttpStatus.OK);
     }
 
     @PostMapping("/save")

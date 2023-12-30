@@ -9,4 +9,6 @@ public interface UserService {
 //    UserDTO getUserDetailsForLogin(String email);
 //
     UserDTO saveUser(AddUserRequestDTO addNewUserRequestDTO);
+
+    UserDTO getUserDetailsByUserEmail(String userEmail);
 }
