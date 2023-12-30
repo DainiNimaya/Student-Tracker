@@ -31,7 +31,6 @@ import java.util.*;
 public class UserServiceImpl implements UserDetailsService, UserService {
 
     private final UserRepository userRepository;
-//    private final BCryptPasswordEncoder encoder;
     private final ModelMapper modelMapper;
 
     @Autowired
@@ -40,12 +39,6 @@ public class UserServiceImpl implements UserDetailsService, UserService {
     @Autowired
     private PasswordEncoder passwordEncoder;
 
-
-//    @Autowired
-//    public UserServiceImpl(UserRepository userRepository, BCryptPasswordEncoder encoder){
-//        this.userRepository = userRepository;
-//        this.encoder = encoder;
-//    }
 
     public UserDetails loadUserByUsername(String userId) throws UsernameNotFoundException {
 
@@ -73,10 +66,6 @@ public class UserServiceImpl implements UserDetailsService, UserService {
         }
 
     }
-
-//    private List getAuthority() {
-//        return Arrays.asList(new SimpleGrantedAuthority("ROLE_ADMIN"));
-//    }
 
     private List<SimpleGrantedAuthority> getAuthority(UserEntity user) {
         System.out.println(user.getUserRole());
