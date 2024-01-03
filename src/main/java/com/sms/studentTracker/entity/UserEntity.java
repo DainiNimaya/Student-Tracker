@@ -1,9 +1,12 @@
 package com.sms.studentTracker.entity;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import com.sms.studentTracker.enums.Role;
+import com.sms.studentTracker.enums.UserStatus;
 import lombok.*;
 
 import javax.persistence.*;
+import java.util.Date;
 
 @Entity
 @Getter
@@ -29,8 +32,15 @@ public class UserEntity {
     private String password;
     @Enumerated(EnumType.STRING)
     private Role userRole;
-//    @Enumerated(EnumType.STRING)
-//    private UserStatus status;
+    @Column(length = 255)
+    private String gender;
+    @Column
+    @JsonFormat(pattern="yyyy-MM-dd'T'HH:mm:ss")
+    private Date dob;
+    @Column(length = 255)
+    private String nic;
+    @Enumerated(EnumType.STRING)
+    private UserStatus status;
 
 
     public long getId() {
@@ -87,5 +97,37 @@ public class UserEntity {
 
     public void setUserRole(Role userRole) {
         this.userRole = userRole;
+    }
+
+    public String getGender() {
+        return gender;
+    }
+
+    public void setGender(String gender) {
+        this.gender = gender;
+    }
+
+    public Date getDob() {
+        return dob;
+    }
+
+    public void setDob(Date dob) {
+        this.dob = dob;
+    }
+
+    public String getNic() {
+        return nic;
+    }
+
+    public void setNic(String nic) {
+        this.nic = nic;
+    }
+
+    public UserStatus getStatus() {
+        return status;
+    }
+
+    public void setStatus(UserStatus status) {
+        this.status = status;
     }
 }

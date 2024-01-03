@@ -88,6 +88,10 @@ public class UserServiceImpl implements UserDetailsService, UserService {
             userEntity.setUserRole(addNewUserRequestDTO.getUserRole());
             userEntity.setMobileNumber(addNewUserRequestDTO.getMobileNumber());
             userEntity.setPassword(passwordEncoder.encode(addNewUserRequestDTO.getPassword()));
+            userEntity.setGender(addNewUserRequestDTO.getGender());
+            userEntity.setDob(addNewUserRequestDTO.getDob());
+            userEntity.setNic(addNewUserRequestDTO.getNic());
+            userEntity.setStatus(addNewUserRequestDTO.getStatus());
 
             userEntity = userRepository.save(userEntity);
 
@@ -114,7 +118,11 @@ public class UserServiceImpl implements UserDetailsService, UserService {
                         byUserEmail.get().getEmail(),
                         byUserEmail.get().getMobileNumber(),
                         byUserEmail.get().getPassword(),
-                        byUserEmail.get().getUserRole()
+                        byUserEmail.get().getUserRole(),
+                        byUserEmail.get().getGender(),
+                        byUserEmail.get().getDob(),
+                        byUserEmail.get().getNic(),
+                        byUserEmail.get().getStatus()
                 );
             }
         } catch (Exception e) {
