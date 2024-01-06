@@ -1,4 +1,4 @@
-package com.sms.studentTracker.dto;
+package com.sms.studentTracker.dto.request;
 
 import com.sms.studentTracker.enums.ProgrammeStatus;
 import lombok.*;
@@ -8,9 +8,8 @@ import lombok.*;
 @NoArgsConstructor
 @AllArgsConstructor
 @ToString
-public class ProgrammeDTO {
+public class ManageProgrammeDTO {
 
-    private long programmeId;
     private String programmeName;
     private String programmeDesc;
     private ProgrammeStatus programmeStatus;

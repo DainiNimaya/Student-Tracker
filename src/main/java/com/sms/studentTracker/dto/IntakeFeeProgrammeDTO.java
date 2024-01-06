@@ -1,5 +1,12 @@
 package com.sms.studentTracker.dto;
 
+import lombok.*;
+
+@Getter
+@Setter
+@NoArgsConstructor
+@AllArgsConstructor
+@ToString
 public class IntakeFeeProgrammeDTO {
 
     private long intakeFeeProgrammeId;

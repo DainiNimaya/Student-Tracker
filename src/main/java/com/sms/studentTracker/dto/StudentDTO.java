@@ -1,9 +1,15 @@
 package com.sms.studentTracker.dto;
 
 import com.sms.studentTracker.enums.Gender;
+import lombok.*;
 
 import java.util.List;
 
+@Getter
+@Setter
+@NoArgsConstructor
+@AllArgsConstructor
+@ToString
 public class StudentDTO {
 
     private long studentId;

@@ -1,7 +1,14 @@
 package com.sms.studentTracker.dto;
 
+import lombok.*;
+
 import java.util.Date;
 
+@Getter
+@Setter
+@NoArgsConstructor
+@AllArgsConstructor
+@ToString
 public class EQualificationDTO {
 
     private long studentId;

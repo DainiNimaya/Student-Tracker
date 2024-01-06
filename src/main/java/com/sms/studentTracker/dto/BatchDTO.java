@@ -1,7 +1,14 @@
 package com.sms.studentTracker.dto;
 
+import lombok.*;
+
 import java.util.Date;
 
+@Getter
+@Setter
+@NoArgsConstructor
+@AllArgsConstructor
+@ToString
 public class BatchDTO {
     private long batchId;
     private long intakeId;

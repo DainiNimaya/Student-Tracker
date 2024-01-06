@@ -1,4 +1,4 @@
-package com.sms.studentTracker.dto;
+package com.sms.studentTracker.dto.request;
 
 import com.sms.studentTracker.enums.ModuleType;
 import lombok.*;
@@ -8,9 +8,8 @@ import lombok.*;
 @NoArgsConstructor
 @AllArgsConstructor
 @ToString
-public class ModuleDTO {
+public class ManageModuleDTO {
 
-    private long moduleId;
     private String moduleCode;
     private String moduleDesc;
     private String moduleName;
