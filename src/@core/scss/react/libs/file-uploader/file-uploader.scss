@@ -1,0 +1,36 @@
+@import '../../../base/bootstrap-extended/include';
+@import '../../../base/components/include';
+
+.dropzone {
+  display: flex;
+  cursor: pointer;
+  min-height: 80px;
+  align-items: center;
+  justify-content: center;
+  background-color: $body-bg;
+  border: 1px dashed $primary;
+  border-radius: $border-radius;
+}
+
+.dark-layout {
+  .dropzone {
+    background-color: $theme-dark-body-bg;
+  }
+}
+
+.file-uploader-style{
+  .dropzone{
+    min-height:200px;
+
+    div svg{
+      width: 24px;
+      color: $primary;
+    }
+
+    div h5{
+      color: $primary;
+      margin-bottom: 0;
+      font-size: 12px;
+    }
+  }
+}

@@ -1,0 +1,162 @@
+@import '../bootstrap-extended/include';
+// Bootstrap includes
+@import '../components/include'; // Components includes
+
+$auth-1-inner-max-width: 400px !default;
+
+
+.auth-wrapper {
+  //display: flex;
+  //flex-basis: 100%;
+  min-height: 100vh;
+  min-height: calc(var(--vh, 1vh) * 100);
+  width: 100%;
+  background: linear-gradient(180deg, #F5FBFF 0%, #4c4dc3 100%);
+
+  .auth-inner {
+    width: 100%;
+
+    .logo-div {
+      padding-top: 20px;
+      padding-bottom: 22px;
+
+      #let {
+        padding-top: 6px;
+        padding-left: 17px;
+      }
+    }
+
+    .desc-div {
+
+      padding: 0px 80px 25px 50px;
+      border-right-style: inset;
+      height: fit-content;
+
+      h1 {
+        font-style: normal;
+        font-weight: bold;
+        font-size: 47px;
+        //line-height: 95px;
+        color: #FFFFFF;
+      }
+
+      p {
+        font-style: normal;
+        font-weight: 500;
+        font-size: 14px;
+        line-height: 26px;
+        color: #FFFFFF;
+        padding-top: 4px;
+      }
+
+    }
+
+    .signIn-div {
+      z-index: 999 !important;
+      text-align: left;
+      text-align: -webkit-left;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+
+      div {
+        padding: 55px 55px 0;
+      }
+
+      div h4 {
+        font-style: normal;
+        font-weight: bold;
+        font-size: 25px;
+        line-height: 26px;
+        color: #FFFFFF;
+      }
+
+      div p {
+        font-style: normal;
+        font-weight: 600;
+        font-size: 17px;
+        line-height: 26px;
+        color: #FFFFFF;
+        padding: 16px 27px 0 0;
+      }
+
+      .login-btn {
+        padding-top: 16px;
+        cursor: pointer;
+        width: auto;
+        height: 63px;
+      }
+    }
+
+    .img-div {
+      padding: 0;
+
+      img {
+        width: auto;
+        height: 382px;
+        padding-left: 50px;
+      }
+    }
+
+
+    .login-container {
+      height: auto;
+    }
+  }
+}
+
+@media only screen and (max-width: 1367px) {
+  .signIn-div {
+
+    div {
+      padding: 55px 20px 0px 47px !important;
+    }
+
+    div p {
+      padding: 16px 17px 0 0 !important;
+    }
+
+  }
+
+  .img-div {
+
+    img {
+      height: 265px !important;
+    }
+  }
+
+}
+
+@media only screen and (max-width: 990px) {
+  .signIn-div {
+    text-align: center !important;
+    text-align: -webkit-center !important;
+    padding-top: 0px !important;
+  }
+
+  .desc-div {
+    border-right-style: none !important;
+  }
+
+  .login-container {
+    height: auto !important;
+  }
+
+  .img-div {
+     position: relative !important;
+  }
+}
+
+@media only screen and (max-width: 536px) {
+  .desc-div {
+    h1 {
+      font-style: normal;
+      font-weight: bold;
+      font-size: 36px !important;
+      //line-height: 95px;
+      color: #FFFFFF;
+    }
+  }
+
+}
+
