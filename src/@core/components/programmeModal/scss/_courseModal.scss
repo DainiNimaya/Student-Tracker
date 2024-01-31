@@ -1,0 +1,145 @@
+.course-modal{
+
+  .heading-div{
+
+    padding-top: 5px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid #E9ECEF;
+    margin-bottom: 1.5rem;
+
+    .col-10{
+      margin: auto;
+    }
+
+    .col-2{
+      display: flex;
+      justify-content: flex-end;
+    }
+
+    label{
+      font-size: 18px;
+      font-weight: 500;
+      margin: 0;
+    }
+
+    div {
+
+      button #edit-icon{
+        margin-right: 4px;
+        cursor: pointer;
+      }
+
+      #close-icon{
+        margin-top: 6px;
+        color: #6E6B7B;
+        cursor: pointer;
+      }
+    }
+
+  }
+
+  .course-form{
+    .nav-btn-row{
+      margin-bottom: 1.5rem;
+    }
+
+    .course-level{
+
+      #tbl-div{
+
+       //min-height: 300px;
+       //max-height: 300px;
+       overflow-y: scroll;
+
+       .react-dataTable{
+
+         .rdt_TableBody{
+
+           .rdt_TableRow {
+             height: 88px;
+             .rdt_TableCell > div {
+               width: 100%;
+             }
+
+             .rdt_TableCell {
+
+               height: auto;
+               .remove-icon{
+                 width: 18px;
+                 color: #EA5455;
+                 cursor: pointer;
+               }
+             }
+           }
+         }
+       }
+
+       .add-btn-div{
+         margin-top: 14px;
+         margin-bottom: 11px;
+         text-align: center;
+
+         button span{
+           padding: 6px;
+         }
+       }
+     }
+
+      #tbl-div::-webkit-scrollbar{
+        width: 5px;
+      }
+
+      #total-credit{
+        div label{
+          color: #5E5873;
+          font-size: 12px;
+          font-weight: 600;
+
+          span{
+            font-size: 14px;
+            margin: 0 1rem 0 2rem;
+          }
+        }
+
+        div p{
+          color: red;
+          font-size: 12px;
+          span{
+            font-size: 11px;
+            font-weight: 600;
+          }
+        }
+      }
+    }
+  }
+
+  .field-row{
+    padding-top: 1rem;
+
+    label{
+      font-family: Montserrat;
+      font-style: normal;
+      font-weight: 400;
+      font-size: 12px;
+      line-height: 18px;
+      color: #6E6B7B;
+      vertical-align: sub;
+
+      span{
+        color: red;
+        font-size: 14px;
+      }
+    }
+
+    .form-control[readonly]{
+      background-color: white;
+    }
+
+  }
+
+  .btn-div{
+    text-align: right;
+    margin-top: 3rem;
+    padding-bottom: 20px;
+  }
+}

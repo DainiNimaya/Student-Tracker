@@ -1,19 +1,14 @@
 import React, {useEffect, useRef, useState} from 'react'
 import './scss/_style.scss'
-import classnames from 'classnames'
 import { Row, Col, Card, CardBody, CardTitle, CardHeader, Button, Label, Input} from 'reactstrap'
 import DataTable from "react-data-table-component"
 import {PROGRAMME_TABLE_COLUMN} from "./tableData"
 import CustomPagination from "@components/customPagination"
 import {Plus, Edit, Upload, X} from 'react-feather'
 import Avatar from '@components/avatar'
-import CourseModal from '@components/course-modal'
+import ProgrammeModal from '@components/programmeModal'
 import * as apiHaa from "@api/haa_"
-import {CSVLink} from "react-csv"
-import {COURSE_CSV_HEADER} from '@const'
-import moment from 'moment'
 import {getFirstTwoLetter} from '@utils'
-import ExportMenu from '@components/export-menu'
 
 
 const ProgrammeDetail = (props) => {
@@ -23,7 +18,7 @@ const ProgrammeDetail = (props) => {
     const [totalElements, setTotalElements] = useState(1)
     const [offset, setOffset] = useState(0)
     const [numberOfElements, setNumberOfElements] = useState(0)
-    const [courseOpen, setCourseOpen] = useState(false)
+    const [programmeOpen, setProgrammeOpen] = useState(false)
     const [manageType, setManageType] = useState('')
     const [programmeList, setProgrammeList] = useState([])
     const [editProgrammeId, setEditProgrammeId] = useState(undefined)
@@ -46,30 +41,20 @@ const ProgrammeDetail = (props) => {
 
     }
 
-    // const handlePagination = async (val) => {
-    //     const courses =  await apiHaa.getAllCourseExport(name, val.selected, 10, true)
-    //     setCourseList(courses.content)
-    //     setTotalElements(courses.totalElements)
-    //     setTotalPages(courses.totalPages)
-    //     setNumberOfElements(courses.numberOfElements)
-    //     setOffset(courses.pageable.offset)
-    //     setCurrentPage(val.selected)
-    // }
-
     const loadData = () => {
         const tableData = []
         if (programmeList.length !== 0) {
-            programmeList.map(course => {
+            programmeList.map(programme => {
                 tableData.push(
                     {
                         name:<div className='d-flex align-items-center'>
-                            <Avatar color={`light-primary`} content={getFirstTwoLetter(course.name ? course.name : 'N')} initials/>
+                            <Avatar color={`light-primary`} content={getFirstTwoLetter(programme.name ? programme.name : 'N')} initials/>
                             <div className='user-info text-truncate ms-1' id={'name-div'}>
-                                <span className='d-block fw-bold text-truncate'>{course.name}</span>
+                                <span className='d-block fw-bold text-truncate'>{programme.name}</span>
                             </div>
                         </div>,
-                        description:course.desc,
-                        action: <Edit size={16} className={'edit-icon'} onClick={() => handleModals({type:'edit',id:course.courseId})}/>
+                        description:programme.desc,
+                        action: <Edit size={16} className={'edit-icon'} onClick={() => handleModals({type:'edit',id:programme.programmeId})}/>
                     }
                 )
             })
@@ -81,58 +66,25 @@ const ProgrammeDetail = (props) => {
         switch (data.type) {
             case 'add':
                 setManageType('add')
-                setCourseOpen(true)
+                setProgrammeOpen(true)
                 break
             case 'edit':
                 setManageType('edit')
-                setEditCourseId(data.id)
-                setCourseOpen(true)
+                setEditProgrammeId(data.id)
+                setProgrammeOpen(true)
                 break
             case 'close':
-                setEditCourseId(undefined)
-                setCourseOpen(false)
+                setEditProgrammeId(undefined)
+                setProgrammeOpen(false)
                 break
 
         }
     }
 
-    const courseSaved = () => {
-        setEditCourseId(undefined)
-        setCourseOpen(false)
-        loadCourseData()
-    }
-
-    // const loadCourses = async (name_,page) => {
-    //     const courses =  await apiHaa.getAllCourseExport(name_, page, 10, true)
-    //     setCourseList(courses.content)
-    //     setTotalElements(courses.totalElements)
-    //     setTotalPages(courses.totalPages)
-    //     setNumberOfElements(courses.numberOfElements)
-    //     setOffset(courses.pageable.offset)
-    //     setCurrentPage(0)
-    // }
-
-    const onChangeText = async (e) => {
-        if (e.key === 'Enter') {
-            if (e.target.value !== '') {
-                loadCourses(name,0)
-            } else {
-                loadCourseData()
-            }
-
-        }
-    }
-
-    const handleFilter = (type) => {
-        switch (type) {
-            case 'search':
-                loadCourses(name,0)
-                break
-            case 'clear':
-                loadCourses('',0)
-                setName('')
-                break
-        }
+    const programmeSaved = () => {
+        setEditProgrammeId(undefined)
+        setProgrammeOpen(false)
+        loadProgrammeData()
     }
 
 
@@ -156,15 +108,15 @@ const ProgrammeDetail = (props) => {
                         id='search-input'
                         placeholder={'Search by Name'}
                         name={'name'} value={name}
-                        onChange={(e) => setName(e.target.value)} onKeyDown={onChangeText}
+                        // onChange={(e) => setName(e.target.value)} onKeyDown={onChangeText}
                     />
                 </Col>
                 <Col xs={9} className='pl-0'>
-                    <Button className='course-custom-btn-clear me-1' size='sm' onClick={() => handleFilter('clear')}>
+                    <Button className='course-custom-btn-clear me-1' size='sm'>
                         <span className='align-middle ml-50'> Clear</span>
                     </Button>
 
-                    <Button className='course-custom-btn mt-2' color='primary' size='sm' onClick={() => handleFilter('search')}>
+                    <Button className='course-custom-btn mt-2' color='primary' size='sm'>
                         <span className='align-middle ml-50'> Filter</span>
                     </Button>
                 </Col>
@@ -189,8 +141,8 @@ const ProgrammeDetail = (props) => {
                 />
             </div>
             {
-                courseOpen && <CourseModal visible={courseOpen} modalFunction={handleModals} manageType={manageType}
-                                           courseId={editCourseId} callback={courseSaved}/>
+                programmeOpen && <ProgrammeModal visible={programmeOpen} modalFunction={handleModals} manageType={manageType}
+                                           programmeId={editProgrammeId} callback={programmeSaved}/>
             }
         </Card>
     )
