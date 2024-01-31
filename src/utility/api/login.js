@@ -38,6 +38,8 @@ const setCookies = (res) => {
                         const temp_5 = ['HEAD_OF_FINANCE']
                         if (temp_5.includes(item)) activeRole = item
                         break
+                    default:
+                       activeRole = {label: 'Head of Academic Admin', value: 'HEAD_OF_ACADEMIC_ADMIN', department: 2}
                 }
                 // this use when role department restriction is ignored (ijse, unicloud)
                 if (activeRole === '') {
@@ -57,6 +59,7 @@ const setCookies = (res) => {
     cookie.save(config.role, activeRole, {path: '/'})
     cookie.save(config.username, `${res.firstName} ${res.lastName}`, {path: '/'})
 
+    console.log(tempRole)
     const user = {
         userId: res.userId ? isNULL(res.userId) : null,
         profileImage: res.profileImageUrl ? isNULL(res.profileImageUrl) : null,
