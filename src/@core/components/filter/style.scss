@@ -1,0 +1,33 @@
+@import "src/@core/scss/base/bootstrap-extended/variables";
+
+$red: #EA5455;
+
+.custom-btn-clear {
+  height: 36px !important;
+  margin-top: 25px !important;
+  padding-top: 8px !important;
+  //color: $red !important;
+  border: none !important;
+}
+
+.custom-btn {
+  height: 36px !important;
+  margin-top: 25px !important;
+  padding-top: 8px !important;
+}
+
+.label-advanced {
+  margin-top: 25px;
+  font-weight: 500;
+  color: $primary;
+  cursor: pointer;
+}
+
+.ant-picker {
+  border-radius: 4px;
+  display: inline-flex !important;
+}
+
+.react-select {
+  max-width: 100% !important;
+}
