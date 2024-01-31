@@ -1,0 +1,68 @@
+@import '../../../../@core/scss/base/bootstrap-extended/variables';
+$red: #EA5455;
+.haa-courses{
+
+  div div .top-custom-btn{
+    a{
+      color: $primary;
+    }
+  }
+
+  div h4{
+    color: #5E5873;
+    font-size: 17px !important;
+  }
+
+  .react-dataTable{
+
+    margin-top: 2rem;
+
+    .rdt_TableRow {
+      #cell-1-undefined{
+        div {
+          color: $primary;
+          font-weight: 600;
+        }
+      }
+
+      div .edit-icon{
+        cursor: pointer;
+      }
+    }
+
+    div div {
+
+      .hr{
+        border-bottom: 1px solid #E9ECEF;
+      }
+
+      .pagination-row{
+        .pagination-left{
+          padding: 1rem 0 0 2rem !important;
+        }
+      }
+    }
+  }
+
+  .course-custom-btn-clear {
+    height: 30px !important;
+    margin-top: 3rem !important;
+    padding-top: 8px !important;
+    //background-color: transparent !important;
+    //color: $red !important;
+    border: none !important;
+    box-shadow: none !important;
+  }
+
+  .course-custom-btn {
+    height: 30px !important;
+    margin-top: 3rem !important;
+    padding-top: 8px !important;
+  }
+}
+
+#cell-1-undefined{
+  div label{
+    text-align: right;
+  }
+}
