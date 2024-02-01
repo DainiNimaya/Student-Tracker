@@ -1,0 +1,130 @@
+@import '../../../@core/scss/base/bootstrap-extended/variables';
+$border-color: #D8D6DE;
+$hr-color: #EBE9F1;
+$hover-color: #F8F8F8;
+$primary-color: $primary;
+
+.card-border {
+  border: 1px solid $border-color;
+  border-radius: 6px;
+  margin: 20px 0 0 0;
+
+  ::-webkit-scrollbar {
+    width: 7px;
+    height: 7px;
+  }
+
+  ::-webkit-scrollbar-track {
+    background: transparent;
+    box-shadow: inset 0 0 1px #dddddd;
+    border-radius: 1px;
+    border-left: 1.5px solid transparent;
+    border-right: 1.5px solid transparent;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    background: $primary-color;
+    border-radius: 10px;
+    width: 5px;
+  }
+
+  ::-webkit-scrollbar-thumb:hover {
+    background: $primary-color;
+    width: 5px;
+  }
+
+  .card-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px;
+  }
+
+  .card-title {
+    font-weight: 500;
+    font-size: 18px;
+    font-family: Montserrat;
+    margin: 0;
+  }
+
+  .input-search {
+    margin: 10px 15px 10px 15px;
+  }
+
+  .hr {
+    background-color: $hr-color;
+    width: 100%;
+    height: 1px;
+    margin: 2px 0 15px 0;
+  }
+
+
+  .all-courses {
+    overflow-y: auto;
+
+    .courses-list {
+      display: flex;
+      padding: 10px;
+
+      .initial-round {
+        padding: 4px;
+      }
+
+      .text-content {
+        margin-left: 10px;
+        display: block;
+        line-height: 20px;
+
+        .content-name {
+          font-size: 12px;
+          font-weight: 500;
+        }
+      }
+    }
+
+    .courses-list:hover {
+      background-color: $hover-color;
+      cursor: pointer;
+    }
+
+    .level-list {
+      padding: 10px 15px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+
+      .list-icon {
+        margin-right: 10px;
+        padding-left: 10px;
+      }
+
+      .list-value {
+        padding-right: 10px;
+      }
+
+      @media screen and (max-width: 1600px) {
+        .list-label {
+          width: 80%;
+        }
+      }
+
+    }
+
+    .level-list:hover {
+      background-color: $hover-color;
+      cursor: pointer;
+    }
+
+    .btn-enter-marks {
+      color: #28C76F;
+      border-color: #28C76F !important;
+    }
+  }
+}
+
+.gpa-calculation-container {
+  Label {
+    display: block;
+    text-align: right;
+  }
+}

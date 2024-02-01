@@ -1,0 +1,143 @@
+@import '../../../../../@core/scss/base/bootstrap-extended/variables';
+
+$border-color: #D8D6DE;
+$hr-color: #EBE9F1;
+$hover-color: #F8F8F8;
+$primary-color: $primary;
+
+.card-border {
+  border: 1px solid $border-color;
+  border-radius: 6px;
+  margin: 20px 0 0 0;
+  height: 70vh;
+
+  ::-webkit-scrollbar {
+    width: 7px;
+  }
+
+  //::-webkit-scrollbar-track {
+  //  background: transparent;
+  //  box-shadow: inset 0 0 5px #dddddd;
+  //  border-radius: 4px;
+  //  border-left: 1.5px solid transparent;
+  //  border-right: 1.5px solid transparent;
+  //}
+
+  ::-webkit-scrollbar-thumb {
+    background: $primary-color;
+    border-radius: 10px;
+  }
+
+  ::-webkit-scrollbar-thumb:hover {
+    background: $primary-color;
+  }
+
+  .card-top {
+    display: flex;
+    justify-content: space-between;
+    padding: 15px;
+
+    .custom-btn {
+      padding: 10px !important;
+    }
+  }
+
+  .card-title {
+    font-weight: 500;
+    font-size: 18px;
+    font-family: Montserrat;
+    margin: 5px
+  }
+
+  .input-search {
+    margin: 10px 15px 10px 15px;
+  }
+
+  .hr {
+    background-color: $hr-color;
+    width: 100%;
+    height: 1px;
+    margin: 2px 0 15px 0;
+  }
+
+
+  .all-courses {
+    overflow-y: scroll;
+    height: 50vh;
+
+    .courses-list {
+      display: flex;
+      padding: 10px;
+
+      .initial-round {
+        padding: 4px;
+      }
+
+      .text-content {
+        margin-left: 10px;
+        display: block;
+        line-height: 20px;
+
+        .content-name {
+          font-size: 12px;
+          font-weight: 500;
+        }
+      }
+    }
+
+    .courses-list:hover {
+      background-color: $hover-color;
+      cursor: pointer;
+    }
+
+    .btn-module-remove {
+      position: absolute;
+      right: 20px;
+      margin-right: 23px;
+      padding: 5px;
+      margin-top: 4px;
+    }
+  }
+
+  .all-level {
+    overflow-y: scroll;
+    height: 55vh;
+
+    .level-item:hover {
+      background-color: $hover-color;
+      cursor: pointer;
+    }
+
+    .level-item {
+      display: flex;
+
+      .level-list {
+        padding: 15px;
+        display: flex;
+        justify-content: space-between;
+        width: 100%;
+
+        .level-item-lbl {
+          font-size: 14px;
+          font-weight: 500;
+          margin-left: 8px;
+        }
+      }
+
+      .level-item-icon {
+        padding: 14px;
+        cursor: pointer;
+      }
+
+      .level-item-icon:hover {
+        font-weight: 900;
+      }
+    }
+
+    //.level-list:hover {
+    //  background-color: $hover-color;
+    //  cursor: pointer;
+    //}
+  }
+}
+

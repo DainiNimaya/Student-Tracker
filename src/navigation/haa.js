@@ -144,12 +144,6 @@ const navigations = [
                 title: 'Class Schedule',
                 icon: <Circle size={12}/>,
                 navLink: rs.classSchedule
-            },
-            {
-                id: 'class-summary',
-                title: 'Class Summary',
-                icon: <Circle size={12}/>,
-                navLink: rs.classSummary
             }
         ]
     },
@@ -163,24 +157,6 @@ const navigations = [
                 title: 'Assignment',
                 icon: <Circle size={20}/>,
                 navLink: rs.assessments
-            },
-            {
-                id: 'exam-schedule',
-                title: 'Exam Schedule',
-                icon: <Circle size={20}/>,
-                navLink: rs.examSchedule
-            },
-            {
-                id: 'markings',
-                title: 'Markings',
-                icon: <Circle size={20}/>,
-                navLink: rs.markings
-            },
-            {
-                id: 'repeat-recommendation',
-                title: 'Repeat Recommendation',
-                icon: <Circle size={12}/>,
-                navLink: rs.repeatRecommendation
             }
         ]
     },
