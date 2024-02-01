@@ -3,7 +3,7 @@ import {Button, Modal, ModalBody, Row, Col, Label, Input} from 'reactstrap'
 import './scss/_courseModal.scss'
 import {selectThemeColors, showError, findObject} from '@utils'
 import {X, Edit} from 'react-feather'
-import * as apiHaa from "@api/haa"
+import * as apiHaa from "@api/haa_"
 import {DEGREE_STATUS} from '@const'
 import {addCourseErrors, courseLevelErrors} from '@formError/headOfAcademicAdmin'
 import {addCourseValidation, courseLevelValidation, Amount_REGEX, Number_REGEX} from '@validations/headOfAcademicAdmin'
@@ -25,7 +25,7 @@ class CourseModal extends React.Component {
         if (this.props.programmeId) {
             this.setState({
                 courseName: course.courseName === null ? '' : course.courseName,
-                description: course.courseDescription === null ? '' : course.courseDescription,
+                description: course.courseDescription === null ? '' : course.courseDescription
             })
         }
     }

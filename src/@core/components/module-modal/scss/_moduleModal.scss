@@ -1,0 +1,146 @@
+.module-modal{
+
+  .heading-div{
+
+    padding-top: 5px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid #E9ECEF;
+    margin-bottom: 1.5rem;
+
+    .col-10{
+      margin: auto;
+    }
+
+    .col-2{
+      display: flex;
+      justify-content: flex-end;
+    }
+
+    label{
+      font-size: 18px;
+      font-weight: 500;
+      margin: 0;
+    }
+
+    div {
+
+      button #edit-icon{
+        margin-right: 4px;
+        cursor: pointer;
+      }
+
+      #close-icon{
+        vertical-align: top;
+        color: #6E6B7B;
+        cursor: pointer;
+      }
+    }
+
+  }
+
+  .nav-btn-row{
+    margin-top: 2.5rem;
+    margin-bottom: 2rem;
+
+    div button{
+      color: #5E5873;
+    }
+  }
+
+  .module-card{
+    border:1px solid rgba(34, 41, 47, 0.125);
+    box-shadow: none;
+
+    div div div label{
+      font-weight: 500;
+      font-size: 13px;
+    }
+  }
+
+  .module-lecturer {
+
+    #tbl-div {
+
+      min-height: 300px;
+      max-height: 300px;
+      overflow-y: scroll;
+
+      .react-dataTable {
+
+        .rdt_TableBody {
+
+          .rdt_TableRow {
+
+            .rdt_TableCell {
+
+              .remove-icon {
+                width: 18px;
+                color: #EA5455;
+                cursor: pointer;
+              }
+            }
+          }
+        }
+      }
+
+      .add-btn-div {
+        margin-top: 14px;
+        margin-bottom: 11px;
+        text-align: center;
+
+        button span {
+          padding: 6px;
+        }
+      }
+    }
+  }
+
+
+
+  .react-dataTable{
+    border: 0 !important;
+    .rdt_TableBody{
+      .rdt_TableRow {
+        border: 0;
+        .rdt_TableCell > div {
+          width: 100%;
+        }
+        .rdt_TableCell {
+          .form-control[readonly]{
+            background-color: white;
+          }
+        }
+      }
+    }
+  }
+
+  .field-row{
+    padding-top: 1rem;
+
+    label{
+      font-family: Montserrat;
+      font-style: normal;
+      font-weight: 400;
+      font-size: 12px;
+      line-height: 18px;
+      color: #6E6B7B;
+      vertical-align: sub;
+
+      span{
+        color: red;
+        font-size: 14px;
+      }
+    }
+
+    .form-control[readonly]{
+      background-color: white;
+    }
+
+  }
+
+  .btn-div{
+    text-align: right;
+    margin-top: 3rem;
+    padding-bottom: 20px;
+  }
+}

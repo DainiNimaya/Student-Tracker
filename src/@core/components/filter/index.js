@@ -180,7 +180,7 @@ class App extends React.Component {
 
             <Col align={'right'} sm={col} >
 
-                <Button outline onClick={this.clearFilter} className='custom-btn-clear me-1' color='danger'>
+                <Button onClick={this.clearFilter} className='custom-btn-clear me-1'>
                     <span className='align-middle ml-50'> Clear</span>
                 </Button>
 

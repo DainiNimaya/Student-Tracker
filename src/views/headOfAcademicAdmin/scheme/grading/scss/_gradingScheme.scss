@@ -1,0 +1,79 @@
+@import '../../../../../@core/scss/base/bootstrap-extended/variables';
+.scheme-container {
+  border: 1px solid #D8D6DE;
+  border-radius: 6px;
+  margin: 20px 0 0 0;
+  padding: 0 0 20px 0;
+
+  .scheme-title {
+    padding: 20px;
+    font-weight: 500;
+    font-size: 15px;
+    line-height: 18.29px;
+  }
+
+  .hr {
+    border-bottom: 1px solid #E9ECEF;
+  }
+
+  .search-container {
+    padding: 20px;
+  }
+
+  .scheme-list {
+
+    .scheme-row {
+      padding: 15px;
+    }
+
+    .scheme-row:hover {
+      background-color: #F8F8F8;
+      color: $primary;
+      cursor: pointer;
+
+      .scheme-label:hover {
+        cursor: pointer;
+      }
+    }
+
+    .scheme-label {
+      font-weight: 500;
+    }
+  }
+
+  .scheme-form {
+    padding: 20px 20px 10px 20px;
+
+    .scheme-checkbox {
+      margin: 2px 2px 20px 10px;
+    }
+
+    .checkbox-container {
+      display: flex;
+      justify-content: space-between;
+    }
+  }
+
+  .title-top {
+    display: flex;
+    justify-content: space-between;
+
+    .btn-edit {
+      margin: 13px 20px 13px 13px;
+    }
+  }
+
+  .table-input {
+    text-align: center;
+  }
+
+  .pass {
+    border: 1px solid $primary;
+    color: #29AC8D;
+  }
+
+  .fail {
+    border: 1px solid #EA5455;
+    color: #EA5455;
+  }
+}

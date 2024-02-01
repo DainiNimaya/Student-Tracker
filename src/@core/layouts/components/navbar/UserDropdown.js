@@ -120,8 +120,9 @@ const UserDropdown = (props) => {
         <>
             <div className='user-nav d-sm-block d-none text-align-right'>
                 <div>
-                    <span className='user-name fw-bold'>
-                        {store.details === null ? name : `${store.details.name}`}</span>
+                    {/*<span className='user-name fw-bold'>*/}
+                        {/*{store.details === null ? name : `${store.details.name}`}</span>*/}
+                    <span className='user-name fw-bold'>Chamindu Jayasinghe</span>
                 </div>
                 {
                     profile.role !== 'STUDENT' && userData.userRoles?.length > 1 ?

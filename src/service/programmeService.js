@@ -7,5 +7,16 @@ export async function getAllProgramme(name, page, size) {
     apiObject.authentication = true
     apiObject.endpoint = url
     return await ApiService.callApi(apiObject)
+}
+
+
+export async function createEditProgramme(data, id) {
+    const url = `programme`
+    const apiObject = {}
+    apiObject.method = id === null ? 'POST' : 'PATCH'
+    apiObject.authentication = true
+    apiObject.endpoint = url
+    apiObject.body = data
+    return await ApiService.callApi(apiObject)
 
 }

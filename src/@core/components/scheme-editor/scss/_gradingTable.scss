@@ -1,0 +1,40 @@
+@import '../../../../@core/scss/base/bootstrap-extended/variables';
+.btn-remove {
+  color: #EA5455;
+  cursor: pointer
+}
+
+.table-input {
+  text-align: center;
+}
+
+.pass {
+  border: 1px solid $primary;
+  color: $primary;
+  border-radius: 4px;
+
+  .select__control {
+    border: none;
+  }
+}
+
+.fail {
+  border: 1px solid #EA5455;
+  color: #EA5455;
+}
+
+.checkbox-container-form {
+  border: 1px solid #d8d6de;
+  padding: 20px;
+  margin: 0 15px;
+  border-radius: 0.357rem;
+  display: flex;
+
+  .input-container {
+    margin-bottom: 0 !important;
+
+    .checkbox {
+      border: 2px solid grey;
+    }
+  }
+}

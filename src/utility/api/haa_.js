@@ -1,4 +1,5 @@
 import * as programmeService from '@service/programmeService'
+import {toast} from "react-toastify"
 
 export const getAllProgramme = async (name, page, size) => {
     let body = []
@@ -23,4 +24,28 @@ export const getAllProgramme = async (name, page, size) => {
         //     }
         // })
     return body
+}
+
+export const createEditProgramme = async (data) => {
+
+    const requiredData = {}
+    requiredData.programmeId = data.programmeId === null ? 0 : data.programmeId
+    requiredData.programmeName = data.programmeName
+    requiredData.programmeDescription = data.description
+
+    let body = 1
+    await programmeService.createEditProgramme(requiredData, data.programmeId)
+        .then(res => {
+            if (res !== undefined) {
+                if (res.status === 0) {
+                    toast.success(data.courseId === null ? "Programme added successfully." : "Programme details updated successfully", {
+                        icon: true,
+                        hideProgressBar: true
+                    })
+                    body = res.status
+                }
+            }
+        })
+    return body
+
 }
