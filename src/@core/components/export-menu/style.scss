@@ -1,0 +1,36 @@
+//@import "src/@core/scss/base/colors";
+
+.export-btn-container {
+
+  .expand-button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 10px 20px;
+    gap: 4px;
+  }
+
+  .sm-padding{
+    padding: 0.6rem 1rem;
+  }
+
+  .btn-menu {
+    margin-left: 10px;
+    cursor: pointer;
+  }
+
+  .txt-btn {
+    text-decoration: underline;
+    background-color: transparent !important;
+    border: none !important;
+    //color: #29AC8DFF !important;
+  }
+
+  .txt-btn:hover {
+    box-shadow: none !important;
+  }
+
+  .sm-size {
+    height: 30.5px !important;
+  }
+}
