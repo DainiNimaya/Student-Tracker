@@ -27,12 +27,6 @@ const manageStudents = [
         title: 'Student Master Profile',
         icon: <Circle size={12}/>,
         navLink: rs.manageStudentProfiles
-    },
-    {
-        id: 'student-drop',
-        title: 'Student Drop',
-        icon: <Circle size={12}/>,
-        navLink: rs.studentDrop
     }
 ]
 
@@ -183,12 +177,6 @@ const navigations = [
                 title: 'Attendance',
                 icon: <Circle size={12}/>,
                 navLink: rs.attendance
-            },
-            {
-                id: 'leave-request',
-                title: 'Leave Request',
-                icon: <Circle size={12}/>,
-                navLink: rs.leaveRequests
             }
         ]
     },
@@ -204,61 +192,20 @@ const navigations = [
         icon: <Settings size={20}/>,
         children: [
             {
-                id: 'holidays',
-                title: 'Holiday Calender',
-                icon: <Circle size={12}/>,
-                navLink: rs.holidays
-            },
-            {
                 id: 'intake',
                 title: 'Intake',
                 icon: <Circle size={12}/>,
                 navLink: rs.intake
             },
             {
-                id: 'provide-code',
-                title: 'Provide Code',
-                icon: <Circle size={12}/>,
-                navLink: rs.provideCode
-            },
-            {
                 id: 'assessmentType',
                 title: 'Assessment Type',
                 icon: <Circle size={12}/>,
                 navLink: rs.assessmentType
-            },
-            {
-                id: 'level',
-                title: 'Level',
-                icon: <Circle size={12}/>,
-                navLink: rs.level
-            },
-            // {
-            //     id: 'semester',
-            //     title: 'Semester',
-            //     icon: <Circle size={12}/>,
-            //     navLink: rs.semester
-            // },
-            {
-                id: 'venue',
-                title: 'Venue',
-                icon: <Circle size={12}/>,
-                navLink: rs.venue
-            },
-            {
-                id: 'emails',
-                title: 'Emails',
-                icon: <Circle size={12}/>,
-                navLink: rs.emails
             }
         ]
     }
-    // {
-    //     id: 'reports',
-    //     title: 'Reports',
-    //     icon: <FileText size={20}/>,
-    //     navLink: rs.reports
-    // }
+
 ]
 
 export default navigations

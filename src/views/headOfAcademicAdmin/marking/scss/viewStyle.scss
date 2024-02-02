@@ -1,0 +1,152 @@
+.haa-view-students-marking {
+  .card-header {
+    h4 {
+      color: #5E5873;
+      font-size: 18px !important;
+    }
+
+    div #close-icon {
+      margin-top: 3px;
+      color: #6E6B7B;
+      cursor: pointer;
+      margin-left: 15px;
+    }
+  }
+
+  .card-body h5 {
+    color: #5E5873;
+    margin-top: 15px;
+    font-size: 15px !important;
+  }
+
+  .card-body {
+    .row {
+      padding-top: 10px;
+
+      .col label {
+        color: #5E5873;
+        font-size: 14px;
+      }
+
+      .col p {
+        color: #B9B9C3;
+        font-size: 12px;
+      }
+    }
+  }
+
+  .react-dataTable {
+
+    .rdt_TableRow {
+      //#cell-3-undefined, #cell-4-undefined, #cell-5-undefined {
+      //  justify-content: center;
+      //
+      //  div {
+      //    display: inline-flex;
+      //
+      //    p {
+      //      padding: 5px 11px;
+      //      margin-right: 5px;
+      //      color: #5E5873;
+      //      margin-bottom: 0;
+      //    }
+      //
+      //    #mark {
+      //      border: 1px solid #d8d6de;
+      //      border-radius: 5px;
+      //    }
+      //
+      //    span {
+      //      height: 23px;
+      //      margin: 5px 10px;
+      //      font-size: 100%;
+      //    }
+      //  }
+      //}
+      //
+      //#cell-6-undefined {
+      //  div {
+      //    display: inline-flex;
+      //
+      //    p {
+      //      padding: 5px 0;
+      //      margin-bottom: 0;
+      //    }
+      //
+      //    span {
+      //      height: 23px;
+      //      margin: 5px 10px;
+      //      font-size: 100%;
+      //    }
+      //  }
+      //}
+      //
+      //#cell-7-undefined {
+      //  justify-content: center;
+      //
+      //  div p {
+      //    margin-bottom: 0;
+      //  }
+      //
+      //  div .lbl-primary {
+      //    color: #28C76F;
+      //  }
+      //
+      //  div .lbl-danger {
+      //    color: #EA5455;
+      //  }
+      //
+      //  div .lbl-warning {
+      //    color: #FF9F43;
+      //  }
+      //}
+    }
+
+    div div {
+
+      .hr {
+        border-bottom: 1px solid #E9ECEF;
+      }
+
+      .pagination-row {
+        .pagination-left {
+          padding: 1rem 0 0 2rem !important;
+        }
+      }
+    }
+  }
+}
+
+.lbl-primary-marking {
+  color: #28C76F;
+}
+
+.lbl-danger-marking {
+  color: #EA5455;
+}
+
+.lbl-warning-marking {
+  color: #FF9F43;
+}
+
+#col-dynamic {
+  display: inline-flex;
+
+  p {
+    padding: 5px 11px;
+    margin-right: 5px;
+    color: #5E5873;
+    margin-bottom: 0;
+  }
+
+  #mark {
+    border: 1px solid #d8d6de;
+    border-radius: 5px;
+  }
+
+  span {
+    height: 23px;
+    margin: 5px 10px;
+    font-size: 100%;
+  }
+}

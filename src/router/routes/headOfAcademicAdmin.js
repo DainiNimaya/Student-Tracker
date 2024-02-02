@@ -52,13 +52,6 @@ const RoutesHAA = [
         path: rs.assessmentType,
         component: lazy(() => import('../../views/headOfAcademicAdmin/configuration/assessmentType'))
     },
-    {path: rs.provideCode, component: lazy(() => import('../../views/headOfAcademicAdmin/configuration/provideCode'))},
-    {path: rs.level, component: lazy(() => import('../../views/headOfAcademicAdmin/configuration/level'))},
-    {path: rs.semester, component: lazy(() => import('../../views/headOfAcademicAdmin/configuration/semester'))},
-    {path: rs.venue, component: lazy(() => import('../../views/headOfAcademicAdmin/configuration/venue'))},
-    {path: rs.holidays, component: lazy(() => import('../../views/headOfAcademicAdmin/configuration/holidayCalender'))},
-    {path: rs.emails, component: lazy(() => import('../../views/headOfAcademicAdmin/configuration/emailBounce'))},
-    {path: rs.examSchedule, component: lazy(() => import('../../views/headOfAcademicAdmin/examSchedule'))},
     {
         path: rs.viewExamVenueStudents,
         component: lazy(() => import('../../views/headOfAcademicAdmin/examSchedule/viewStudents'))
