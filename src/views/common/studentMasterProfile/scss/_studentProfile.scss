@@ -1,0 +1,105 @@
+@import '../../../../@core/scss/base/bootstrap-extended/variables';
+$dark-grey: #5E5873;
+$red: #EA5455;
+.student-profiles{
+  div .heading{
+    color: #5E5873;
+  }
+
+  .react-dataTable {
+
+    .rdt_TableBody{
+
+      .rdt_TableRow {
+
+        .rdt_TableCell {
+        }
+
+        #cell-1-undefined {
+          div div div small{
+            font-weight: 600;
+            font-size: 13px;
+            color: $primary;
+          }
+        }
+
+        #cell-2-undefined {
+          div div{
+            p{
+              font-weight: 400;
+              font-size: 14px;
+              color: #5E5873;
+              margin-bottom: 0;
+            }
+            span{
+              font-size: 12px;
+              color: #B9B9C3;
+            }
+          }
+        }
+      }
+    }
+
+    div div .pagination-row{
+      margin: 0;
+    }
+  }
+}
+
+.item-name {
+  margin-left: 10px!important;
+  font-weight: bold;
+  color: $dark-grey;
+  font-size: 14px;
+  height: fit-content;
+  flex-shrink: 1;
+  display: flex;
+  flex-direction: column;
+
+  .contact-duplicate {
+    color: $red;
+    font-weight: bold;
+  }
+}
+
+.name-container{
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+.dLsxHf {
+  padding: 0 !important;
+}
+
+.idIcon {
+ fill: $primary;
+}
+
+.popup-guide {
+ list-style-type: none;
+ padding-left: 1.5em;
+}
+
+.popup-guide li:before {
+ content: "\2022"; /* Bullet character */
+ color: #ff6600; /* Custom bullet color */
+ font-size: 1.2em;
+ font-weight: bold;
+ display: inline-block;
+ width: 1em;
+ margin-left: -1em;
+}
+
+
+.dLsxHf {
+   padding: 0 !important;
+}
+
+.idIcon {
+  fill: $primary;
+}
+
+//.avatar{
+//  min-width: 33px;
+//}
