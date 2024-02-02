@@ -1,0 +1,81 @@
+@import '../../../../@core/scss/base/bootstrap-extended/variables';
+
+.create-user{
+
+  .heading{
+
+    color: #6E6B7B !important;
+    font-family: Montserrat;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 18px;
+    line-height: 22px;
+    margin-bottom: 1rem;
+
+    #icon{
+      color: #6E6B7B !important;
+      margin-right: 9px;
+    }
+  }
+
+  .field-row{
+    padding-top: 1rem;
+
+    div label span{
+      padding-left: 5px;
+      color: red;
+      font-size: 15px;
+    }
+
+    label{
+      font-family: Montserrat;
+      font-style: normal;
+      font-weight: normal;
+      font-size: 12px;
+      line-height: 18px;
+      color: #6E6B7B;
+      vertical-align: sub;
+    }
+
+    .col-9{
+      padding-left: 0;
+    }
+
+    .email-resend-div{
+      display: flex !important;
+
+      input{
+        border-top-right-radius: 0;
+        border-bottom-right-radius: 0;
+      }
+
+      button{
+        border-top-left-radius: 0;
+        border-bottom-left-radius: 0;
+      }
+    }
+  }
+
+  .gender-div{
+    position: relative;
+
+    .row{
+      position: absolute;
+      bottom: 0;
+      width: 100%;
+
+      .col-9{
+        padding-left: 0;
+      }
+    }
+  }
+
+  .validation-error .PhoneInputInput{
+    border: 1px solid #ea5455;
+  }
+
+
+  .p-text{
+    color: $primary;
+  }
+}

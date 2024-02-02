@@ -1,22 +1,15 @@
 import {
     Home,
     Circle,
-    FileText,
-    Layers,
     Sliders,
     Layout,
-    LogIn,
-    Folder,
-    BookOpen,
-    Target,
     Calendar,
     Users,
     UserCheck,
     Book,
     Award,
     Settings,
-    Clock,
-    TrendingUp, GitPullRequest
+    UserPlus
 } from 'react-feather'
 import rs from '@routes'
 import {accessList} from '@configs/basicInfomationConfig'
@@ -185,6 +178,25 @@ const navigations = [
         title: 'Manage Student',
         icon: <Users size={20}/>,
         children: manageStudents
+    },
+    {
+        id: 'manage-employee',
+        title: 'Manage Employee',
+        icon: <UserPlus size={20}/>,
+        children: [
+            {
+                id: 'create-user',
+                title: 'User Creation',
+                icon: <Circle size={12}/>,
+                navLink: rs.userCreate
+            },
+            {
+                id: 'employee-information',
+                title: 'Employee Information',
+                icon: <Circle size={12}/>,
+                navLink: rs.employeeInformation
+            }
+        ]
     },
     {
         id: 'configurations',

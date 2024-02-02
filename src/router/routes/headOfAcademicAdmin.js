@@ -64,6 +64,16 @@ const RoutesHAA = [
     {
         path: rs.assessmentTimeTableView,
         component: lazy(() => import('../../@core/components/assessmentTimeTable/assessment'))
+    },
+    {
+        path: rs.userCreate, component: lazy(() => import('../../views/headOfAcademicAdmin/manageEmployees/userCreate'))
+    },
+    {
+        path: rs.userEdit, component: lazy(() => import('../../views/headOfAcademicAdmin/manageEmployees/userCreate'))
+    },
+    {
+        path: rs.employeeInformation,
+        component: lazy(() => import('../../views/headOfAcademicAdmin/manageEmployees/employeeInformation'))
     }
 ]
 

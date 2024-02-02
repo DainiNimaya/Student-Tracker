@@ -12,7 +12,7 @@ import LayoutWrapper from '@layouts/components/layout-wrapper'
 import {BrowserRouter as AppRouter, Redirect, Route, Switch} from 'react-router-dom'
 
 // ** Routes & Default Routes
-import {RoutesCounselor, DefaultRouteCounselor} from './routes/counselor'
+import {RoutesHeadOfCounselor, DefaultRouteHeadOfCounselor} from './routes/counselor'
 import {RoutesStudent, DefaultRouteStudent} from './routes/student'
 import {DefaultRouteHAA, RoutesHAA} from './routes/headOfAcademicAdmin'
 import {RoutesHeadOfFinance, DefaultRouteHeadOfFinance} from './routes/headOfFinance'
@@ -53,8 +53,8 @@ const Router = () => {
 
         if (userRole) {
             switch (userRole) {
-                case config.counsellorRole:
-                    roleRoutes = RoutesCounselor
+                case config.hocRole:
+                    roleRoutes = RoutesHeadOfCounselor
                     break
                 case config.hofRole:
                     roleRoutes = RoutesHeadOfFinance
@@ -96,8 +96,8 @@ const Router = () => {
         const userRole = Cookies.get(config.role)
         if (userRole) {
             switch (userRole) {
-                case config.counsellorRole:
-                    return <Redirect to={DefaultRouteCounselor}/>
+                case config.hocRole:
+                    return <Redirect to={DefaultRouteHeadOfCounselor}/>
                 case config.hofRole:
                     return <Redirect to={DefaultRouteHeadOfFinance}/>
                 case config.studentRole:

@@ -1,0 +1,77 @@
+@import '../../../../@core/scss/base/bootstrap-extended/variables';
+
+$light-grey: #B9B9C3;
+
+.heading-empInfo{
+  color: #5E5873;
+}
+
+.form-label{
+  font-size: 12px;
+  color: #5E5873;
+}
+
+#name-div span, small{
+  font-size: 14px;
+}
+
+.tbl-data{
+  font-size: 14px;
+  text-align: left;
+}
+
+.hr {
+  height: 1px;
+  width: 100%;
+  background-color: #E0E0E0;
+}
+
+.pagination-row {
+  width: 100%;
+  margin-top: 1.5rem;
+
+  .pagination-left {
+    margin-top: 18px;
+
+    .pagination-details {
+      margin-top: 30px;
+      padding: 0 0 0 20px;
+      color: $light-grey;
+    }
+  }
+}
+
+.edit-btn{
+  border: 1px solid $primary !important;
+  color: $primary;
+}
+
+.clear-lbl{
+  color: red;
+  padding-right: 14px;
+  font-size: 13px;
+  font-weight: 500;
+  cursor: pointer;
+}
+
+.employee-info{
+  .react-dataTable {
+
+    .rdt_TableBody{
+
+      .rdt_TableRow {
+
+        #cell-6-undefined{
+          div div div input:checked{
+            background-color: $primary;
+          }
+
+          div div div input{
+            background-color: #e2e2e2;
+          }
+        }
+
+      }
+    }
+  }
+}
