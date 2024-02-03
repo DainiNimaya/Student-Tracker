@@ -5,8 +5,7 @@ import Filter from "@components/filter"
 import {handleFilter} from '@store/filter'
 import {connect} from "react-redux"
 import rs from '@routes'
-import * as Api from "@api/haa"
-import * as ApiIt from "@api/itAdmin"
+import * as Api from "@api/haa_"
 import {createUpcomingClassesDataObject, getCookieUserData, titleCase} from '@utils'
 import DataTable from "react-data-table-component"
 import {UPCOMING_CLASS_TABLE_COLUMN} from "./tableData"
@@ -52,8 +51,6 @@ class App extends React.Component {
         this.setState({showFilter: true})
         await this.loadAllBatches()
         await this.loadAllModule()
-        await this.loadAllVenues()
-        await this.loadAllSchools()
         await this.loadAllLectures()
         await this.loadAllClasses()
     }
@@ -71,22 +68,6 @@ class App extends React.Component {
     loadAllLectures = async () => {
         const res = await Api.getLecturers()
         this.setState({lectures: [all, ...res]})
-    }
-
-    loadAllSchools = async () => {
-        const res = await ApiIt.getAllSchools()
-        this.setState({schools: [all, ...res]})
-    }
-
-    loadAllVenues = async () => {
-        const res = await Api.getAllVenues()
-        this.setState({
-            venues: res.map(item => {
-                item['label'] = item.venueName
-                item['value'] = item.venueId
-                return item
-            })
-        })
     }
 
     onFilterHandler = async (data) => {

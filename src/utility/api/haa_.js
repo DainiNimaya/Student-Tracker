@@ -100,9 +100,9 @@ export const createEditProgramme = async (data) => {
 
 export const getStudentFurtherInfo = async (id, cbNo) => {
     let body = []
-    await studentService.getStudentFurtherInfo(id, cbNo)
-        .then(res => {
-            if (res.status === 0) {
+    // await studentService.getStudentFurtherInfo(id, cbNo)
+    //     .then(res => {
+    //         if (res.status === 0) {
                 // body = res.body
                 body =  {
                     locality: "LOCAL",
@@ -130,8 +130,8 @@ export const getStudentFurtherInfo = async (id, cbNo) => {
                     },
                     nicImages: ["https://amrak-dev-resources.unicloud360.com/default/1704712735672-a.pdf"]
                 }
-            }
-        })
+        //     }
+        // })
     return body
 }
 
@@ -152,10 +152,10 @@ export const updateStudentFurtherInfo = async (id, data) => {
 
 export const getStudentEmploymentInfo = async (id, cbNo) => {
     let body = []
-    await studentService.getStudentEmploymentInfo(id, cbNo)
-        .then(res => {
-            if (res.status === 0) {
-                // body = res.body
+    // await studentService.getStudentEmploymentInfo(id, cbNo)
+    //     .then(res => {
+    //         if (res.status === 0) {
+    //             // body = res.body
                 body =  {
                     employeeRecordAvailable: false,
                     workingInformation: {
@@ -182,8 +182,8 @@ export const getStudentEmploymentInfo = async (id, cbNo) => {
                         email: null
                     }
                 }
-            }
-        })
+        //     }
+        // })
     return body
 }
 
@@ -225,9 +225,9 @@ export const uploadFile = async (studentId, data) => {
 
 export const getCoursesByStudentId = async (studentId, cbNo) => {
     let body = []
-    await courseService.getCoursesByStudentId(studentId, cbNo).then(res => {
-        if (res.status === API_RESPONSE_STATUS[0]) {
-            // body = res.body
+    // await courseService.getCoursesByStudentId(studentId, cbNo).then(res => {
+    //     if (res.status === API_RESPONSE_STATUS[0]) {
+    //         // body = res.body
             body =  [
                 {
                     courseId: 77,
@@ -241,16 +241,16 @@ export const getCoursesByStudentId = async (studentId, cbNo) => {
                     intakeCode: "June/July"
                 }
             ]
-        }
-    })
+    //     }
+    // })
     return body
 }
 
 export const getQualificationsByStudentId = async (studentId, cbNo) => {
     let body = []
-    await studentService.getQualificationsByStudentId(studentId, cbNo).then(res => {
-        if (res.status === 0) {
-            // body = res.body
+    // await studentService.getQualificationsByStudentId(studentId, cbNo).then(res => {
+    //     if (res.status === 0) {
+    //         // body = res.body
             body =  [
                 {
                    qualificationId: 10743,
@@ -268,8 +268,8 @@ export const getQualificationsByStudentId = async (studentId, cbNo) => {
                    specialComment: ""
                 }
             ]
-        }
-    })
+    //     }
+    // })
     return body
 }
 
@@ -381,5 +381,202 @@ export const getFeeSchemeByStudentId = async (studentId) => {
             }
     //     }
     // })
+    return body
+}
+
+export const getAllBatchesForProgression = async (courseId) => {
+    let body = []
+    // await batchService.getAllBatchesForProgression(courseId)
+    //     .then(res => {
+    //         if (res.status === 0) {
+                const temp =  [
+                    {
+                        batchId: 2889,
+                        batchCode: "52MSJ2023P(Su)",
+                        startDate: "2023-08-01",
+                        endDate: "2026-09-30",
+                        orientationDate: "2023-08-01",
+                        intakeId: 39,
+                        intakeCode: "Aug/Sep",
+                        feeScheme: 2544,
+                        duration: 0,
+                        branch: 17,
+                        branchName: "Panadura",
+                        noOfStudents: 2,
+                        batchIndex: null,
+                        studentLimit: 100,
+                        displayName: "S.M.Part time Sunday",
+                        libraryId: 0,
+                        categoryId: 0
+                    }
+                ]
+                body = temp.map(item => {
+                    return {
+                        label: item.batchCode,
+                        value: item.batchId,
+                        noOfStudents: item.noOfStudents,
+                        studentLimit: item.studentLimit
+                    }
+                })
+        //     }
+        // })
+    return body
+}
+
+export const getAllModulesForDropDown = async () => {
+    let body = []
+    // await moduleService.getAllModule('modules').then(res => {
+    //     if (res.status === 0) {
+            const temp = [
+                {
+                    moduleId: 10440,
+                    moduleName: "Botny",
+                    moduleCode: "B",
+                    description: "",
+                    weeklyHours: null,
+                    noOfCredits: 30,
+                    moduleType: "CORE",
+                    moduleCategory: "NORMAL",
+                    consideringForGpaCalculation: true,
+                    assessmentSchemeId: 72,
+                    assessmentSchemeCode: "Medical Assesment Scheme",
+                    gradingSchemeId: 66,
+                    gradingSchemeCode: "Medical Science Module Grading",
+                    gradingSchemeDescription: "rem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has",
+                    lecturerId: [9560],
+                    lecturers: [
+                        {
+                            lecturerId: 9560,
+                            cost: null
+                        }
+                    ],
+                    levelId: 0,
+                    levelName: null,
+                    assignStudent: false,
+                    moduleUsed: true,
+                    gpaCalculate: true
+                }
+                ]
+            body = temp.map(item => {
+                return {label: item.moduleName, value: item.moduleId}
+            })
+    //     }
+    // })
+    return body
+}
+
+export const getLecturers = async () => {
+    const url = `users?userRole=LECTURER`
+    const body = []
+    // await userService.getAllUsers(url)
+    //     .then(res => {
+    //         if (res.status === API_RESPONSE_STATUS[0]) {
+    //             if (res.body.length !== 0) {
+                    const temp =  [
+                        {
+                            userId: 10862,
+                            role: "LECTURER",
+                            userRoles: ["LECTURER"],
+                            email: "dchamidiwijesuriya@gmail.com",
+                            office365LoginAttributes: null,
+                            firstName: "Wijini Amanda Wijayabandara",
+                            lastName: "",
+                            gender: "FEMALE",
+                            dateOfBirth: null,
+                            profileImageUrl: "https://amrak-dev-resources.unicloud360.com/pp/dchamidiwijesuriya@gmail.comprofileImg",
+                            mobileNumber: "",
+                            landNumber: "",
+                            nic: "",
+                            empNo: "5472",
+                            createdAt: null,
+                            userStatus: "INACTIVE",
+                            schoolList: [],
+                            department: {
+                                departmentId: 2,
+                                departmentName: "Academic Department"
+                            },
+                            branchList: [],
+                            courseList: [],
+                            lectureType: "FULL_TIME",
+                            lecCostPerHour: null,
+                            designation: "Lecturer",
+                            passwordExist: false
+                        }
+                    ]
+                    temp.map(user => {
+                        const name = `${user.firstName !== null ? user.firstName : ''} ${user.lastName !== null ? user.lastName : ''}`
+                        body.push({label: name, value: user.userId, type: user.lectureType, cost: user.lecCostPerHour})
+                    })
+                // }
+        //     }
+        // })
+    return body
+}
+
+export const getAllUpcomingClasses = async (url) => {
+    let body = []
+    // await classSetupService.getAllUpcomingClasses(url)
+    //     .then(res => {
+    //         if (res.status === 0) {
+                // body = res.body
+                body =  {
+                    content: [
+                        {
+                            classDateId: 2028,
+                            actualDate: "2023-05-02",
+                            className: "FPAMI 01 Theory",
+                            moduleId: 164,
+                            moduleName: " Foundation Principles and Application of Medical Imaging 1",
+                            moduleCode: "HMI102 ",
+                            slotId: 2026,
+                            slotName: "FPAMI 1 Slot",
+                            lectureId: 1,
+                            lectureName: "Navishka",
+                            venueId: 52,
+                            venueName: "Hall 3",
+                            classWeekType: "CLASS",
+                            availability: true,
+                            from: "12:08:00",
+                            to: "15:00:00",
+                            details: [
+                                {
+                                    batchId: 161,
+                                    batchCode: "52MSJ2023F",
+                                    schoolId: 13,
+                                    schoolName: "Medical School",
+                                    courseId: 77,
+                                    courseName: "Medical Science"
+                                }
+                            ]
+                        }
+                    ],
+                    pageable: {
+                        sort: {
+                            sorted: false,
+                            empty: true,
+                            unsorted: true
+                        },
+                        pageNumber: 0,
+                        pageSize: 10,
+                        offset: 0,
+                        paged: true,
+                        unpaged: false
+                    },
+                    last: false,
+                    totalElements: 1,
+                    totalPages: 1,
+                    sort: {
+                        sorted: false,
+                        empty: true,
+                        unsorted: true
+                    },
+                    size: 10,
+                    number: 0,
+                    first: true,
+                    numberOfElements: 10,
+                    empty: false
+                }
+        //     }
+        // })
     return body
 }
