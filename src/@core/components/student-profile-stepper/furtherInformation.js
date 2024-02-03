@@ -7,7 +7,7 @@ import Select from "react-select"
 import Required from "@components/required"
 import {selectThemeColors, isNULL, findObject, showError} from '@utils'
 import {LOCALITY, MARITAL_STATUS} from "@const"
-import * as apiHaa from "@api/haa"
+import * as apiHaa from "@api/haa_"
 import Flatpickr from "react-flatpickr"
 import {inquiryProspectFIErrors} from "@formError/counsellor"
 import {inquiryProspectFIValidation} from "@validations/counsellor"
@@ -60,13 +60,6 @@ const FurtherInformation = (props) => {
         const rslt =  await apiHaa.getStudentFurtherInfo(studentId)
         if (rslt.length !== 0) {
 
-            const temp = []
-            if (rslt.interest !== null && rslt.interest.socialMedia !== null && rslt.interest.socialMedia.length !== 0 && rslt.interest.socialMedia[0] !== "") {
-                rslt.interest.socialMedia.map(item => {
-                    // temp.push(findObject(SOCIAL_MEDIA, item))
-                })
-            }
-
             setDateOfBirth(isNULL(rslt.dateOfBirth))
             setMaritalStatus(isNULL(rslt.maritalStatus))
             setLocality(isNULL(rslt.locality))
@@ -78,7 +71,6 @@ const FurtherInformation = (props) => {
             setNationality(isNULL(rslt.nationality))
             setHobbies(isNULL(rslt.hobbies))
             setSpecialAbilities(isNULL(rslt.specialAbilities))
-            setSocialMedia(temp)
             if (rslt.studentSupport !== null) {
                 setDisabilities(rslt.studentSupport.disabilities)
                 setSpecialNeeds(rslt.studentSupport.specialNeeds)

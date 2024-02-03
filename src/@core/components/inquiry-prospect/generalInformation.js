@@ -16,6 +16,7 @@ import {
 import Select from 'react-select'
 import {User} from "react-feather"
 import Required from "@components/required"
+import * as Api_ from "@api/counselor_"
 import * as Api from "@api/counsellor"
 import * as ApiHaa from "@api/haa"
 import {
@@ -159,19 +160,15 @@ const App = ({
     const loadSelectionValues = async () => {
         let intakes = []
         if (props.user === config.counsellorRole || props.user === config.hocRole) {
-            const INTAKES = await Api.getAllIntakes()
+            const INTAKES = await Api_.getAllIntakes()
             intakes = INTAKES.map(item => {
                 return {label: item.intakeCode, value: item.intakeId, ongoing: item.ongoing}
             })
         }
 
         if (!props.isStudentOnboard) {
-            const COUNSELLORS = await Api.getAllCounsellors()
-            const counsellors = COUNSELLORS.map(item => {
-                return {label: `${item.firstName} ${item.lastName}`, value: item.userId}
-            })
-
-            setCounsellors([...counsellors])
+            const COUNSELLORS = await Api_.getAllCounselors()
+            setCounsellors([...COUNSELLORS])
         }
 
         setIntakeList([...intakes])
@@ -181,7 +178,7 @@ const App = ({
     const getAllCourses = async (intakeId) => {
         setCourse(null)
         const url = `courses?intakeId=${intakeId}&completeCourse=true`
-        const COURSES = await Api.getAllIntakeCourses(url)
+        const COURSES = await Api_.getAllIntakeCourses(url)
         const courses = COURSES.map(item => {
             return {label: item.courseName, value: item.courseId, degreeStatus: item.degreeStatus}
         })

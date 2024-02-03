@@ -5,7 +5,7 @@ import moment from "moment"
 import './scss/_studentProfile.scss'
 import DataTable from "react-data-table-component"
 import {PAYMENT_PLAN_TABLE_COLUMN_1, PAYMENT_PLAN_TABLE_COLUMN_2, TRANSACTION_TABLE_COLUMN} from './tableData'
-import * as Api from '@api/haa'
+import * as Api from '@api/haa_'
 import * as studentApi from '@api/student'
 import * as feApi from '@api/fe'
 import {capitalize, getLoggedUserData} from '@commonFunc'
@@ -34,18 +34,11 @@ class Fee extends Component {
     getFeeScheme = async () => {
         const studentId = JSON.parse(sessionStorage.getItem('STUDENT_DETAILS')).studentId
         const res = await Api.getFeeSchemeByStudentId(studentId)
+        console.log(res)
         if (res) {
-            await this.setState({data: res, paymentPlans: res.paymentsPlan})
+            this.setState({data: res})
         }
     }
-
-    // onViewReceipt = (item) => {
-    //     if (item.paymentReceipt) {
-    //         window.open(item.paymentReceipt)
-    //     } else {
-    //         toast.warning("Receipt not available!", {icon: true, hideProgressBar: true})
-    //     }
-    // }
 
     onReceiptAction = async (receiptId, item, isTransaction) => {
         const result = await studentApi.getInvoiceDetail(receiptId, INVOICE_TYPE.student)

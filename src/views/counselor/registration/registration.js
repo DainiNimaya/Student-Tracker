@@ -25,7 +25,7 @@ import {
 import Avatar from '@components/avatar'
 import '@styles/react/libs/flatpickr/flatpickr.scss'
 import {REGISTRATION_TABLE_COLUMN} from './tableData'
-import * as Api from "@api/counsellor"
+import * as Api from "@api/counselor_"
 import CustomPagination from "@components/customPagination"
 import './scss/_registrations.scss'
 import moment from "moment"

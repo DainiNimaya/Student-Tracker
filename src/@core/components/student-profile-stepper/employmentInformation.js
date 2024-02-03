@@ -16,7 +16,7 @@ import {
 } from '@utils'
 import {EXPERIENCE, FILE_TYPES, CURRENCY} from "@const"
 import PhoneInput from "react-phone-number-input"
-import * as apiHaa from "@api/haa"
+import * as apiHaa from "@api/haa_"
 import Cookies from "js-cookie"
 import config from '@storage'
 import {studentMasterProfileEmployErrors} from "@formError/counsellor"

@@ -21,17 +21,14 @@ import Avatar from '@components/avatar'
 import '@styles/react/libs/flatpickr/flatpickr.scss'
 import {ALL_INQUIRE_TABLE_COLUMN} from './tableData'
 import rs from '@routes'
-import * as Api from "@api/counsellor"
+import * as Api from "@api/counselor_"
 import CustomPagination from "@components/customPagination"
 import moment from 'moment'
-import {toast} from "react-toastify"
 import {CommonToast} from "@toast"
 import {capitalize} from "@commonFunc"
 import {connect} from "react-redux"
 import {handleFilter} from '@store/filter'
 import Filter from "@components/filter"
-import ExportMenu from '@components/export-menu'
-import DuplicateDetailsExpand from "@components/duplicate-details-expand"
 import Cookies from "js-cookie"
 import config from '@storage'
 
@@ -67,7 +64,6 @@ class AllInquiries extends Component {
         await this.loadAllCounselors()
         await this.loadAllCourses()
         await this.loadAllInquiryType()
-        await this.loadAllMarketingCodes()
         await this.loadAllInquiries()
     }
 
@@ -79,13 +75,6 @@ class AllInquiries extends Component {
         await this.setState({inquiryTypes: data})
     }
 
-    loadAllMarketingCodes = async () => {
-        const data = [{value: null, label: 'All'}]
-        // MARKETING_CODES.map(item => {
-        //     data.push(item)
-        // })
-        await this.setState({marketingCodes: data})
-    }
 
     loadAllCourses = async () => {
         const url = `courses/restriction?userId=${this.state.userId}`
@@ -130,22 +119,6 @@ class AllInquiries extends Component {
             }))
         }
         await this.setState({counselors: data})
-    }
-
-    exportData = async (type, size, page, isGetPages) => {
-        const res = await Api.getInquiryExportData({
-            ...this.bodyData(true),
-            pagination: {
-                index: page !== undefined ? page : this.state.currentPage,
-                size: size ? size : 10
-            },
-            dataNeeded: !isGetPages
-        })
-        if (res?.content && res?.content.length > 0) {
-            await this.setState({exportData: res.content})
-            // this.csvLinkEl.current.link.click()
-        }
-        return res
     }
 
     bodyData = (isExport) => {
@@ -277,20 +250,8 @@ class AllInquiries extends Component {
         const allData = []
         let count = 0
         this.state.data.map(async (item, i) => {
-            const isDuplicated = (item.duplicateDetails && item.duplicateDetails.length > 0)
-
-            let nameCount = 0
-            let contactCount = 0
-            let emailCount = 0
-            item.duplicateDetails && item.duplicateDetails.map(dup => {
-                if (item.studentName === dup.studentName) nameCount = nameCount + 1
-                if (item.studentMobile === dup.contactNo) contactCount = contactCount + 1
-                if (item.studentEmail === dup.email) emailCount = emailCount + 1
-            })
-
             allData.push({
-                id: <span key={i} className={'item-id'}
-                          onClick={() => this.navigateToInquiryProspect(item)}>{item.inquiryNumber ? item.inquiryNumber : '-'}</span>,
+                id: <span key={i} className={'item-id'}>{item.inquiryNumber ? item.inquiryNumber : '-'}</span>,
                 name: <div key={i}>
 
                     <div className={'name-container'}>
@@ -300,46 +261,20 @@ class AllInquiries extends Component {
 
                         <div className={'item-name'}>
                         <span id={`name${i}`}>{item.studentName}
-                            {
-                                isDuplicated && <sup
-                                    className={'contact-duplicate'}>{nameCount > 0 && nameCount}</sup>
-                            }
                     </span>
                         </div>
-
-                        {
-                            isDuplicated && <UncontrolledTooltip placement='right' target={`name${i}`}>
-                                Duplicated
-                            </UncontrolledTooltip>
-                        }
                     </div>
                 </div>,
                 contact: <div key={i}>
                     {
                         item.studentMobile ? <>
                             <div id={`positionRight${i}`} className={'item-contact'}>{item.studentMobile}
-                                {
-                                    isDuplicated && <sup
-                                        className={'contact-duplicate'}>{contactCount > 0 && contactCount}</sup>
-                                }
                             </div>
-                            {
-                                isDuplicated && <UncontrolledTooltip placement='right' target={`positionRight${i}`}>
-                                    Duplicated
-                                </UncontrolledTooltip>
-                            }
                         </> : '-'
                     }
                     {
                         item.studentEmail ? <div style={{display: 'flex'}}>
                             <div id={`email${i}`} className={'item-email'}>{item.studentEmail}</div>
-                            {
-                                isDuplicated &&
-                                <sup className={'duplicate'}>{emailCount > 0 && emailCount}</sup>
-                            }
-                            {isDuplicated && <UncontrolledTooltip placement='right' target={`email${i}`}>
-                                Duplicated
-                            </UncontrolledTooltip>}
                         </div> : null
                     }
                 </div>,

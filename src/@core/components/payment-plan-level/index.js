@@ -14,15 +14,11 @@ import rs from '@routes'
 import Cookies from "js-cookie"
 import config from '@storage'
 import {toast} from "react-toastify"
-import PaymentSummary from "../payment-summary"
 import {fee} from '@configs/studentMasterProfileConfig'
 import {basicInfo} from '@configs/basicInfomationConfig'
-import LevelExpand from '@components/commonLevelExpand'
-import SideBar from "./paymentExtension"
 import {loadStudentPaymentPlanCourseWise, checkCurrencyType} from '@utils'
 import cloneDeep from "lodash/cloneDeep"
 
-const EXTENSION_ACCESS_LIST = ['HEAD_OF_FINANCE', 'FINANCE_MANAGER', 'FINANCE_EXECUTIVE']
 let role = null
 
 class PaymentPlanLevel extends Component {
@@ -40,30 +36,13 @@ class PaymentPlanLevel extends Component {
         activeCourseId:0
     }
 
-    async componentWillMount() {
+    componentDidMount() {
         role = JSON.parse(Cookies.get(config.user)).role
         const tempData = this.props.data
 
-
-        // this was added to get data in refund in collect payment ui (to avoid calling same API twice)
-        let result = null
-        if (this.props.studentId) {
-            // here inquiryId has kept empty to handle a error in enrollment req ui
-            result = await loadStudentPaymentPlanCourseWise({studentId:this.props.studentId,inquiryId:''})
-        } else if (this.props.inquiryId) {
-            result = await loadStudentPaymentPlanCourseWise({studentId:0,inquiryId:this.props.inquiryId})
-        } else {
-            result = this.props.data
-        }
-
-
         if (this.props.smp || this.props.student) tempData['studentDetails'] = JSON.parse(sessionStorage.getItem('STUDENT_DETAILS'))
         this.setState({
-            data: (this.props.smp || this.props.student) ? tempData : this.props.props.props.data,
-            paymentPlans: result ? result.paymentPlans : [],
-            selectedLevel: result ? result.selectedLevel : 0,
-            selectedCourse: result ? result.selectedCourse : 0,
-            activeCourseId: result ? result.selectedCourse : 0
+            data: tempData
         })
     }
 
@@ -278,108 +257,89 @@ class PaymentPlanLevel extends Component {
         const isCourseTransferUI = window.location.pathname === rs.courseTransferInvoice
         const isDropUI = window.location.pathname === rs.viewDrop
         const isAllowEdit = this.props.props.edit
-        let currency = ''
+        const currency = ''
 
         let isDiscount = false
         let isRegFeePaid = false
         const payment = []
-        let levelPaySummary = null
 
-
-        this.state.paymentPlans.map((course) => {
-            if (course.courseId === this.state.selectedCourse) {
-                course.paymentPlan.map((plan, id) => {
-                    if (plan.levelId === this.state.selectedLevel) {
-                        currency = checkCurrencyType(plan.paymentPlan)
-                        plan.paymentPlan.map((item, i) => {
-                            let tempFeeType = item.feetype ? item.feetype : item.feeType
-                            let desc = item.feeDescription ? item.feeDescription : item.description
-                            if (tempFeeType === 'REGISTRATION_FEE' && item.status === 'PAID') isRegFeePaid = true
-                            if (tempFeeType === 'REPEAT_FEE') {
-                                const codeStartIndex = desc.indexOf(desc.split(' ')[2])
-                                tempFeeType = `Repeat fee - ${desc.split(' ')[0]}`
-                                desc = desc.substring(codeStartIndex)
-                            }
-                            // if (item.status === 'PAID') isPaidItems = true
-                            if (item.discount && item.discount !== 0) isDiscount = true
-
-                            const isActiveCourse = course.courseId === this.state.activeCourseId
-
-                            const rowData = {
-                                feeDescription: <Input readOnly value={desc}/>,
-                                feeType: <Input readOnly
-                                                value={tempFeeType ? capitalize(tempFeeType.replaceAll('_', ' ').toLowerCase()) : 'N/A'}/>,
-                                dueDate: <Input readOnly
-                                                value={item.dueDate ? moment(item.dueDate).format(DATE_FORMAT_TABLE) : '-'}/>,
-                                amount: <Input
-                                    style={item.amount < 0 ? {color: '#00CFE8', textAlign: 'right'} : {
-                                        color: '',
-                                        textAlign: 'right'
-                                    }}
-                                    readOnly
-                                    value={`${item.amount.toLocaleString()}`}/>,
-                                receipt: <>{(item.status === 'PAID' && item.paymentReceipt) &&
-                                <FileText style={{cursor: 'pointer'}}
-                                          onClick={() => this.onViewReceipt(item)}
-                                          className={'icn-file'}/>}</>,
-                                payment: <Input style={{textAlign: 'right'}} readOnly
-                                                value={item.payment ? `${item.payment.toLocaleString()}` : '0'}/>,
-                                duePayment: <Input style={{textAlign: 'right'}} readOnly
-                                                   value={item.lateFee ? item.lateFee.toLocaleString() : 0}/>,
-                                discount: <Input style={{textAlign: 'right'}} readOnly
-                                                 value={item.discount}/>,
-                                tax: <Input style={{textAlign: 'right'}} readOnly
-                                            value={`${item.taxAmount}`}/>,
-                                payable: <Input style={{textAlign: 'right'}} readOnly
-                                                value={`${item.amountPayable}`}/>,
-                                action: <>
-                                    {/*pay btn was hide as request by chamidi*/}
-                                    {!isCourseTransferUI && !isDropUI && <>
-                                        {item.status === 'PAID' ?
-                                            <Button disabled outline color={'primary'}><Trello
-                                                size={15}/> Paid&nbsp;</Button> :
-                                            item.status === 'REFUNDED' ?
-                                                <Button disabled outline color={'primary'}><Trello
-                                                    size={15}/> Refunded</Button> :
-                                                <Button
-                                                    disabled={(this.props.smp ? !(isAllowEdit && this.checkAccessLevel(fee.collectPayment) && isActiveCourse) :
-                                                        tempFeeType === 'REGISTRATION_FEE' ? false : !(isRegFeePaid && isActiveCourse))}
-                                                    onClick={() => this.editAction(item)} outline color={'primary'}><Trello
-                                                    size={15}/> Pay&nbsp;&nbsp;&nbsp;</Button>
-                                        }
-                                    </>
-                                    }
-                                    {
-                                        this.state.data && this.state.data.studentDetails && this.state.data.studentDetails.cbNumber && <>
-                                            {(item.status === 'PAID' || item.status === 'REFUNDED') ?
-                                                <Button
-                                                    onClick={() => this.onReceiptAction(item.invoiceId, item)}
-                                                    outline
-                                                    className={'btn-tbl-action'}
-                                                    color={'primary'}><FileText
-                                                    size={15}/> Receipt</Button> :
-                                                <Button disabled outline className={'btn-tbl-action'} color={'secondary'}>
-                                                    <FileText size={15}/> Receipt
-                                                </Button>
-                                            }
-                                        </>
-                                    }
-                                </>,
-                                status: <Badge style={{marginLeft: 10}}
-                                               color={item.status === 'PAID' || item.status === 'DEDUCTED' ? 'light-success' : item.status === 'PENDING' ? 'light-warning' : 'light-info'}>{item.status ? capitalize(item.status.replaceAll('_', ' ').toLowerCase()) : 'N/A'}</Badge>
-                            }
-
-                            if (this.props.multipleInvoice) rowData.selectAll = <Input type={'checkbox'}
-                                                                                       checked={item.checked}
-                                // disabled={item.status !== 'PAID'}
-                                                                                       onClick={(e) => this.selectPayment('single', plan.levelId, item.paymentPlanStructureId, e.target.checked,course.courseId)}
-                            />
-                            payment.push(rowData)
-                        })
-                        levelPaySummary = plan.paymentSummary
-                    }
-                })
+        this.state.data?.paymentPlan.map((item, i) => {
+            let tempFeeType = item.feetype ? item.feetype : item.feeType
+            let desc = item.feeDescription ? item.feeDescription : item.description
+            if (tempFeeType === 'REGISTRATION_FEE' && item.status === 'PAID') isRegFeePaid = true
+            if (tempFeeType === 'REPEAT_FEE') {
+                const codeStartIndex = desc.indexOf(desc.split(' ')[2])
+                tempFeeType = `Repeat fee - ${desc.split(' ')[0]}`
+                desc = desc.substring(codeStartIndex)
             }
+            // if (item.status === 'PAID') isPaidItems = true
+            if (item.discount && item.discount !== 0) isDiscount = true
+
+            const rowData = {
+                feeDescription: <Input readOnly value={item.description}/>,
+                feeType: <Input readOnly
+                                value={item.feeType ? capitalize(item.feeType.replaceAll('_', ' ').toLowerCase()) : 'N/A'}/>,
+                dueDate: <Input readOnly
+                                value={item.dueDate ? moment(item.dueDate).format(DATE_FORMAT_TABLE) : '-'}/>,
+                amount: <Input
+                    style={item.amount < 0 ? {color: '#00CFE8', textAlign: 'right'} : {
+                        color: '',
+                        textAlign: 'right'
+                    }}
+                    readOnly
+                    value={`${item.amount.toLocaleString()}`}/>,
+                receipt: <>{(item.status === 'PAID' && item.paymentReceipt) &&
+                <FileText style={{cursor: 'pointer'}}
+                          onClick={() => this.onViewReceipt(item)}
+                          className={'icn-file'}/>}</>,
+                payment: <Input style={{textAlign: 'right'}} readOnly
+                                value={item.payment ? `${item.payment.toLocaleString()}` : '0'}/>,
+                duePayment: <Input style={{textAlign: 'right'}} readOnly
+                                   value={item.lateFee ? item.lateFee.toLocaleString() : 0}/>,
+                discount: <Input style={{textAlign: 'right'}} readOnly
+                                 value={item.discount}/>,
+                tax: <Input style={{textAlign: 'right'}} readOnly
+                            value={`${item.taxAmount}`}/>,
+                payable: <Input style={{textAlign: 'right'}} readOnly
+                                value={`${item.amountPayable}`}/>,
+                action: <>
+                    {/*pay btn was hide as request by chamidi*/}
+                    {!isCourseTransferUI && !isDropUI && <>
+                        {item.status === 'PAID' ?
+                            <Button disabled outline color={'primary'}><Trello
+                                size={15}/> Paid&nbsp;</Button> :
+                            item.status === 'REFUNDED' ?
+                                <Button disabled outline color={'primary'}><Trello
+                                    size={15}/> Refunded</Button> :
+                                <Button
+                                    disabled={(this.props.smp ? !(isAllowEdit && this.checkAccessLevel(fee.collectPayment)) :
+                                        tempFeeType === 'REGISTRATION_FEE' ? false : !(isRegFeePaid))}
+                                    onClick={() => this.editAction(item)} outline color={'primary'}><Trello
+                                    size={15}/> Pay&nbsp;&nbsp;&nbsp;</Button>
+                        }
+                    </>
+                    }
+                    {
+                        this.state.data && this.state.data.studentDetails && this.state.data.studentDetails.cbNumber && <>
+                            {(item.status === 'PAID' || item.status === 'REFUNDED') ?
+                                <Button
+                                    onClick={() => this.onReceiptAction(item.invoiceId, item)}
+                                    outline
+                                    className={'btn-tbl-action'}
+                                    color={'primary'}><FileText
+                                    size={15}/> Receipt</Button> :
+                                <Button disabled outline className={'btn-tbl-action'} color={'secondary'}>
+                                    <FileText size={15}/> Receipt
+                                </Button>
+                            }
+                        </>
+                    }
+                </>,
+                status: <Badge style={{marginLeft: 10}}
+                               color={item.status === 'PAID' || item.status === 'DEDUCTED' ? 'light-success' : item.status === 'PENDING' ? 'light-warning' : 'light-info'}>{item.status ? capitalize(item.status.replaceAll('_', ' ').toLowerCase()) : 'N/A'}</Badge>
+            }
+
+            payment.push(rowData)
         })
 
         const paymentPlanDiv = <>

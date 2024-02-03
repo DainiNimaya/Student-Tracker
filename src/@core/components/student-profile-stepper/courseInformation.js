@@ -7,8 +7,7 @@ import {
     OTHER_INFO_TABLE_COLUMNS
 } from './tableData'
 import themeConfig from '@configs/themeConfig'
-import * as Api from '@api/haa'
-import * as ApiStudent from '@api/student'
+import * as Api from '@api/haa_'
 import {
     Badge,
     Button,
@@ -65,19 +64,6 @@ class CourseInformation extends Component {
 
     componentWillMount() {
         this.loadCourses()
-        this.getCourseTransfers()
-    }
-
-    getCourseTransfers = async () => {
-        let transfer = false
-        const studentId = JSON.parse(sessionStorage.getItem('STUDENT_DETAILS')).studentId
-        const res = await ApiStudent.getCourseTransfersByStudentId(studentId)
-
-        if (res && res.length) {
-            const req = res[0].status
-            if (COURSE_TRANSFER_REQUEST_STATUS[0] === req || COURSE_TRANSFER_REQUEST_STATUS[3] === req || COURSE_TRANSFER_REQUEST_STATUS[6] === req) transfer = true
-            await this.setState({isPendingTransfer: transfer, pendingTransferStatus: req})
-        }
     }
 
     loadCourses = async () => {

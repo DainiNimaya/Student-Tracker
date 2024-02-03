@@ -8,7 +8,7 @@ import {
     QUALIFICATION_EDIT_TABLE_COLUMN,
     STUDENT_QUALIFICATION_TABLE_COLUMN
 } from './tableData'
-import * as Api from '@api/haa'
+import * as Api from '@api/haa_'
 import {STUDENT_QUALIFICATION_STATUS, COLOR_STATUS, EMPTY_FILE} from '@const'
 import {capitalize} from '@commonFunc'
 import resultSheet from '../../../assets/images/counsellor/resultSheet.png'
