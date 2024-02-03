@@ -8,11 +8,9 @@ import {createBatchCreateRequestDataObject, findObject, selectThemeColors, showE
 import Flatpickr from "react-flatpickr"
 import {addBatchErrors} from "@formError/headOfAcademicAdmin"
 import {addBatchValidation} from "@validations/headOfAcademicAdmin"
-import * as Api from "@api/haa"
-import * as ApiC from "@api/counsellor"
+import * as Api from "@api/haa_"
 import moment from "moment"
 import './style.scss'
-import {AlertCircle} from "react-feather"
 import {componentsBatch} from '@strings'
 import {accessList} from '@configs/basicInfomationConfig'
 
@@ -49,37 +47,15 @@ export default ({
     const [isSchemeErrorShown, setIsSchemeErrorShown] = useState(false)
 
     useEffect(async () => {
-        const branchList = await loadSelectionValues()
         if (batchId !== undefined) {
-            await getBatchDetails(branchList)
+            await getBatchDetails()
             await checkAssignedStatus()
-        } else {
-            await loadAllBatches()
         }
     }, [])
 
     const checkAssignedStatus = async () => {
         const res = await Api.checkBatchAssignedStatus(batchId)
         setIsBatchAssigned(res)
-    }
-
-    const loadAllBatches = async () => {
-        const res = await Api.getAllBatches()
-        const batchList = []
-        if (res.length !== 0) {
-            res.map(item => {
-                batchList.push({value: item.batchId, label: item.displayName, data: item})
-            })
-            setBatches(batchList)
-        }
-    }
-
-    const loadSelectionValues = async () => {
-        const INTAKES = await ApiC.getAllIntakes()
-        const branchList = await Api.getAllBranches()
-        setBranches([...branchList])
-        INTAKES.map(item => intakeList.push({label: item.intakeCode, value: item.intakeId}))
-        return branchList
     }
 
     const getBatchDetails = async (branchList) => {
@@ -106,17 +82,6 @@ export default ({
             // if (accessList.allowStudyMode) data.studyMode = findObject(STUDY_MODES, res.studyMode)
             setState(data)
         }
-    }
-
-    const loadFeeSchemes = async (intakeId) => {
-        schemes.length = 0
-        let PAY = await Api.getPaymentScheme(intakeId)
-        PAY = PAY.map(item => {
-            return {label: item.schemeCode, value: item.paymentSchemeId}
-        })
-        setSchemes([...PAY])
-        setIsSchemeErrorShown(true)
-        return PAY
     }
 
     const onChangeValue = async (e) => {

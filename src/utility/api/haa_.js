@@ -580,3 +580,389 @@ export const getAllUpcomingClasses = async (url) => {
         // })
     return body
 }
+
+export const getAllCourseExport = async (name, page, size, dataNeeded) => {
+    let body = []
+    // await courseService.getAllCourseExport(name, page, size, dataNeeded)
+    //     .then(res => {
+    //         if (res.status === 0) {
+    //             if (res.body) {
+    //                 body = res.body
+                        body =  {
+                            content: [
+                                {
+                                    courseId: 2878,
+                                    courseName: "Bio Science ",
+                                    courseCode: "BS",
+                                    addedDate: "2023-08-22T11:44:03.488+00:00",
+                                    schoolOrDepartment: {
+                                        schoolId: 2870,
+                                        schoolName: "Nursing school",
+                                        courseList: null
+                                    },
+                                    providerCode: 41,
+                                    courseDescription: "ndustry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electr",
+                                    qualificationAchieve: "Bsc",
+                                    specialization: "Masters",
+                                    courseType: null,
+                                    programCode: "BCS",
+                                    totalCredits: 360,
+                                    neededDocument: null,
+                                    effectiveModulesCount: 0,
+                                    maxElectiveCount: 2,
+                                    minElectiveCount: 0,
+                                    degreeStatus: null
+                                }
+                            ],
+                            pageable: {
+                                sort: {
+                                    sorted: false,
+                                    empty: true,
+                                    unsorted: true
+                                },
+                                pageNumber: 0,
+                                pageSize: 10,
+                                offset: 0,
+                                paged: true,
+                                unpaged: false
+                            },
+                            last: true,
+                            totalElements: 2,
+                            totalPages: 1,
+                            sort: {
+                                sorted: false,
+                                empty: true,
+                                unsorted: true
+                            },
+                            size: 10,
+                            number: 0,
+                            first: true,
+                            numberOfElements: 2,
+                            empty: false
+                        }
+                // }
+        //     }
+        // })
+    return body
+}
+
+export const getSelectedCourse = async (data) => {
+    let body = null
+    // await courseService.getSelectedCourse(data)
+    //     .then(res => {
+    //         if (res.status === 0) {
+    //             if (res.body.length !== 0) {
+    //                 body = res.body
+                    body =  {
+                        courseId: 2878,
+                        courseName: "Bio Science ",
+                        courseCode: "BS",
+                        addedDate: "2023-08-22 11:44:03.488",
+                        providerCode: 41,
+                        courseDescription: "ndustry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electr",
+                        qualificationAchieve: "Bsc",
+                        specialization: "Masters",
+                        courseType: null,
+                        programCode: "BCS",
+                        totalCredits: 360,
+                        neededDocument: null,
+                        effectiveModulesCount: 0,
+                        gradingSchemeId: 60,
+                        maxElectiveCount: 2,
+                        minElectiveCount: 0,
+                        degreeStatus: null,
+                        courseUsed: true
+                    }
+        //         }
+        //     }
+        // })
+    return body
+}
+
+export const createEditCourse = async (data) => {
+
+    const levelList = []
+    let totalCredits = 0
+
+    if (data.levelList.length !== 0) {
+        data.levelList.map(item => {
+            totalCredits += Number(item.min)
+            levelList.push({
+                cmId: item.cmId,
+                levelId: item.level.value,
+                minCreditAmount: item.min,
+                maxCreditAmount: item.max,
+                totalGradeAverage: item.total
+            })
+        })
+    }
+
+    const tempCenter = []
+    if (data.center !== null && data.center.length !== 0) {
+        data.center.map(item => {
+            tempCenter.push(item.value)
+        })
+    }
+
+    const requiredData = {}
+    requiredData.courseId = data.courseId === null ? 0 : data.courseId
+    requiredData.courseName = data.courseName
+    requiredData.courseCode = data.courseCode
+    requiredData.courseDescription = data.description
+    requiredData.qualificationAchieve = data.qualification
+    requiredData.specialization = data.specialization
+    requiredData.schoolId = data.school.value
+    requiredData.provideCode = data.providerCode.value.toString()
+    requiredData.degreeStatus = data.degreeStatus.value
+    requiredData.programCode = data.programCode
+    requiredData.courseLevel = levelList
+    requiredData.courseCenter = tempCenter
+    requiredData.totalCredits = totalCredits
+    requiredData.gradingSchemeId = data.gradingSchema.value
+    requiredData.maxElectiveCount = Number(data.maxEM)
+    requiredData.minElectiveCount = Number(data.minEM)
+    // if (accessList.allowStudyMode) requiredData.typeOfCourse = data.courseType.value.trim()
+
+    let body = 1
+    await courseService.createEditCourse(requiredData, data.courseId)
+        .then(res => {
+            if (res !== undefined) {
+                if (res.status === 0) {
+                    toast.success(data.courseId === null ? "Course added successfully." : "Course details updated successfully", {
+                        icon: true,
+                        hideProgressBar: true
+                    })
+                    body = res.status
+                }
+            }
+        })
+    return body
+
+}
+
+export const getAllBatches = async (url, classId) => {
+    let body = undefined
+    // await batchService.getAllBatches(url, classId)
+    //     .then(res => {
+    //         if (res.status === API_RESPONSE_STATUS[0]) {
+    //             body = res.body
+                    body =  {
+                        content: [
+                            {
+                                batchId: 11196,
+                                batchCode: "52MSJ2023P(NE)",
+                                startDate: "2024-01-10",
+                                endDate: "2025-01-01",
+                                orientationDate: "2024-01-09",
+                                intakeId: 38,
+                                intakeCode: "June/July",
+                                feeScheme: 8966,
+                                duration: 0,
+                                branch: 21,
+                                branchName: "Colombo",
+                                noOfStudents: 0,
+                                batchIndex: null,
+                                studentLimit: 100,
+                                displayName: "D.physical Science (test)",
+                                libraryId: 0,
+                                categoryId: 0
+                            }
+                        ],
+                        pageable: {
+                            sort: {
+                                sorted: false,
+                                empty: true,
+                                unsorted: true
+                            },
+                            pageNumber: 0,
+                            pageSize: 10,
+                            offset: 0,
+                            paged: true,
+                            unpaged: false
+                        },
+                        last: true,
+                        totalElements: 5,
+                        totalPages: 1,
+                        sort: {
+                            sorted: false,
+                            empty: true,
+                            unsorted: true
+                        },
+                        size: 10,
+                        number: 0,
+                        first: true,
+                        numberOfElements: 5,
+                        empty: false
+                    }
+    //         }
+    //     })
+    return body
+}
+
+export const getNoOfStudentInBatch = async () => {
+    let body = undefined
+    await studentService.getNoOfStudentsInBatch()
+        .then(res => {
+            if (res.status === API_RESPONSE_STATUS[0]) {
+                body = res.body
+            }
+        })
+    return body
+}
+
+export const getSelectedBatch = async (batchId) => {
+    let body = undefined
+    // await batchService.getSelectedBatch(batchId)
+    //     .then(res => {
+    //         if (res.status === API_RESPONSE_STATUS[0]) {
+    //             body = res.body
+                body = {
+                    batchId: 11196,
+                    batchCode: "52MSJ2023P(NE)",
+                    startDate: "2024-01-10",
+                    endDate: "2025-01-01",
+                    orientationDate: "2024-01-09",
+                    intakeId: 38,
+                    intakeCode: "June/July",
+                    feeScheme: 8966,
+                    duration: 0,
+                    branch: 21,
+                    branchName: "Colombo",
+                    noOfStudents: 0,
+                    batchIndex: null,
+                    studentLimit: 100,
+                    displayName: "D.physical Science (test)",
+                    libraryId: 0,
+                    categoryId: 0
+                }
+        //     }
+        // })
+    return body
+}
+
+export const checkBatchAssignedStatus = async (batchId) => {
+    let body = undefined
+    await batchService.checkBatchAssignedStatus(batchId)
+        .then(res => {
+            if (res.status === 0) {
+                body = res.body
+            }
+        })
+    return body
+}
+
+export const saveBatch = async (data) => {
+    let body = undefined
+    await batchService.saveBatch(data)
+        .then(res => {
+            if (res.status === API_RESPONSE_STATUS[0]) {
+                body = res
+                toast.success(res.message, {icon: true, hideProgressBar: true})
+            }
+        })
+    return body
+}
+
+export const getAllModules = async (page, size, dataNeeded, name, type, course) => {
+
+    // const url = `modules?loadAllModule=true&index=${page}&size=${size}&dataNeeded=${dataNeeded}${name === '' ? `` : `&moduleNameOrCode=${name}`}${type === '' ? `` : `&moduleType=${type}`}${course === '' ? `` : `&courseId=${course}`}`
+    let body = null
+    // await moduleService.getAllModule(url)
+    //     .then(res => {
+    //         if (res.status === 0) {
+    //             body = res.body
+                    body =  {
+                        content: [
+                            {
+                                moduleId: 10440,
+                                moduleName: "Botny",
+                                moduleCode: "B",
+                                description: "",
+                                weeklyHours: null,
+                                noOfCredits: 30,
+                                moduleType: "CORE",
+                                moduleCategory: "NORMAL",
+                                consideringForGpaCalculation: true,
+                                assessmentSchemeId: 72,
+                                assessmentSchemeCode: "Medical Assesment Scheme",
+                                gradingSchemeId: 66,
+                                gradingSchemeCode: "Medical Science Module Grading",
+                                gradingSchemeDescription: "rem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has",
+                                lecturerId: [9560],
+                                lecturers: [
+                                    {
+                                       lecturerId: 9560,
+                                       cost: null
+                                    }
+                                ],
+                                levelId: 0,
+                                levelName: null,
+                                assignStudent: false,
+                                moduleUsed: true,
+                                gpaCalculate: true
+                            }
+                        ],
+                        pageable: {
+                            sort: {
+                                sorted: false,
+                                empty: true,
+                                unsorted: true
+                            },
+                            pageNumber: 0,
+                            pageSize: 10,
+                            offset: 0,
+                            paged: true,
+                            unpaged: false
+                        },
+                        last: false,
+                        totalElements: 15,
+                        totalPages: 2,
+                        sort: {
+                            sorted: false,
+                            empty: true,
+                            unsorted: true
+                        },
+                        size: 10,
+                        number: 0,
+                        first: true,
+                        numberOfElements: 10,
+                        empty: false
+                    }
+    //         }
+    //     })
+    return body
+}
+
+export const getAllCourses = async (data) => {
+    let body = []
+    // const url = `courses${data !== undefined ? `?userId=${await getCookieUserData().userId}&schoolId=${data}` : ''}`
+    // await courseService.getAllCoursesDropdown(url)
+    //     .then(res => {
+    //         if (res.status === 0) {
+    //             if (res.body.length !== 0) {
+    //                 body = res.body
+                    body =  [
+                        {
+                            courseId: 2878,
+                            courseName: "Bio Science ",
+                            courseCode: "BS",
+                            addedDate: "2023-08-22T11:44:03.488+00:00",
+                            providerCode: 41,
+                            courseDescription: "ndustry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electr",
+                            qualificationAchieve: "Bsc",
+                            specialization: "Masters",
+                            courseType: null,
+                            programCode: "BCS",
+                            totalCredits: 360,
+                            neededDocument: null,
+                            effectiveModulesCount: 0,
+                            maxElectiveCount: 2,
+                            minElectiveCount: 0,
+                            degreeStatus: null
+                        }
+                    ]
+        //         }
+        //     }
+        // })
+    return body
+}

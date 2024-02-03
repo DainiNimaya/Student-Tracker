@@ -6,7 +6,7 @@ import {MODULE_TABLE_COLUMN} from "./tableData"
 import CustomPagination from "@components/customPagination"
 import {Plus, Edit, Upload, X} from 'react-feather'
 import Avatar from '@components/avatar/avatar'
-import * as apiHaa from "@api/haa"
+import * as apiHaa from "@api/haa_"
 import ModuleModal from '@components/module-modal'
 import { CSVLink} from "react-csv"
 import {MODULE_CSV_HEADER, MODULE_TYPE} from '@const'

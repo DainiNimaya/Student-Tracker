@@ -3,12 +3,12 @@ import {Button, Card, CardBody, CardHeader, CardTitle} from "reactstrap"
 import {ChevronDown, HelpCircle, Plus, Upload} from "react-feather"
 import BatchModal from '@components/batch-modal'
 import {BATCHES_EXPORT_TEMPLATE_CSV_HEADER, FILTER_TYPES, FILTERS, STUDY_MODES} from '@const'
-import * as Api from "@api/haa"
+import * as Api from "@api/haa_"
 import DataTable from "react-data-table-component"
 import CustomPagination from "@components/customPagination"
 import {ALL_BATCH_TABLE_COLUMNS} from "./tableData"
 import Filter from "@components/filter"
-import * as ApiC from "@api/counsellor"
+import * as ApiC from "@api/counselor_"
 import {connect} from "react-redux"
 import {handleFilter} from '@store/filter'
 import rs from '@routes'
@@ -138,17 +138,18 @@ class App extends React.Component {
 
     onRowSelect = async (id) => {
         this.setState({batchId: id})
+        await this.toggleModel()
 
-        if (id !== undefined) {
-            const res = await this.getStudentByBatchId(id)
-            if (res) {
-                this.setState({openMessage: true})
-            } else {
-                await this.toggleModel()
-            }
-        } else {
-            await this.toggleModel()
-        }
+        // if (id !== undefined) {
+        //     // const res = await this.getStudentByBatchId(id)
+        //     if (res) {
+        //         this.setState({openMessage: true})
+        //     } else {
+        //         await this.toggleModel()
+        //     }
+        // } else {
+        //
+        // }
     }
 
     exportData = async (type, size, page, isGetPages) => {

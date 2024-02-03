@@ -8,7 +8,7 @@ import CustomPagination from "@components/customPagination"
 import {Plus, Edit, Upload, X} from 'react-feather'
 import Avatar from '@components/avatar'
 import CourseModal from '@components/course-modal'
-import * as apiHaa from "@api/haa"
+import * as apiHaa from "@api/haa_"
 import {CSVLink} from "react-csv"
 import {COURSE_CSV_HEADER} from '@const'
 import moment from 'moment'
@@ -31,17 +31,12 @@ const CourseDetail = (props) => {
     const [name, setName] = useState('')
     const [exportList, setExportList] = useState([])
 
-    const [levelList ,setLevelList] = useState(null)
-    const [provideList ,setProvideList] = useState(null)
-
     useEffect(() => {
         loadCourseData()
     }, [])
 
     const loadCourseData = async () => {
         const courses =  await apiHaa.getAllCourseExport(name,currentPage, 10, true)
-        const courseLevel = await apiHaa.getLevels()
-        const pCodes = await apiHaa.getAllProvideCode()
 
         if (courses !== undefined && courses.length !== 0) {
             setCourseList(courses.content)
@@ -49,14 +44,6 @@ const CourseDetail = (props) => {
             setTotalPages(courses.totalPages)
             setNumberOfElements(courses.numberOfElements)
             setOffset(courses.pageable.offset)
-        }
-
-        if (courseLevel !== undefined && courseLevel.length !== 0) {
-            setLevelList(courseLevel)
-        }
-
-        if (pCodes !== undefined && pCodes.length !== 0) {
-            setProvideList(pCodes)
         }
     }
 
@@ -75,13 +62,7 @@ const CourseDetail = (props) => {
         if (courseList.length !== 0) {
             courseList.map(course => {
 
-                let provide = `N/A`
                 let tempCoursename = ''
-                if (provideList !== null && provideList.length !== 0 && course.providerCode !== null) {
-                    provideList.map(data => {
-                        if (data.providerCodeId === course.providerCode) provide = data.providerCode
-                    })
-                }
 
                 if (course.courseName && course.courseName.length > 30) {
                     tempCoursename = `${course.courseName.substring(0,30)}..`
@@ -172,30 +153,6 @@ const CourseDetail = (props) => {
         if (res.content && res.content.length !== 0) {
             res.content.map(item => {
 
-                let levelString = ``
-                let provideName = ``
-                let branchString = ``
-
-                if (levelList.length !== 0 && item.level.length !== 0) {
-                    item.level.map(item => {
-                        levelList.map(level => {
-                            if (item === level.value) levelString = `${levelString} ${level.label}`
-                        })
-                    })
-                }
-
-                if (item.branch !== null && item.branch.length !== 0) {
-                    item.branch.map(data => {
-                        branchString  += `${data.branchName} `
-                    })
-                }
-
-                if (provideList.length !== 0 && item.providerCode !== null) {
-                    provideList.map(data => {
-                        if (data.providerCodeId === item.providerCode) provideName = data.providerCode
-                    })
-                }
-
                 tempExport.push({
                     name:item.courseName,
                     code:item.courseCode,
@@ -204,10 +161,7 @@ const CourseDetail = (props) => {
                     specialization:item.specialization,
                     type:item.courseType,
                     school:item.schoolOrDepartment !== null ? item.schoolOrDepartment.schoolName : '',
-                    provide:provideName,
                     program:item.programCode,
-                    level:levelString,
-                    center: branchString,
                     credits:item.totalCredits
                 })
             })

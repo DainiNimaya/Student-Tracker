@@ -5,7 +5,7 @@ import classnames from "classnames"
 import Select from 'react-select'
 import {selectThemeColors, showError, findObject} from '@utils'
 import {X, Edit, AlertCircle, Layers, MinusCircle, Plus, HelpCircle} from 'react-feather'
-import * as apiHaa from "@api/haa"
+import * as apiHaa from "@api/haa_"
 import {DEGREE_STATUS, COURSE_TYPES} from '@const'
 import {addCourseErrors, courseLevelErrors} from '@formError/headOfAcademicAdmin'
 import {addCourseValidation, courseLevelValidation, Amount_REGEX, Number_REGEX} from '@validations/headOfAcademicAdmin'
@@ -52,30 +52,6 @@ class CourseModal extends React.Component {
     }
 
     loadSelectData = async () => {
-        const schools = await apiHaa.getAllSchools()
-        const courseLevel = await apiHaa.getLevels()
-        const courseCentres = await apiHaa.getAllBranches()
-        const pCodes = await apiHaa.getAllProvideCode()
-        const schemaResult = await apiHaa.getAllGradingSchemes(OVERALL_MARK_CALCULATION[0].value)
-        const gradingSchema = []
-        const tempProviderCode = []
-
-        if (schemaResult.length !== 0) {
-            schemaResult.map(schema => {
-                gradingSchema.push({label: schema.gradingSchemeIdCode, value: schema.gradingSchemeId})
-            })
-        }
-
-        if (pCodes.length !== 0) {
-            pCodes.map(item => {
-                tempProviderCode.push({label: item.providerCode, value: item.providerCodeId})
-            })
-        }
-
-        if (this.props.school !== undefined) {
-            this.setState({school: this.props.school})
-        }
-
         if (this.props.courseId) {
             const course = await apiHaa.getSelectedCourse(this.props.courseId)
             if (course !== null) {
@@ -598,18 +574,10 @@ class CourseModal extends React.Component {
                             </Row>
                         </div>
                         <div className={'btn-div'}>
-                            {tabType === 1 && <Button outline color='primary' size={'md'} className='me-1'
-                                                      onClick={() => this.toggleModal()}>Cancel</Button>}
-                            {tabType === 2 && <Button outline color='primary' size={'md'} className='me-1'
-                                                      onClick={() => this.handleTabType(1)}>Back</Button>}
-                            {tabType === 1 &&
-                                <Button color='primary' size={'md'} onClick={() => this.handleTabType(2)}>Next</Button>}
-                            {this.props.manageType === 'add' && tabType === 2 &&
-                                <Button color='primary' size={'md'}
-                                        onClick={() => this.checkValidation()}>Save</Button>}
-                            {this.props.manageType === 'edit' && tabType === 2 && this.state.allowEdit &&
-                                <Button color='primary' size={'md'} onClick={() => this.checkLevelIsChanged()}>Save
-                                    Changes</Button>}
+                            <Button outline color='primary' size={'md'} className='me-1'
+                                                      onClick={() => this.toggleModal()}>Cancel</Button>
+                            <Button color='primary' size={'md'}
+                                                      onClick={() => this.checkValidation()}>Save</Button>
                         </div>
                     </Fragment>
                 </ModalBody>
