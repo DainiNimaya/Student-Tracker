@@ -5,8 +5,7 @@ import Filter from "@components/filter"
 import {handleFilter} from '@store/filter'
 import {connect} from "react-redux"
 import rs from '@routes'
-import * as Api from "@api/haa"
-import * as ApiIt from "@api/itAdmin"
+import * as Api from "@api/haa_"
 import {createUpcomingClassesDataObject, getCookieUserData, titleCase} from '@utils'
 import DataTable from "react-data-table-component"
 import {UPCOMING_CLASS_TABLE_COLUMN} from "./tableData"

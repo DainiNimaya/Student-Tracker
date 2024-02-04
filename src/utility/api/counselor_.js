@@ -20,9 +20,9 @@ import config from '@storage'
 
 export const getAllIntakes = async (branchId) => {
     let body = []
-    await intakeService.getAllIntakes(branchId)
-        .then(res => {
-            if (res.status === API_RESPONSE_STATUS[0]) {
+    // await intakeService.getAllIntakes(branchId)
+    //     .then(res => {
+    //         if (res.status === API_RESPONSE_STATUS[0]) {
                 // body = res.body
                 body =  [
                     {
@@ -38,16 +38,16 @@ export const getAllIntakes = async (branchId) => {
                         assignedBatched: ["52MSJ2023F", " 52MSJ2023P(Sa)", "52MSJ2023P(NE)"]
                     }
                 ]
-            }
-        })
+        //     }
+        // })
     return body
 }
 
 export const getAllCourses = async (url) => {
     let body = []
-    await courseService.getAllCourses(url)
-        .then(res => {
-            if (res.status === API_RESPONSE_STATUS[0]) {
+    // await courseService.getAllCourses(url)
+    //     .then(res => {
+    //         if (res.status === API_RESPONSE_STATUS[0]) {
                 // body = res.body
                 body =  [
                     {
@@ -74,16 +74,16 @@ export const getAllCourses = async (url) => {
                         degreeStatus: null
                     }
                 ]
-            }
-        })
+        //     }
+        // })
     return body
 }
 
 export const getAllCounselors = async (userId, branchId) => {
     let body = []
-    await counsellorService.getAllCounselors(userId, branchId)
-        .then(res => {
-            if (res.status === API_RESPONSE_STATUS[0]) {
+    // await counsellorService.getAllCounselors(userId, branchId)
+    //     .then(res => {
+    //         if (res.status === API_RESPONSE_STATUS[0]) {
                 // body = res.body
                 const bodyTemp =  [
                     {
@@ -111,16 +111,16 @@ export const getAllCounselors = async (userId, branchId) => {
                     return {value: item.userId, label: (`${item.firstName} ${item.lastName}`)}
                 })
                 body = data
-            }
-        })
+        //     }
+        // })
     return body
 }
 
 export const getAllIntakeCourses = async (url, intake) => {
     let body = []
-    await courseService.getAllIntakeCourses(url, intake)
-        .then(res => {
-            if (res.status === API_RESPONSE_STATUS[0]) {
+    // await courseService.getAllIntakeCourses(url, intake)
+    //     .then(res => {
+    //         if (res.status === API_RESPONSE_STATUS[0]) {
                 // body = res.body
                 body =  [
                     {
@@ -147,16 +147,16 @@ export const getAllIntakeCourses = async (url, intake) => {
                         degreeStatus: null
                     }
                 ]
-            }
-        })
+        //     }
+        // })
     return body
 }
 
 export const getAllInquiries = async (data) => {
     let body = []
-    await inquiryService.getAllInquiries(data)
-        .then(res => {
-            if (res.status === API_RESPONSE_STATUS[0]) {
+    // await inquiryService.getAllInquiries(data)
+    //     .then(res => {
+    //         if (res.status === API_RESPONSE_STATUS[0]) {
                 // body = res.body
                 body = {
                     content: [
@@ -305,8 +305,8 @@ export const getAllInquiries = async (data) => {
                     numberOfElements: 10,
                     empty: false
                 }
-            }
-        })
+        //     }
+        // })
     return body
 }
 
