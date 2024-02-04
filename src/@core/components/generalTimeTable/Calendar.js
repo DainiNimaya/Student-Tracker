@@ -52,8 +52,6 @@ class App extends React.Component {
         this.setState({showFilter: true})
         await this.loadAllBatches()
         await this.loadAllModule()
-        await this.loadAllVenues()
-        await this.loadAllSchools()
         await this.loadAllLectures()
         await this.loadAllClasses()
     }
@@ -71,22 +69,6 @@ class App extends React.Component {
     loadAllLectures = async () => {
         const res = await Api.getLecturers()
         this.setState({lectures: [all, ...res]})
-    }
-
-    loadAllSchools = async () => {
-        const res = await ApiIt.getAllSchools()
-        this.setState({schools: [all, ...res]})
-    }
-
-    loadAllVenues = async () => {
-        const res = await Api.getAllVenues()
-        this.setState({
-            venues: res.map(item => {
-                item['label'] = item.venueName
-                item['value'] = item.venueId
-                return item
-            })
-        })
     }
 
     onFilterHandler = async (data) => {

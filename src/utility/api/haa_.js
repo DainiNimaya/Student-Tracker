@@ -383,3 +383,84 @@ export const getFeeSchemeByStudentId = async (studentId) => {
     // })
     return body
 }
+
+export const getAllBatchesForProgression = async (courseId) => {
+    let body = []
+    await batchService.getAllBatchesForProgression(courseId)
+        .then(res => {
+            if (res.status === 0) {
+                const temp =  [
+                    {
+                        batchId: 2889,
+                        batchCode: "52MSJ2023P(Su)",
+                        startDate: "2023-08-01",
+                        endDate: "2026-09-30",
+                        orientationDate: "2023-08-01",
+                        intakeId: 39,
+                        intakeCode: "Aug/Sep",
+                        feeScheme: 2544,
+                        duration: 0,
+                        branch: 17,
+                        branchName: "Panadura",
+                        noOfStudents: 2,
+                        batchIndex: null,
+                        studentLimit: 100,
+                        displayName: "S.M.Part time Sunday",
+                        libraryId: 0,
+                        categoryId: 0
+                    }
+                ]
+                body = temp.map(item => {
+                    return {
+                        label: item.batchCode,
+                        value: item.batchId,
+                        noOfStudents: item.noOfStudents,
+                        studentLimit: item.studentLimit
+                    }
+                })
+            }
+        })
+    return body
+}
+
+export const getAllModulesForDropDown = async () => {
+    let body = []
+    await moduleService.getAllModule('modules').then(res => {
+        if (res.status === 0) {
+            const temp = [
+                {
+                    moduleId: 10440,
+                    moduleName: "Botny",
+                    moduleCode: "B",
+                    description: "",
+                    weeklyHours: null,
+                    noOfCredits: 30,
+                    moduleType: "CORE",
+                    moduleCategory: "NORMAL",
+                    consideringForGpaCalculation: true,
+                    assessmentSchemeId: 72,
+                    assessmentSchemeCode: "Medical Assesment Scheme",
+                    gradingSchemeId: 66,
+                    gradingSchemeCode: "Medical Science Module Grading",
+                    gradingSchemeDescription: "rem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has",
+                    lecturerId: [9560],
+                    lecturers: [
+                        {
+                            lecturerId: 9560,
+                            cost: null
+                        }
+                    ],
+                    levelId: 0,
+                    levelName: null,
+                    assignStudent: false,
+                    moduleUsed: true,
+                    gpaCalculate: true
+                }
+                ]
+            body = temp.map(item => {
+                return {label: item.moduleName, value: item.moduleId}
+            })
+        }
+    })
+    return body
+}
