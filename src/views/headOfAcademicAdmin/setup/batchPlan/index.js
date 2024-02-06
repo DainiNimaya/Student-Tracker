@@ -2,7 +2,7 @@ import React, {useEffect, useState} from "react"
 import {Card, CardBody, CardHeader, CardTitle, Col, Row} from "reactstrap"
 import ListSelect from '@components/list-select'
 import SideModel from '@components/list-select/list-select-side-model'
-import * as ApiCounsellor from "@api/counsellor"
+import * as ApiCounsellor from "@api/counselor_"
 import * as Api from "@api/haa"
 import CourseModal from '@components/course-modal'
 import BatchModal from '@components/batch-modal'
@@ -96,17 +96,6 @@ const App = (props) => {
     const onSelect = async (name, id) => {
         let res
         switch (name) {
-            case 'schoolId':
-                await setSelectedValues({
-                    schoolId: id,
-                    courseId: undefined,
-                    batchId: undefined,
-                    levelId: undefined,
-                    semesterId: undefined
-                })
-                await getAllCourses(id)
-                break
-
             case 'courseId':
                 setSelectedValues({
                     ...selectedValues,
@@ -120,14 +109,6 @@ const App = (props) => {
                     return {...item, name: item.batchCode, id: item.batchId, value: item.batchId}
                 })
                 setBatches(res)
-                break
-            case 'semesterId':
-                setSelectedValues({...selectedValues, semesterId: id})
-                res = await Api.getSelectedCourseBatchLevelSemesterModules(77, 161, 46, 203)
-                res = res.map(item => {
-                    return {...item, name: item.moduleName, id: item.moduleId, code: item.moduleCode}
-                })
-                setModules(res)
                 break
         }
     }
@@ -151,34 +132,6 @@ const App = (props) => {
                         semesterId: undefined,
                         moduleId: undefined
                     })
-                }
-                break
-            case 'levelId':
-                res = await Api.deleteSelectedCourseBatchLevel(selectedValues.courseId, selectedValues.batchId, id)
-                if (res) {
-                    const data = []
-                    levels.map(item => item.levelId !== id && data.push(item))
-                    setLevels([...data])
-                    setSemesters([])
-                    setModules([])
-                    setSelectedValues({
-                        ...selectedValues,
-                        levelId: undefined,
-                        semesterId: undefined,
-                        moduleId: undefined
-                    })
-                }
-
-                onSelect('levelId', {id: selectedValues.levelId})
-                break
-            case 'semesterId':
-                res = await Api.deleteSelectedCourseBatchLevelSemester(selectedValues.courseId, selectedValues.batchId, selectedValues.levelId, id)
-                if (res) {
-                    const data = []
-                    semesters.map(item => item.semesterId !== id && data.push(item))
-                    setSemesters([...data])
-                    setModules([])
-                    setSelectedValues({...selectedValues, semesterId: undefined, moduleId: undefined})
                 }
                 break
             case 'moduleId':

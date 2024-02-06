@@ -8,7 +8,6 @@ import SideModel from '@components/list-select/list-select-side-model'
 import {HelpCircle} from "react-feather"
 import ConfirmBox from "@components/confirm-box"
 import ModuleModal from "@components/module-modal"
-import * as ApiIt from "@api/itAdmin"
 import {titleCase, getCookieUserData} from '@utils'
 import config from '@storage'
 import {getLoggedUserData} from '@commonFunc'

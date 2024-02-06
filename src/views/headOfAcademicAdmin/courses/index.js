@@ -79,7 +79,7 @@ const CourseDetail = (props) => {
                                 <span className='d-block fw-bold text-truncate'>{tempCoursename}</span>
                             </div>
                         </div>,
-                        programme:"IT Programme",
+                        programme:"Engineering Programmes",
                         date:course.addedDate !== null ? moment(course.addedDate).format('YYYY-MM-DD') : `N/A`,
                         action: <Edit size={16} className={'edit-icon'} onClick={() => handleModals({type:'edit',id:course.courseId})}/>
                     }

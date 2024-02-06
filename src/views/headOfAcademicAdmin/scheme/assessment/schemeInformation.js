@@ -12,7 +12,7 @@ import {
     assessmentTableValidation
 
 } from '@validations/headOfAcademicAdmin'
-import * as Api from '@api/haa'
+import * as Api from '@api/haa_'
 import {toast} from "react-toastify"
 import {errorMessage} from '@strings'
 import {capitalize} from '@commonFunc'

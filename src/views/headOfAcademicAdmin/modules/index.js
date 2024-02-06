@@ -190,7 +190,7 @@ const ModulesDetail = (props) => {
                     {/*</CSVLink>*/}
                     <Button className='ms-2' color='primary' size={'sm'} onClick={() => handleModals({type:'add'})}>
                         <Plus size={15} />
-                        <span className='align-middle ms-50'>Add New Modules</span>
+                        <span className='align-middle ms-50'>Add Modules</span>
                     </Button>
                 </div>
             </CardHeader>

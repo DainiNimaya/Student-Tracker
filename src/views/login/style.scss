@@ -4,12 +4,19 @@
   background-repeat: no-repeat;
 
   .login-div{
-    padding: 8rem 20rem;
+    padding: 5rem 52rem 5rem 0rem;
+
+    .heading label{
+      font-family: math;
+      font-size: 30px;
+      font-weight: bolder;
+      color: #3b3b61;
+    }
 
     .login-div_{
       padding:0 5rem;
       border-radius: 10px;
-      background: #00000029;
+      //background: #00000029;
     }
   }
  }

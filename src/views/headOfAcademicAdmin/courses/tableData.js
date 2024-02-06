@@ -12,7 +12,7 @@ export const COURSE_TABLE_COLUMN = [
         name: 'Programme',
         selector: row => row.programme,
         minWidth: '150px',
-        maxWidth: '200px'
+        maxWidth: '250px'
     }, {
         name: 'ADDED DATE',
         selector: row => row.date,

@@ -43,8 +43,9 @@ const DefaultLogin = () => {
         <div className='auth-wrapper auth-v2'>
             <div className={'login-div'}>
                 <div className={'login-div_'}>
-                    <div align={'center'}>
-                        <img style={{width: "200px"}} src={themeConfig.app.appLogoImage} alt=""/>
+                    <div className={'heading'} align={'center'}>
+                        <img style={{width: "200px"}} src={themeConfig.app.appLogoImage} alt=""/><br/>
+                        <Label>Student Tracker</Label>
                     </div>
                     <CardText className='mb-2 mt-3'>
                         <div><h4>Welcome!</h4></div>

@@ -171,7 +171,7 @@ export const getAllInquiries = async (data) => {
                             createdAt: "2024-01-09T09:35:37.270+00:00",
                             studentTitle: null,
                             inquiryType: null,
-                            inquiryStatus: "REGISTRATION",
+                            inquiryStatus: "Inquiry",
                             inquiryNumber: "INQ10680",
                             studentMobile: null,
                             studentContact: null,
@@ -250,7 +250,7 @@ export const getAllInquiries = async (data) => {
                             },
                             intake: {
                                 intakeId: 38,
-                                intakeCode: "June/July",
+                                intakeCode: "INT2024",
                                 startDate: null,
                                 endDate: null
                             },

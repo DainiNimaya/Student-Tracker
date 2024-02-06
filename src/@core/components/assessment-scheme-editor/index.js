@@ -8,7 +8,7 @@ import './scss/_generalInformation.scss'
 import DataTable from "react-data-table-component"
 import {ASSESSMENT_TABLE_COLUMN} from "./tableData"
 import './scss/_gradingTable.scss'
-import * as Api from '@api/haa'
+import * as Api from '@api/haa_'
 import classnames from "classnames"
 import Required from "@components/required"
 

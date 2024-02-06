@@ -6,7 +6,7 @@ import {Plus} from "react-feather"
 import AssessmentSchemeEditor from "@components/assessment-scheme-editor"
 import {schemeEditorErrors, gradingTableErrors} from '@formError/headOfAcademicAdmin'
 import {assessmentSchemeEditorValidation, assessmentTableValidation} from '@validations/headOfAcademicAdmin'
-import * as Api from '@api/haa'
+import * as Api from '@api/haa_'
 import {toast} from "react-toastify"
 import {errorMessage} from '@strings'
 import {showError, getCookieUserData} from '@utils'

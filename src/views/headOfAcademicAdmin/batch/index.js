@@ -172,7 +172,7 @@ class App extends React.Component {
                         <Button onClick={async () => this.onRowSelect(undefined, undefined)} size='sm' type='button' className="me-1"
                                 color='primary'>
                             <Plus size={15}/>
-                            Add New Batch
+                            Add Batch
                         </Button>
 
                         <ExportMenu

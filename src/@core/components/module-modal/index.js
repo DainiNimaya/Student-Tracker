@@ -8,14 +8,10 @@ import classnames from "classnames"
 import Select from 'react-select'
 import {selectThemeColors, findObject, showError} from '@utils'
 import {X, MessageCircle, File, Menu, Users, MinusCircle, Plus, Info} from 'react-feather'
-import * as apiHaa from "@api/haa"
+import * as apiHaa from "@api/haa_"
 import {MODULE_TYPE, MODULE_CATEGORY, LECTURER_TYPES} from '@const'
 import {addModuleErrors, moduleLecturerErrors} from '@formError/headOfAcademicAdmin'
 import {addModuleValidation, moduleLecturerValidation} from '@validations/headOfAcademicAdmin'
-import DataTable from "react-data-table-component"
-import {ASSESSMENT_DETAILS_TABLE_COLUMN, ASSIGN_LECTURER_TABLE_COLUMN} from "./tableData"
-import {toast} from "react-toastify"
-import ConfirmBox from "@components/confirm-box"
 import {manageSetup} from '@strings'
 
 const array = {
@@ -57,9 +53,8 @@ class ModuleModal extends React.Component {
 
 
     loadSelectData = async () => {
-        const assessment = await apiHaa.getAllAssessment()
-        const moduleLevel = await apiHaa.getLevels()
         const lecturers = await apiHaa.getLecturers()
+        const assessment = await apiHaa.getAllAssessment()
 
         if (this.props.moduleId !== '') {
             const module = await apiHaa.getSelectedModule(this.props.moduleId)
@@ -132,9 +127,8 @@ class ModuleModal extends React.Component {
             }
         } else {
             this.setState({
-                schemeOption: assessment,
-                // levelOption: moduleLevel,
-                lecturerOption: lecturers
+                lecturerOption: lecturers,
+                schemeOption: assessment
             })
         }
     }
@@ -209,10 +203,10 @@ class ModuleModal extends React.Component {
     }
 
     loadSchemeType = async (data, type) => {
-        const typeList = await apiHaa.getAllAssessmentSchemeType(data.value)
+        // const typeList = await apiHaa.getAllAssessmentSchemeType(data.value)
         this.setState({
-            schemeId: data,
-            list: typeList.length !== 0 ? typeList : []
+            schemeId: data
+            // list: typeList.length !== 0 ? typeList : []
         })
     }
 
@@ -435,24 +429,24 @@ class ModuleModal extends React.Component {
                                             </Col>
                                         </Row>
                                     </Col>
-                                    {/*<Col xs={6}>*/}
-                                        {/*<Row className={'field-row'}>*/}
-                                            {/*<Col xs={4}><Label>Assessment Scheme<span>*</span></Label></Col>*/}
-                                            {/*<Col xs={8}>*/}
-                                                {/*<Select*/}
-                                                    {/*theme={selectThemeColors}*/}
-                                                    {/*className={classnames('react-select', {'is-invalid': schemeError})}*/}
-                                                    {/*classNamePrefix='select'*/}
-                                                    {/*// defaultValue={programOptions[0]}*/}
-                                                    {/*value={schemeId}*/}
-                                                    {/*options={schemeOption}*/}
-                                                    {/*isClearable={false}*/}
-                                                    {/*onChange={(e) => this.loadSchemeType(e,'change')}*/}
-                                                    {/*placeholder={'Select scheme'}*/}
-                                                {/*/>*/}
-                                            {/*</Col>*/}
-                                        {/*</Row>*/}
-                                    {/*</Col>*/}
+                                    <Col xs={6}>
+                                        <Row className={'field-row'}>
+                                            <Col xs={4}><Label>Assessment Scheme<span>*</span></Label></Col>
+                                            <Col xs={8}>
+                                                <Select
+                                                    theme={selectThemeColors}
+                                                    className={classnames('react-select', {'is-invalid': schemeError})}
+                                                    classNamePrefix='select'
+                                                    // defaultValue={programOptions[0]}
+                                                    value={schemeId}
+                                                    options={schemeOption}
+                                                    isClearable={false}
+                                                    onChange={(e) => this.loadSchemeType(e,'change')}
+                                                    placeholder={'Select scheme'}
+                                                />
+                                            </Col>
+                                        </Row>
+                                    </Col>
                                 </Row>
                                 <div className={'btn-div'}>
                                     <Button outline color='primary' size={'md'} className='me-1'

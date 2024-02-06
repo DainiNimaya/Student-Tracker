@@ -238,7 +238,7 @@ export const getCoursesByStudentId = async (studentId, cbNo) => {
                     recommendationLetter: null,
                     studentAgreement: null,
                     intakeId: 38,
-                    intakeCode: "June/July"
+                    intakeCode: "INT2024"
                 }
             ]
     //     }
@@ -430,8 +430,8 @@ export const getAllModulesForDropDown = async () => {
             const temp = [
                 {
                     moduleId: 10440,
-                    moduleName: "Botny",
-                    moduleCode: "B",
+                    moduleName: "Foundation Principles and Application IV",
+                    moduleCode: "FA0044",
                     description: "",
                     weeklyHours: null,
                     noOfCredits: 30,
@@ -593,8 +593,8 @@ export const getAllCourseExport = async (name, page, size, dataNeeded) => {
                                 {
                                     courseId: 2878,
                                     courseName: "Bio Science ",
-                                    courseCode: "BS",
-                                    addedDate: "2023-08-22T11:44:03.488+00:00",
+                                    courseCode: "BS007",
+                                    addedDate: "2023-12-22T11:44:03.488+00:00",
                                     schoolOrDepartment: {
                                         schoolId: 2870,
                                         schoolName: "Nursing school",
@@ -627,7 +627,7 @@ export const getAllCourseExport = async (name, page, size, dataNeeded) => {
                                 unpaged: false
                             },
                             last: true,
-                            totalElements: 2,
+                            totalElements: 1,
                             totalPages: 1,
                             sort: {
                                 sorted: false,
@@ -637,7 +637,7 @@ export const getAllCourseExport = async (name, page, size, dataNeeded) => {
                             size: 10,
                             number: 0,
                             first: true,
-                            numberOfElements: 2,
+                            numberOfElements: 1,
                             empty: false
                         }
                 // }
@@ -755,7 +755,7 @@ export const getAllBatches = async (url, classId) => {
                                 endDate: "2025-01-01",
                                 orientationDate: "2024-01-09",
                                 intakeId: 38,
-                                intakeCode: "June/July",
+                                intakeCode: "INT2024",
                                 feeScheme: 8966,
                                 duration: 0,
                                 branch: 21,
@@ -781,7 +781,7 @@ export const getAllBatches = async (url, classId) => {
                             unpaged: false
                         },
                         last: true,
-                        totalElements: 5,
+                        totalElements: 1,
                         totalPages: 1,
                         sort: {
                             sorted: false,
@@ -791,7 +791,7 @@ export const getAllBatches = async (url, classId) => {
                         size: 10,
                         number: 0,
                         first: true,
-                        numberOfElements: 5,
+                        numberOfElements: 1,
                         empty: false
                     }
     //         }
@@ -823,7 +823,7 @@ export const getSelectedBatch = async (batchId) => {
                     endDate: "2025-01-01",
                     orientationDate: "2024-01-09",
                     intakeId: 38,
-                    intakeCode: "June/July",
+                    intakeCode: "INT2024",
                     feeScheme: 8966,
                     duration: 0,
                     branch: 21,
@@ -875,8 +875,8 @@ export const getAllModules = async (page, size, dataNeeded, name, type, course) 
                         content: [
                             {
                                 moduleId: 10440,
-                                moduleName: "Botny",
-                                moduleCode: "B",
+                                moduleName: "Foundation Principles and Application IV",
+                                moduleCode: "FA0078",
                                 description: "",
                                 weeklyHours: null,
                                 noOfCredits: 30,
@@ -915,8 +915,8 @@ export const getAllModules = async (page, size, dataNeeded, name, type, course) 
                             unpaged: false
                         },
                         last: false,
-                        totalElements: 15,
-                        totalPages: 2,
+                        totalElements: 1,
+                        totalPages: 1,
                         sort: {
                             sorted: false,
                             empty: true,
@@ -925,7 +925,7 @@ export const getAllModules = async (page, size, dataNeeded, name, type, course) 
                         size: 10,
                         number: 0,
                         first: true,
-                        numberOfElements: 10,
+                        numberOfElements: 1,
                         empty: false
                     }
     //         }
@@ -962,6 +962,462 @@ export const getAllCourses = async (data) => {
                         }
                     ]
         //         }
+        //     }
+        // })
+    return body
+}
+
+export const getSelectedModule = async (data) => {
+    let body = null
+    // await moduleService.getSelectedModule(data)
+    //     .then(res => {
+    //         if (res.status === 0) {
+    //             if (res.body.length !== 0) {
+    //                 body = res.body
+                    body =  {
+                        moduleId: 10440,
+                        moduleName: "Foundation Principles and Application IV",
+                        moduleCode: "FA556",
+                        description: "",
+                        weeklyHours: null,
+                        noOfCredits: 30,
+                        moduleType: "CORE",
+                        moduleCategory: "NORMAL",
+                        consideringForGpaCalculation: true,
+                        assessmentSchemeId: 72,
+                        assessmentSchemeCode: "Medical Assesment Scheme",
+                        gradingSchemeId: 66,
+                        gradingSchemeCode: "Medical Science Module Grading",
+                        gradingSchemeDescription: "rem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has",
+                        lecturerId: [9560],
+                        lecturers: [
+                            {
+                                lecturerId: 9560,
+                                cost: null
+                            }
+                        ],
+                        levelId: 0,
+                        levelName: null,
+                        assignStudent: false,
+                        moduleUsed: true,
+                        gpaCalculate: true
+                    }
+                // }
+        //     }
+        // })
+    return body
+}
+
+export const getAllAssessment = async () => {
+
+    const body = []
+    // await assessmentService.getAllAssessment()
+    //     .then(res => {
+    //         if (res.status === 0) {
+    //             if (res.body.length !== 0) {
+                    const temp =  [
+                        {
+                            schemeId: 72,
+                            schemeCode: "Medical Assesment Scheme",
+                            description: "rem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has",
+                            gradingSchemeId: 66,
+                            schemeTypeList: [
+                                {
+                                    assessmentTypeId: 73,
+                                    configAssessmentTypeId: 42,
+                                    configTypeName: "Examination",
+                                    percentage: 30.0,
+                                    assessmentTypeName: "Exam"
+                                },
+                                {
+                                    assessmentTypeId: 74,
+                                    configAssessmentTypeId: 43,
+                                    configTypeName: "Individual Viva",
+                                    percentage: 30.0,
+                                    assessmentTypeName: "Viva"
+                                }
+                            ]
+                        }
+                    ]
+                    temp.map(assessment => {
+                        body.push({
+                            value: assessment.schemeId,
+                            label: assessment.schemeCode
+                        })
+                    })
+        //         }
+        //     }
+        // })
+    return body
+}
+
+export const addEditModule = async (data) => {
+
+    const lecturer = []
+
+    if (data.lecturerList.length !== 0) {
+        data.lecturerList.map(item => {
+            lecturer.push({lecturerId: item.name.value, cost: item.cost})
+        })
+    }
+
+    const requestBody = {
+        moduleId: data.moduleId,
+        moduleName: data.moduleName,
+        moduleCode: data.moduleCode,
+        description: data.description,
+        noOfCredits: data.credits,
+        moduleCategory: data.category.value,
+        // isGpaCalculate: data.gpaType.value === GPA_TYPE[0].value,
+        moduleType: data.moduleType.value,
+        // moduleLevelId: data.moduleLevel.value,
+        assessmentSchemeId: data.schemeId.value,
+        lecturers: lecturer
+
+    }
+
+    let body = 1
+    await moduleService.addEditModule(requestBody)
+        .then(res => {
+            if (res.status === 0) {
+                toast.success(data.moduleId === null ? "New module saved successfully." : "Module details updated successfully.", {
+                    icon: true,
+                    hideProgressBar: true
+                })
+                body = res.status
+            }
+        })
+    return body
+}
+
+export const getAllGradingSchemes = async (type) => {
+
+    const url = type !== undefined ? `schemas?markCalculationType=${type}` : `schemas`
+
+    let body = []
+    // await schemeService.getAllGradingSchemes(url)
+    //     .then(res => {
+    //         if (res.status === 0) {
+    //             if (res.body.length !== 0) {
+    //                 body = res.body
+                    body = [
+                        {
+                            gradingSchemeId: 60,
+                            gradingSchemeIdCode: "Medical Science Grading",
+                            markCalculation: "GRADING_POINT_AVERAGE",
+                            gradingSchemeDecription: "rem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has",
+                            previousGradingPercentage: 0.0,
+                            totalSubjectCredit: 0,
+                            passAllRequired: true,
+                            forceMinPassing: false,
+                            compensatableFail: false,
+                            roundUp: false,
+                            moduleId: 0,
+                            gradingTable: [
+                                {
+                                    gradingTableId: 67,
+                                    markFrom: "0",
+                                    markTo: "30",
+                                    grade: "F",
+                                    description: "FAIL",
+                                    gradePoint: 0.0,
+                                    isPass: false
+                                },
+                                {
+                                    gradingTableId: 68,
+                                    markFrom: "31",
+                                    markTo: "40",
+                                    grade: "S",
+                                    description: "Simple Pass",
+                                    gradePoint: 0.5,
+                                    isPass: true
+                                },
+                                {
+                                    gradingTableId: 69,
+                                    markFrom: "41",
+                                    markTo: "50",
+                                    grade: "C",
+                                    description: "Credit Pass",
+                                    gradePoint: 1.0,
+                                    isPass: true
+                                },
+                                {
+                                    gradingTableId: 70,
+                                    markFrom: "51",
+                                    markTo: "60",
+                                    grade: "B",
+                                    description: "Good",
+                                    gradePoint: 1.5,
+                                    isPass: true
+                                },
+                                {
+                                    gradingTableId: 71,
+                                    markFrom: "61",
+                                    markTo: "100",
+                                    grade: "A",
+                                    description: "Excellent",
+                                    gradePoint: 2.0,
+                                    isPass: true
+                                }
+                            ]
+                        }
+                    ]
+        //         }
+        //     }
+        // })
+    return body
+}
+
+export const saveGradingSchemes = async (form, gradingTableData) => {
+    const requestBody = gradingSchemesRequestDataObject(form, gradingTableData)
+
+    let body = []
+    await schemeService.saveGradingSchemes(requestBody)
+        .then(res => {
+            if (res.status === 0) {
+                toast(<SuccessToast
+                    desc={res.message}/>, {
+                    icon: false,
+                    hideProgressBar: true
+                })
+                body = res
+            }
+        })
+    return body
+}
+
+export const getAllAssessmentSchemes = async () => {
+    let body = []
+    // await schemeService.getAllAssessmentSchemes()
+    //     .then(res => {
+    //         if (res.status === 0) {
+    //             if (res.body.length !== 0) {
+    //                 body = res.body
+                    body =  [
+                        {
+                            schemeId: 72,
+                            schemeCode: "Medical Assesment Schme",
+                            description: "rem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has",
+                            gradingSchemeId: 66,
+                            schemeTypeList: [
+                                {
+                                    assessmentTypeId: 73,
+                                    configAssessmentTypeId: 42,
+                                    configTypeName: "Examination",
+                                    percentage: 30.0,
+                                    assessmentTypeName: "Exam"
+                                },
+                                {
+                                    assessmentTypeId: 74,
+                                    configAssessmentTypeId: 43,
+                                    configTypeName: "Individual Viva",
+                                    percentage: 30.0,
+                                    assessmentTypeName: "Viva"
+                                },
+                                {
+                                    assessmentTypeId: 75,
+                                    configAssessmentTypeId: 44,
+                                    configTypeName: "Presentation",
+                                    percentage: 30.0,
+                                    assessmentTypeName: "Presentation"
+                                },
+                                {
+                                    assessmentTypeId: 76,
+                                    configAssessmentTypeId: 45,
+                                    configTypeName: "Group Assignment",
+                                    percentage: 10.0,
+                                    assessmentTypeName: "Group Assignment"
+                                }
+                            ]
+                        }
+                    ]
+        //         }
+        //     }
+        // })
+    return body
+}
+
+export const saveAssessmentSchemes = async (form, tbl) => {
+    const requestBody = assessmentSchemesRequestDataObject(form, tbl)
+
+    let body = null
+    await schemeService.saveAssessmentSchemes(requestBody)
+        .then(res => {
+            if (res.status === 0) {
+                toast(<SuccessToast
+                    desc={res.message}/>, {
+                    icon: false,
+                    hideProgressBar: true
+                })
+                body = res
+            }
+        })
+    return body
+}
+
+export const getAllAssessmentTypes = async () => {
+    let body = []
+    // await assessmentService.getAllAssessmentTypes()
+    //     .then(res => {
+    //         if (res.status === API_RESPONSE_STATUS[0]) {
+    //             body = res.body
+                body =  [
+                    {
+                        configAssessmentTypeId: 42,
+                        createdDate: "2023-06-27T06:29:25.985+00:00",
+                        assessmentTypeName: "Examination",
+                        examType: true
+                    }
+                ]
+        //     }
+        // })
+    return body
+}
+
+export const updateAssessmentSchemes = async (id, form, tbl) => {
+    const requestBody = assessmentSchemesRequestDataObject(form, tbl)
+    requestBody['schemeId'] = id
+
+    let body = null
+    await schemeService.saveAssessmentSchemes(requestBody)
+        .then(res => {
+            if (res.status === 0) {
+                toast(<SuccessToast
+                    desc={res.message}/>, {
+                    icon: false,
+                    hideProgressBar: true
+                })
+                body = res
+            }
+        })
+    return body
+}
+
+export const updateGradingSchemes = async (form, gradingTableData) => {
+    const requestBody = gradingSchemesRequestDataObject(form, gradingTableData)
+    requestBody['gradingSchemeId'] = form.id
+
+    let body = []
+    await schemeService.saveGradingSchemes(requestBody)
+        .then(res => {
+            if (res.status === 0) {
+                toast(<SuccessToast
+                    desc={res.message}/>, {
+                    icon: false,
+                    hideProgressBar: true
+                })
+                body = res
+            }
+        })
+    return body
+}
+
+export const checkDuplicateSchemeCode = async (schemeCode) => {
+    let body = undefined
+    await schemeService.checkSchemeCodeDuplicates(schemeCode)
+        .then(res => {
+            if (res.status === API_RESPONSE_STATUS[0]) {
+                body = res.body
+            }
+        })
+    return body
+}
+
+export const getSelectedCourseBatches = async (courseId) => {
+    let body = []
+    // await batchPlanService.getSelectedCourseBatches(courseId)
+    //     .then(res => {
+    //         if (res.status === API_RESPONSE_STATUS[0]) {
+    //             body = res.body
+                body =  [
+                    {
+                        batchId: 161,
+                        batchCode: "52MSJ2023F",
+                        startDate: "2023-06-01",
+                        endDate: "2026-06-01",
+                        orientationDate: "2023-05-31"
+                    }
+                ]
+        //     }
+        // })
+    return body
+}
+
+export const getAllClassCodes = async () => {
+    let body = []
+    // await classSetupService.getAllClassCodes()
+    //     .then(res => {
+    //         if (res.status === API_RESPONSE_STATUS[0]) {
+    //             body = res.body
+                body = [
+                    {
+                        classId: 11192,
+                        className: "Botny 10",
+                        classCode: "Botny 10"
+                    }
+                ]
+        //     }
+        // })
+    return body
+}
+
+export const getAllClasses = async (url) => {
+    let body = undefined
+    // await classSetupService.getAllClasses(url)
+    //     .then(res => {
+    //         if (res.status === API_RESPONSE_STATUS[0]) {
+    //             body = res.body
+    console.log("e")
+                body = {
+                    content: [
+                        {
+                            classId: 229,
+                            className: "FPAMI 01 Theory",
+                            classCode: "FPAMI 1",
+                            schoolName: "Medical School",
+                            moduleName: " Foundation Principles and Application of Medical Imaging 1",
+                            moduleCode: "HMI102 ",
+                            moduleId: 164,
+                            batchCode: ["52MSJ2023F"],
+                            courseName: "Medical Science",
+                            courseCode: "MS",
+                            noOfSlots: 3,
+                            lecturers: [
+                                {
+                                    lecturerId: 1,
+                                    lecturerName: "Navishka"
+                                }
+                            ],
+                            from: "2023-06-01",
+                            to: "2023-08-31"
+                        }
+                    ],
+                    pageable: {
+                        sort: {
+                            sorted: false,
+                            empty: true,
+                            unsorted: true
+                        },
+                        pageNumber: 0,
+                        pageSize: 10,
+                        offset: 0,
+                        paged: true,
+                        unpaged: false
+                    },
+                    last: false,
+                    totalElements: 18,
+                    totalPages: 2,
+                    sort: {
+                        sorted: false,
+                        empty: true,
+                        unsorted: true
+                    },
+                    size: 10,
+                    number: 0,
+                    first: true,
+                    numberOfElements: 10,
+                    empty: false
+                }
         //     }
         // })
     return body

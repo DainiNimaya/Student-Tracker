@@ -6,7 +6,7 @@ import {Plus, X} from "react-feather"
 import GradeSchemeEditor from "@components/scheme-editor"
 import {schemeEditorErrors, gradingTableErrors} from '@formError/headOfAcademicAdmin'
 import {schemeEditorValidation, gradingTableValidation} from '@validations/headOfAcademicAdmin'
-import * as Api from '@api/haa'
+import * as Api from '@api/haa_'
 import {showError, getCookieUserData} from '@utils'
 import config from '@storage'
 

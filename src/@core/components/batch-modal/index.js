@@ -310,7 +310,7 @@ export default ({
                 Cancel
             </Button>
             <Button color='primary' type='button' onClick={onClickSave}>
-                Save Changes
+                Save
             </Button>
         </ModalFooter>
     </Modal>
