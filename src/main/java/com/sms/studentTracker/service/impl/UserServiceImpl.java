@@ -1,6 +1,5 @@
 package com.sms.studentTracker.service.impl;
 
-import com.fasterxml.jackson.databind.JsonNode;
 import com.sms.studentTracker.dto.UserDTO;
 import com.sms.studentTracker.dto.request.AddUserRequestDTO;
 import com.sms.studentTracker.entity.UserEntity;
@@ -16,7 +15,6 @@ import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
@@ -42,14 +40,16 @@ public class UserServiceImpl implements UserDetailsService, UserService {
 
     public UserDetails loadUserByUsername(String userId) throws UsernameNotFoundException {
 
-        try{
-            System.out.println("Start function loadUserByUsernamel : {}");
+        try {
+            log.info("Start function loadUserByUsername : {}");
             Optional<UserEntity> user = userRepository.findByEmail(userId);
-            if(user == null){
+            if (!user.isPresent()) {
+                log.error("loadUserByUsername() : invalid credentials");
                 throw new UsernameNotFoundException("Invalid username or password.");
             }
             UserEntity userEntity = user.get();
-            String roleString = userEntity.getUserRole().toString(); // Assuming user type is an Enum
+            // Assuming user type is an Enum
+            String roleString = userEntity.getUserRole().toString();
 
             // Create authorities for the user
             Collection<SimpleGrantedAuthority> authorities = new ArrayList<>();
@@ -60,16 +60,13 @@ public class UserServiceImpl implements UserDetailsService, UserService {
                     userEntity.getPassword(),
                     authorities);
         } catch (Exception e) {
-            // Log and handle any exceptions
             log.error("Error in loadUserByUsername: " + e.getMessage(), e);
             throw new RuntimeException("An error occurred while loading user details.", e);
         }
-
     }
 
     private List<SimpleGrantedAuthority> getAuthority(UserEntity user) {
-        System.out.println(user.getUserRole());
-        if (user.getUserRole().equals("ACADEMIC_ADMIN")){
+        if (user.getUserRole().equals("ACADEMIC_ADMIN")) {
             return Arrays.asList(new SimpleGrantedAuthority(user.getUserRole().toString()));
         }
         throw new UsernameNotFoundException("Access Denied");

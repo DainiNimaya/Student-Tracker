@@ -1,4 +1,4 @@
-package com.sms.studentTracker.dto;
+package com.sms.studentTracker.dto.request;
 
 import lombok.*;
 
@@ -9,10 +9,10 @@ import java.util.List;
 @NoArgsConstructor
 @AllArgsConstructor
 @ToString
-public class PaymentPlanDTO {
+public class ManagePaymentPlanDTO {
     private long paymentPlanId;
     private long feeSchemeId;
     private String planName;
     private String interval;
-    private List<PaymentStructureDTO> paymentStructureDTOS;
+    private List<ManagePaymentStructureDTO> paymentStructureDTOS;
 }
