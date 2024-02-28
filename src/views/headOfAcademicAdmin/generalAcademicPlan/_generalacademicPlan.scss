@@ -1,0 +1,329 @@
+@import '../../../@core/scss/base/bootstrap-extended/variables';
+$grey-light: #F3F2F7;
+$grey-light-dark: #B9B9C3;
+$primary: $primary;
+$grey-dark: #6E6B7B;
+$grey-dark-dark: #5E5873;
+$selector-default: #D8D6DE;
+$selector-blue: #00CFE8;
+$selector-warning: #FF9F43;
+$selector-success: #28C76F;
+$selector-secondary: #EFEFEF;
+
+.react-select .css-2b097c-container {
+  overflow: auto;
+}
+
+.dsmWRF div:first-child {
+  overflow-y: inherit !important;
+  overflow-x: inherit !important;
+}
+
+.forRdO {
+  overflow: inherit !important;
+}
+
+.rdt_TableCell > div {
+  width: 100% !important;
+}
+
+.css-26l3qy-menu {
+  overflow: auto !important;
+}
+
+//general academic plan coloumn color
+.dsmWRF {
+  background-color: #28C76F1F;
+}
+
+.table-academic {
+  overflow-x: auto;
+  overflow-y: hidden;
+
+  .table-header {
+    display: inline-flex;
+    background-color: $grey-light;
+
+    .th-fixed {
+      position: absolute;
+    }
+
+    .th-module {
+      //position: relative;
+      //width: 100vw;
+      //margin-left: 200px;
+    }
+
+    .th {
+      //display: table-cell;
+      //width: 200px;
+      height: 116px;
+      text-align: center;
+      padding: 50px;
+      background-color: $grey-light;
+      font-weight: bold;
+      color: $grey-dark-dark;
+    }
+  }
+
+  .table-row {
+    //height: 300px;
+    background-color: #fff;
+
+    .td {
+      display: inline-flex;
+      background-color: #fff;
+      border-bottom: 1px solid #E9ECEF;
+
+      .td-fixed {
+        position: absolute;
+        padding: 5px 10px;
+        background-color: $light-primary;
+      }
+
+      .td-relative {
+        padding: 6px 10px;
+      }
+
+      .td-fixed-transparent {
+        position: absolute;
+        padding: 5px 10px;
+        background-color: #fff;
+        height: 42px;
+      }
+    }
+
+    .clickable-checkbox {
+      display: flex;
+      padding: 6px 0 0 10px;
+      margin-right: 10px;
+
+      .days-by-years {
+        display: inline-flex;
+        margin-right: 20px;
+      }
+    }
+
+    .lbl-gap-total {
+      margin: 4px;
+      //margin: 5px;
+      text-align: center;
+      padding: 1px;
+      height: 25px;
+      width: 46px;
+      //width: 25px;
+      background-color: #F6F6FA;
+    }
+  }
+}
+
+.calender-column {
+  background-color: $grey-light;
+  padding: 10px 0 10px 10px;
+  margin-right: 10px;
+
+  .inner-year {
+    display: inline-flex;
+
+    .months-by-year {
+      //margin-right: 20px;
+    }
+  }
+
+  .header-year {
+    font-weight: bold;
+    color: $grey-dark-dark;
+  }
+
+  .header-month {
+    display: flex;
+
+    .month-title {
+      width: 216px;
+      //width: 140px;
+      text-align: center;
+      color: $primary;
+      font-weight: bold;
+    }
+  }
+
+  .month-dates {
+    display: flex;
+
+    .date {
+      width: 54px !important;
+      //width: 35px;
+      font-weight: bold;
+      color: $grey-dark;
+      text-align: center;
+    }
+
+    .first {
+      color: $primary;
+    }
+  }
+
+  .days-count {
+    display: flex;
+
+    .day-no {
+      //width: 35px;
+      width: 54px;
+      color: $grey-light-dark;
+      text-align: center;
+    }
+  }
+}
+
+.hr {
+  height: 1px;
+  background-color: #E9ECEF;
+  margin: 2px 0;
+}
+
+.item-selector {
+  height: 31px;
+  width: 50px !important;
+  //background-color: $grey-light;
+  margin: 2px;
+  cursor: pointer;
+
+  .selector-gap {
+    height: 28px;
+    //height: 25px;
+    //width: 25px;
+    width: 40px;
+    margin: 5px;
+    text-align: center;
+    padding: 3px;
+  }
+
+  .class-range {
+    border: 2px solid $selector-default;
+    border-radius: 3px;
+    background-color: #dbfbff;
+  }
+
+  .default {
+    border: 2px solid $selector-default;
+    border-radius: 3px;
+  }
+
+  .class-week {
+    background-color: $selector-blue;
+    border-radius: 3px;
+    color: #fff;
+  }
+
+  .exam-week {
+    background-color: $selector-warning;
+    border-radius: 3px;
+    color: #fff;
+  }
+
+  .study-leave-week {
+    background-color: $selector-success;
+    border-radius: 3px;
+    color: #fff;
+  }
+
+  .holiday-week {
+    background-color: $selector-secondary;
+    border-radius: 3px;
+    color: $grey-light-dark;
+  }
+}
+
+.table-footer {
+  float: right;
+  margin-right: 20px;
+  display: inline-flex;
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+
+@media screen and (max-width: 920px) {
+  .table-footer {
+    display: grid;
+    grid-template-columns: auto auto auto auto;
+    float: left;
+    margin-left: 20px;
+  }
+}
+
+@media screen and (max-width: 750px) {
+  .table-footer {
+    grid-template-columns: auto auto auto;
+  }
+}
+
+@media screen and (max-width: 550px) {
+  .table-footer {
+    grid-template-columns: auto auto;
+  }
+}
+
+@media screen and (max-width: 460px) {
+  .table-footer {
+    display: block;
+  }
+}
+
+.footer-select {
+  display: flex;
+  margin-right: 10px;
+
+  .select-text {
+    padding: 9px 0 0 0;
+    font-weight: 400;
+    color: $grey-dark;
+    margin-left: 5px;
+  }
+}
+
+.class-menu {
+  display: flex;
+  padding-right: 20px;
+
+  .select__control {
+    width: 165px;
+  }
+
+  .class-menu {
+    position: absolute;
+    right: 0;
+    top: 12px;
+  }
+
+  .class-menu > div > div {
+    transform: translate(0px, -30px) !important;
+  }
+}
+
+.class-label {
+  padding: 8px;
+  font-size: 15px;
+}
+
+.dropdown-menu[x-placement='bottom-end'] {
+  top: -45px !important;
+}
+
+.gap-tbl-header {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+
+  .header-date {
+    display: flex;
+  }
+
+  .header-date > label {
+    width: 200px;
+    padding: 8px 20px 8px 8px;
+  }
+
+  .header-title {
+    padding: 8px 0;
+  }
+}

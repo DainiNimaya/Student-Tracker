@@ -129,10 +129,10 @@ const UserDropdown = (props) => {
                         <UncontrolledButtonDropdown>
                             {dropdownToggle()}
                         </UncontrolledButtonDropdown> :
-                        profile.role !== 'STUDENT' && userData.userRoles?.length === 1 ?
-                            <span
-                                className='user-status'>{findObject(Object.values(ROLES), profile.role).label || 'Admin'}</span> :
-                            <span className='user-status'>{userData.cbNumber}</span>
+                    profile.role !== 'STUDENT' && userData.userRoles?.length === 1 ?
+                        <span
+                            className='user-status'>{findObject(Object.values(ROLES), profile.role).label || 'Admin'}</span> :
+                        <span className='user-status'>{userData.cbNumber}</span>
                 }
             </div>
             {

@@ -49,7 +49,7 @@ export async function requestTokenStudent(emailToken, msLoginType) {
     return await ApiService.callApi(apiObject)
 }
 
-export async function defaultLogin(userCredentials) {
+export async function userLogin(userCredentials) {
     const apiObject = {}
     apiObject.method = 'POST'
     apiObject.authentication = true

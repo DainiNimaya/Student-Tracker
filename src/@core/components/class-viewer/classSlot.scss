@@ -1,0 +1,146 @@
+@import '../../../@core/scss/base/bootstrap-extended/variables';
+$hr-color: #EBE9F1;
+$grey-light: #F3F2F7;
+$grey-light-dark: #B9B9C3;
+$primary: $primary;
+$grey-dark: #6E6B7B;
+$grey-dark-dark: #5E5873;
+$selector-default: #D8D6DE;
+$selector-blue: #00CFE8;
+$selector-blue-bold: #0083e8;
+$selector-warning: #FF9F43;
+$selector-success: #28C76F;
+$selector-secondary: #EFEFEF;
+
+
+.class-slot-section {
+  border: 1px solid #EBE9F1;
+  border-radius: 6px;
+  margin: 30px 0 10px 0;
+
+  .top-header {
+    display: flex;
+    justify-content: space-between;
+    padding: 20px;
+
+    .lbl-class {
+      font-size: 18px;
+      font-weight: 500;
+      line-height: 23px;
+
+    }
+  }
+}
+
+.lbl-class {
+  font-size: 18px;
+  font-weight: 500;
+  line-height: 23px;
+}
+
+.slot-form-section {
+  border: 1px solid #EBE9F1;
+  border-radius: 6px;
+  padding: 20px;
+  margin-top: 20px;
+}
+
+.tbl-timeline {
+  .sc-hKwDye div:first-child {
+    overflow: inherit !important;
+  }
+
+  .ldeolY div:first-child {
+    overflow: inherit !important;
+  }
+
+  .hr {
+    background-color: $hr-color;
+    width: 100%;
+    height: 1px;
+  }
+
+  .icn-not-available {
+    background-color: #EA5455;
+    height: 20px;
+    width: 20px;
+    border-radius: 100%;
+    padding: 0px 2px;
+    margin-left: 10px;
+  }
+
+  .icn-available {
+    background-color: #28C76F;
+    height: 20px;
+    width: 20px;
+    border-radius: 100%;
+    padding: 0px 2px;
+    margin-left: 10px;
+  }
+
+  .react-select {
+    width: 100%;
+  }
+
+  .cb-timeline-sa {
+    padding: 8px 8px 8px 0;
+  }
+}
+
+
+.default {
+  border: 2px solid $selector-default;
+  border-radius: 3px;
+}
+
+.class-week {
+  background-color: $selector-blue;
+  border-radius: 3px;
+  color: #fff;
+}
+
+.exam-week {
+  background-color: $selector-warning;
+  border-radius: 3px;
+  color: #fff;
+}
+
+.study-leave-week {
+  background-color: $selector-success;
+  border-radius: 3px;
+  color: #fff;
+}
+
+.holiday-week {
+  background-color: $selector-secondary;
+  border-radius: 3px;
+  color: $grey-light-dark;
+}
+
+.extra-week {
+  background-color: $selector-blue-bold;
+  border-radius: 100%;
+  color: #fff;
+}
+
+.selector {
+  height: 20px;
+  width: 20px;
+  margin: 0 8px 0 0;
+  text-align: center;
+  padding: 3px 5px;
+}
+
+.ant-picker-focused {
+  border-color: $primary !important;
+  box-shadow: none;
+}
+
+.ant-picker:hover {
+  border-color: #d9d9d9;
+}
+
+.ant-btn-primary, .ant-btn-primary:hover {
+  background-color: $primary;
+  border: none;
+}

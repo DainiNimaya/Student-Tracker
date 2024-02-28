@@ -1559,3 +1559,239 @@ export const getDashboardStats = async (type, userId) => {
         // })
     return body
 }
+
+export const getUnassignedCourseSetupModules = async (courseId, levelId) => {
+    let body = []
+    // await moduleService.getUnassignedCourseSetupModules(courseId, levelId)
+    //     .then(res => {
+    //         if (res.status === API_RESPONSE_STATUS[0]) {
+                body = [
+                    {
+                        moduleId: 170,
+                        moduleName: "Medical Radiation Science 2",
+                        moduleCode: "HMI201",
+                        description: "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It h",
+                        weeklyHours: null,
+                        noOfCredits: 60,
+                        moduleType: "CORE",
+                        moduleCategory: null,
+                        consideringForGpaCalculation: true,
+                        assessmentSchemeId: 0,
+                        assessmentSchemeCode: null,
+                        gradingSchemeId: 0,
+                        gradingSchemeCode: null,
+                        gradingSchemeDescription: null,
+                        lecturerId: [],
+                        lecturers: [],
+                        levelId: 0,
+                        levelName: null,
+                        assignStudent: false,
+                        moduleUsed: false,
+                        gpaCalculate: true
+                    }
+                ]
+        //     }
+        // })
+    return body
+}
+
+export const getUnassignedBatches = async (courseId) => {
+    let body = []
+    // await batchPlanService.getUnassignedBatches(courseId)
+    //     .then(res => {
+    //         if (res.status === API_RESPONSE_STATUS[0]) {
+                body = [
+                    {
+                        batchId: 10923,
+                        batchCode: "Ink32",
+                        startDate: "2024-01-19",
+                        endDate: "2024-01-22",
+                        orientationDate: "2024-01-18"
+                    },
+                    {
+                        batchId: 11196,
+                        batchCode: "52MSJ2023P(NE)",
+                        startDate: "2024-01-10",
+                        endDate: "2025-01-01",
+                        orientationDate: "2024-01-09"
+                    }
+                ]
+        //     }
+        // })
+    return body
+}
+
+export const getAllModuleClasses = async (moduleId) => {
+    let body = []
+    // await classSetupService.getAllModuleClasses(moduleId)
+    //     .then(res => {
+    //         if (res.status === API_RESPONSE_STATUS[0]) {
+                body = [
+                    {
+                        classId: 552,
+                        className: "FPAMI Theory",
+                        classCode: "FPAMI",
+                        from: "2023-06-01",
+                        to: "2023-10-31",
+                        batches: [161],
+                        autoAdd: true,
+                        slotAvailable: true,
+                        studentAssigned: true
+                    }
+                ]
+        //     }
+        // })
+    return body
+}
+
+export const getModulesBySemester = async (school, course, lecturerId) => {
+    let body = []
+    // await moduleService.getModulesBySemester(school, course, lecturerId)
+    //     .then(res => {
+    //         if (res.status === 0) {
+                body = [
+                    {
+                        moduleId: 162,
+                        moduleName: "Foundation Principles and Application of Medical Imaging 2",
+                        moduleCode: "HMI104 ",
+                        description: "rem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has",
+                        noOfCredits: 30,
+                        noOfSemesters: 0,
+                        module_type: "CORE",
+                        moduleCategory: "NORMAL",
+                        consideringForGpaCalculation: true
+                    },
+                    {
+                        moduleId: 164,
+                        moduleName: " Foundation Principles and Application of Medical Imaging 1",
+                        moduleCode: "HMI102 ",
+                        description: "rem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has",
+                        noOfCredits: 60,
+                        noOfSemesters: 0,
+                        module_type: "CORE",
+                        moduleCategory: "MULTI_SEMESTER",
+                        consideringForGpaCalculation: true
+                    }
+                ]
+        //     }
+        // })
+    return body
+}
+
+export const getAllClassStudents = async (classId, page, studentId, slotId) => {
+    let body = []
+    // await classSetupService.getAllClassStudents(classId, page, studentId, slotId)
+    //     .then(res => {
+    //         if (res.status === API_RESPONSE_STATUS[0]) {
+                body = [
+                    {
+                        studentId: 502,
+                        cbNumber: "CB012402",
+                        studentName: "Prathihari Wijesingha",
+                        courseName: "Medical Science",
+                        courseCode: "MS",
+                        batchCode: "52MSJ2023F",
+                        studentMobile: "+940714094958",
+                        studentEmail: "chamidil@ceyentra.com",
+                        inquiryId: 450
+                    },
+                    {
+                        studentId: 586,
+                        cbNumber: "CB012403",
+                        studentName: "indika madushan",
+                        courseName: "Medical Science",
+                        courseCode: "MS",
+                        batchCode: "52MSJ2023F",
+                        studentMobile: null,
+                        studentEmail: "indikam@ceyentra.com",
+                        inquiryId: 559
+                    },
+                    {
+                        studentId: 836,
+                        cbNumber: "CB000004",
+                        studentName: "prasad wikramage",
+                        courseName: "Medical Science",
+                        courseCode: "MS",
+                        batchCode: "52MSJ2023F",
+                        studentMobile: null,
+                        studentEmail: "indikamceyentra@gmail.com",
+                        inquiryId: 813
+                    }
+                ]
+        //     }
+        // })
+    return body
+}
+
+export const getAllBatches_ = async (url, classId) => {
+    let body = undefined
+    // await batchService.getAllBatches(url, classId)
+    //     .then(res => {
+    //         if (res.status === API_RESPONSE_STATUS[0]) {
+                body = [
+                    {
+                        batchId: 11196,
+                        batchCode: "52MSJ2023P(NE)",
+                        startDate: "2024-01-10",
+                        endDate: "2025-01-01",
+                        orientationDate: "2024-01-09",
+                        intakeId: 38,
+                        intakeCode: "INT2024",
+                        feeScheme: 8966,
+                        duration: 0,
+                        branch: 21,
+                        branchName: "Colombo",
+                        noOfStudents: 0,
+                        batchIndex: null,
+                        studentLimit: 100,
+                        displayName: "D.physical Science (test)",
+                        libraryId: 0,
+                        categoryId: 0
+                    }
+                ]
+        //     }
+        // })
+    return body
+}
+
+export const loadAllClassSlots = async (data) => {
+    let body = []
+    // await gapService.loadAllClassSlots(data)
+    //     .then(res => {
+    //         if (res.status === API_RESPONSE_STATUS[0]) {
+                body = {
+                    noOfStudents: 12,
+                    slots: [
+                        {
+                            slotId: 2026,
+                            slotName: "FPAMI 1 Slot",
+                            lecturer: "Navishka",
+                            venue: "Hall 3",
+                            day: "TUESDAY",
+                            from: "12:08:00",
+                            to: "15:00:00"
+                        },
+                        {
+                            slotId: 3044,
+                            slotName: "Slot 2",
+                            lecturer: "Navishka",
+                            venue: "Hall 1",
+                            day: "MONDAY",
+                            from: "12:00:00",
+                            to: "19:00:00"
+                        },
+                        {
+                            slotId: 3135,
+                            slotName: "biology practical",
+                            lecturer: "Navishka",
+                            venue: "Hall 2",
+                            day: "WEDNESDAY",
+                            from: "10:00:00",
+                            to: "19:04:00"
+                        }
+                    ]
+                }
+        //     }
+        // })
+    return body
+}

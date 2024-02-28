@@ -3,30 +3,22 @@ import {Card, CardBody, CardHeader, CardTitle, Col, Row} from "reactstrap"
 import ListSelect from '@components/list-select'
 import SideModel from '@components/list-select/list-select-side-model'
 import * as ApiCounsellor from "@api/counselor_"
-import * as Api from "@api/haa"
-import CourseModal from '@components/course-modal'
+import * as Api from "@api/haa_"
 import BatchModal from '@components/batch-modal'
 import ModuleModal from '@components/module-modal'
-import SemesterAssign from '@components/list-select/semesterAssign'
-import * as ApiIt from "@api/itAdmin"
 import {findObject, getCookieUserData} from '@utils'
 import config from '@storage'
 import {HelpCircle} from "react-feather"
 import ConfirmBox from "@components/confirm-box"
 import {getLoggedUserData} from '@commonFunc'
 import {batchPlan} from '@configs/authConfig'
-import LevelWiseOrientation from "@components/level-wise-orientation"
 import themeConfig from '@configs/themeConfig'
 
 const App = (props) => {
 
     const [cb, setCb] = useState(false)
-    const [schools, setSchools] = useState([])
     const [courses, setCourses] = useState([])
     const [batches, setBatches] = useState([])
-    const [levels, setLevels] = useState([])
-    const [semesters, setSemesters] = useState([])
-    const [levelData, setLevelData] = useState(null)
     const [modules, setModules] = useState([])
     const [deleteData, setDeleteData] = useState({
         name: undefined,
@@ -68,17 +60,9 @@ const App = (props) => {
     const [selectedBatchLevel, setSelectedBatchLevel] = useState(null)
 
     useEffect(async () => {
-        await getAllSchools()
         await getAllCourses()
     }, [])
 
-
-    const getAllSchools = async () => {
-        const res = await ApiIt.getAllSchools()
-        setSchools(res.map(item => {
-            return {...item, name: item.label, id: item.value}
-        }))
-    }
 
     const getAllCourses = async (schoolId) => {
         const userId = getLoggedUserData().userId
@@ -113,44 +97,6 @@ const App = (props) => {
         }
     }
 
-    const onRemove = async (name, id, isLoading, isToast) => {
-        let res
-        switch (name) {
-            case 'batchId':
-                res = await Api.deleteSelectedCourseBatch(selectedValues.courseId, id, isLoading, isToast)
-                if (res) {
-                    const data = []
-                    batches.map(item => item.batchId !== id && data.push(item))
-                    setBatches([...data])
-                    setLevels([])
-                    setSemesters([])
-                    setModules([])
-                    setSelectedValues({
-                        ...selectedValues,
-                        batchId: undefined,
-                        levelId: undefined,
-                        semesterId: undefined,
-                        moduleId: undefined
-                    })
-                }
-                break
-            case 'moduleId':
-                res = await Api.deleteSelectedCourseBatchLevelSemesterModule(selectedValues.courseId, selectedValues.batchId,
-                    selectedValues.levelId, selectedValues.semesterId, id)
-                if (res) {
-                    const data = []
-                    modules.map(item => item.moduleId !== id && data.push(item))
-                    setModules([...data])
-                    setSelectedValues({...selectedValues, moduleId: undefined})
-                }
-
-                await onSelect('levelId', {id: selectedValues.levelId})
-                await onSelect('semesterId', selectedValues.semesterId)
-                break
-        }
-        setCb(false)
-    }
-
     const toggleModal = (name) => {
         setModelOpen({
             ...modelOpen,
@@ -169,15 +115,6 @@ const App = (props) => {
                     return {...item, name: item.batchCode, id: item.batchId}
                 })
                 break
-            case 'module':
-                let count = 0
-                res = await Api.getUnassignedModules(77, 161, 46, 203)
-                res = res.map(item => {
-                    const a = {...item, name: item.moduleName, id: item.moduleId, code: item.moduleCode, count}
-                    count > 5 ? count = 0 : count += 1
-                    return a
-                })
-                break
         }
         const data = {...modelLists}
         data[name] = res
@@ -191,7 +128,7 @@ const App = (props) => {
             data: list,
             ...selectedValues
         }
-        const res = await Api.saveBatchPlanItem(data)
+        // const res = await Api.saveBatchPlanItem(data)
         if (res) {
             toggleModal(type.toLowerCase())
             switch (type.toLowerCase()) {
@@ -281,9 +218,6 @@ const App = (props) => {
                                 selectedValue={selectedValues.courseId}
                                 onSelect={(data, item) => {
                                     onSelect('courseId', data)
-                                    if (batchPlan.levelWiseOrientation) {
-                                        setSelectedCourse(item)
-                                    }
                                 }}
                             />
                         </Col>
@@ -326,7 +260,6 @@ const App = (props) => {
                                         inputPlaceholder='Batch Code'
                                         list={modelLists.batch}
                                         onSave={data => onSave('BATCH', data)}
-                                        isLevelWiseOrientation={batchPlan.levelWiseOrientation}
                                         onListSelect={onLevelWiseBatchSelect}
                                     />
                                 }
@@ -340,81 +273,6 @@ const App = (props) => {
                                     />
                                 }
 
-                                {
-                                    modelCreate.levelWise &&
-                                    <LevelWiseOrientation isOpen={modelCreate.levelWise}
-                                                          toggleModal={async (isRefresh, isCanceled) => {
-                                                              if (isRefresh) {
-                                                                  if (isCanceled) {
-                                                                      await onRemove('batchId', selectedBatch.batchId, false, false)
-                                                                  }
-                                                                  await onAdd('batch')
-                                                                  await onSelect('courseId', selectedValues.courseId)
-                                                              }
-                                                              await toggleCreateModals('levelWise')
-                                                              await setSelectedBatchLevel(null)
-                                                          }}
-                                                          selectedValues={selectedValues}
-                                                          selectedBatch={selectedBatch}
-                                                          selectedCourse={selectedCourse}
-                                                          selectedBatchLevel={selectedBatchLevel}
-                                    />
-                                }
-
-                            </Col>
-                        }
-
-                        {
-                            selectedValues.semesterId &&
-                            <Col md={4}>
-                                <ListSelect
-                                    title='Module'
-                                    onAdd={aaRole ? undefined : () => onAdd('module')}
-                                    inputPlaceholder='Module Name / Code'
-                                    avatarWithRemove={!aaRole}
-                                    avatar={aaRole}
-                                    typeAndCredit={true}
-                                    data={modules}
-                                    selectedValue={selectedValues.moduleId}
-                                    onSelect={data => onSelect('moduleId', data)}
-                                    onRemove={data => {
-                                        setDeleteData({
-                                            name: 'moduleId',
-                                            id: data
-                                        })
-                                        setCb(true)
-                                    }}
-                                />
-
-                                {
-                                    modelOpen.module && <SideModel
-                                        toggleOpen={() => toggleModal('module')}
-                                        open={modelOpen.module}
-                                        title='Add Module'
-                                        subTitle='Modules'
-                                        onAdd={undefined}
-                                        courseSetup={true}
-                                        showGpaCalculation={true}
-                                        gpaCalculationData={{maxCreditLimit, minCreditLimit}}
-                                        totalCredits={{totalGpa, totalNonGpa, totalElectiveGpa, totalElectiveNonGpa}}
-                                        inputPlaceholder='Module Name / Code'
-                                        list={modelLists.module}
-                                        onSave={data => onSave('MODULE', data)}
-                                        refreshLevels={async () => {
-                                            await onSelect('levelId', {id: selectedValues.levelId})
-                                            await onSelect('semesterId', selectedValues.semesterId)
-                                        }}
-                                    />
-                                }
-
-                                {
-                                    modelCreate.module && <ModuleModal
-                                        visible={modelCreate.module}
-                                        modalFunction={() => toggleCreateModals('module')}
-                                        manageType='add'
-                                        onSave={() => toggleCreateModals('module', true)}
-                                    />
-                                }
                             </Col>
                         }
                     </Row>

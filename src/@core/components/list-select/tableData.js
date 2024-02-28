@@ -64,43 +64,43 @@ export const columns_TableAssessment = (onEditCourse, onPublish) => {
     return [
         {
             name: 'CODE',
-            minWidth: '150px',
+            width: '100px',
             selector: row => row.name
         },
+        // {
+        //     name: 'ISSUE DATE',
+        //     minWidth: '100px',
+        //     selector: row => {
+        //         return row.issueDate ? row.issueDate : 'N/A'
+        //     }
+        // },
         {
-            name: 'ISSUE DATE',
-            minWidth: '100px',
-            selector: row => {
-                return row.issueDate ? row.issueDate : 'N/A'
-            }
-        },
-        {
-            name: 'SUBMISSION DATE',
-            minWidth: '170px',
+            name: 'SUBMISSION',
+            width: '150px',
             selector: row => {
                 return row.submissionDate ? row.submissionDate : 'N/A'
             }
         },
-        {
-            name: 'RETURN DATE',
-            minWidth: '170px',
-            selector: row => {
-                return row.returnDate ? row.returnDate : 'N/A'
-            }
-        },
-        {
-            name: 'STATUS',
-            minWidth: '150px',
-            selector: row => {
-                return <><Badge className='ms-auto me-1'
-                                color={
-                                    row.status === ASSESSMENT_TABLE_STATUS.pending ? courseAppliedStatus[2]
-                                        : courseAppliedStatus[0]}
-                                pill>
-                    {capitalize(row.status.replaceAll('_', ' ').toLowerCase())}
-                </Badge></>
-            }
-        },
+        // {
+        //     name: 'RETURN DATE',
+        //     minWidth: '170px',
+        //     selector: row => {
+        //         return row.returnDate ? row.returnDate : 'N/A'
+        //     }
+        // },
+        // {
+        //     name: 'STATUS',
+        //     width: '100px',
+        //     selector: row => {
+        //         return <><Badge className='ms-auto me-1'
+        //                         color={
+        //                             row.status === ASSESSMENT_TABLE_STATUS.pending ? courseAppliedStatus[2]
+        //                                 : courseAppliedStatus[0]}
+        //                         pill>
+        //             {capitalize(row.status.replaceAll('_', ' ').toLowerCase())}
+        //         </Badge></>
+        //     }
+        // },
         // {
         //     name: 'PUBLISHED',
         //     minWidth: '170px',

@@ -272,7 +272,7 @@ const Index = (props) => {
                         <Row className={'field-row'}>
                             <Col xs={3}> <Label>Email</Label></Col>
                             <Col xs={9}> <Input type='email' placeholder='kasunfernando@email.com'
-                                                readOnly={true} value={email}/>
+                                                readOnly={true} value={'chami123@gmail.com'}/>
                             </Col>
                         </Row>
                     </Col>
@@ -294,22 +294,15 @@ const Index = (props) => {
                     </Col>
                     <Col xs={6}>
                         <Row className={'field-row'}>
-                            <Col xs={3}><Label>Department</Label></Col>
-                            <Col xs={9}><Input value={department.label} readOnly={true}/>
-                            </Col>
-                        </Row>
-                    </Col>
-                    <Col xs={6}>
-                        <Row className={'field-row'}>
                             <Col xs={3}><Label>Designation</Label></Col>
-                            <Col xs={9}><Input value={designation} readOnly={true}/>
+                            <Col xs={9}><Input value={'Academic Admin'} readOnly={true}/>
                             </Col>
                         </Row>
                     </Col>
                     <Col xs={6}>
                         <Row className={'field-row'}>
                             <Col xs={3}><Label>User Role</Label></Col>
-                            <Col xs={9}><Input value={roleString} readOnly={true}/></Col>
+                            <Col xs={9}><Input value={'Academic Admin'} readOnly={true}/></Col>
                         </Row>
                     </Col>
                     <Col xs={6}>

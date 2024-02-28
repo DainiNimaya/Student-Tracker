@@ -1,0 +1,127 @@
+@import '../../../../@core/scss/base/bootstrap-extended/variables';
+
+$primary-color: $primary;
+$light-grey: #B9B9C3;
+$dark-grey: #5E5873;
+$lighter-grey: #F3F2F7;
+$red: #EA5455;
+
+.hof-fee-scheme {
+
+  .scheme-container {
+    span {
+      display: block;
+    }
+
+    span:nth-child(2) {
+      font-weight: 500;
+    }
+  }
+
+  div {
+    .heading-feeScheme {
+      color: #5E5873;
+      padding-bottom: 6px;
+    }
+
+    button #plus-icon {
+      width: 15px;
+    }
+
+  }
+
+  div div div .form-label {
+    font-size: 12px;
+    color: #5E5873;
+  }
+
+
+  .react-dataTable .rdt_TableBody {
+
+    .rdt_ExpanderRow {
+      .expandable-content {
+        div div p {
+          color: #5E5873;
+        }
+      }
+    }
+
+    .rdt_TableRow {
+
+      //border: none;
+      //margin: 5px 0;
+
+      .rdt_TableCell {
+
+        p {
+          margin-bottom: 0;
+          font-size: 14px;
+          line-height: 21px;
+        }
+
+        #code {
+          color: $primary;
+          //font-weight: 600;
+        }
+
+        #view-btn {
+          padding-top: 2px;
+          padding-bottom: 2px;
+
+          .eye-icon {
+            width: 13px;
+          }
+
+          span {
+            font-size: 12px;
+            padding-left: 5px;
+          }
+        }
+      }
+    }
+  }
+}
+
+.heading-empInfo {
+  color: #5E5873;
+}
+
+
+.pagination-row {
+  width: 100%;
+  margin-top: 1.5rem;
+
+  .pagination-left {
+    margin-top: 18px;
+
+    .pagination-details {
+      margin-top: 30px;
+      padding: 0 0 0 20px;
+      color: $light-grey;
+    }
+  }
+}
+
+
+.clear-lbl {
+  color: red;
+  padding-right: 14px;
+  font-size: 13px;
+  font-weight: 500;
+  cursor: pointer;
+}
+
+.custom-btn-clear {
+  height: 36px !important;
+  margin-top: 25px !important;
+  padding-top: 8px !important;
+  //background-color: transparent !important;
+  //color: $red !important;
+  border: none !important;
+}
+
+.custom-btn {
+  height: 36px !important;
+  margin-top: 25px !important;
+  padding-top: 8px !important;
+}

@@ -65,7 +65,7 @@ const Router = () => {
                 case config.haaRole:
                     roleRoutes = RoutesHAA
                     break
-                case config.lecturer:
+                case config.hosRole:
                     roleRoutes = RoutesLecturer
                     break
             }

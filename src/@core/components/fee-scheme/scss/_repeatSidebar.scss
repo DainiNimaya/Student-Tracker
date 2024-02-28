@@ -1,0 +1,47 @@
+.course-sidebar{
+
+  .heading {
+    margin: 5px 0 10px;
+    label{
+      font-weight: 500;
+      font-size: 18px;
+      line-height: 22px;
+    }
+  }
+
+  .row {
+    margin-bottom: 25px;
+
+    .col-12{
+      margin-bottom: 10px;
+    }
+  }
+
+  .plan{
+    margin-bottom: 20px;
+    .title{
+      font-weight: 600;
+      font-size: 12px;
+      line-height: 15px;
+      letter-spacing: 0.4px;
+      color: #5E5873;
+      margin-bottom: 5px;
+    }
+    .body{
+      padding-left: 15px;
+
+      p{
+        font-weight: normal;
+        font-size: 12px;
+        line-height: 15px;
+        letter-spacing: 0.4px;
+        color: #5E5873;
+        margin-bottom: 5px;
+      }
+    }
+  }
+  .btn-div{
+    text-align: right;
+    margin-top: 40px;
+  }
+}

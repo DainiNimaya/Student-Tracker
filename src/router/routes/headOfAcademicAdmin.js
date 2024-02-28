@@ -32,7 +32,7 @@ const RoutesHAA = [
         component: lazy(() => import('../../views/headOfAcademicAdmin/setup/classSummary/classSummaryInfo'))
     },
     {path: rs.viewStudents, component: lazy(() => import('../../@core/components/viewStudent/index'))},
-    {path: rs.attendance, exact: true, component: lazy(() => import('../../@core/components/attendance'))},
+    {path: rs.attendance, exact: true, component: lazy(() => import('../../@core/components/attendance_'))},
     {path: rs.markAttendance, component: lazy(() => import('../../@core/components/attendance/markAttendance'))},
     {path: rs.attendanceSummary, component: lazy(() => import('../../@core/components/attendance/attendanceSummary'))},
     {
@@ -74,6 +74,14 @@ const RoutesHAA = [
     {
         path: rs.employeeInformation,
         component: lazy(() => import('../../views/headOfAcademicAdmin/manageEmployees/employeeInformation'))
+    },
+    {
+        path: rs.classScheduleViewer,
+        component: lazy(() => import('../../views/headOfAcademicAdmin/generalAcademicPlan/classViewer'))
+    },
+    {
+        path: rs.assignClass,
+        component: lazy(() => import('../../views/headOfAcademicAdmin/generalAcademicPlan/assignClass'))
     }
 ]
 

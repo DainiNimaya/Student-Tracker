@@ -2,6 +2,8 @@ import React, {forwardRef, useEffect, useImperativeHandle, useState} from "react
 import {
     Button,
     CardTitle,
+    Card,
+    CardBody,
     Col,
     Dropdown,
     DropdownItem,
@@ -14,7 +16,7 @@ import {
     Row
 } from 'reactstrap'
 import Select from 'react-select'
-import {User} from "react-feather"
+import {User, Book, FileText} from "react-feather"
 import Required from "@components/required"
 import * as Api_ from "@api/counselor_"
 import * as Api from "@api/counsellor"
@@ -798,6 +800,38 @@ const App = ({
                     }
                 </Row>
             </Form>
+
+
+            <div>
+                <div className="d-flex flex-row justify-content-between align-items-center">
+                    <CardTitle tag='h4' className="mt-2"><Book size={20}/> &nbsp;Share Course Details</CardTitle>
+                </div>
+                <Row className='mb-2'>
+                    <Col sm='12'>
+                        <Input type='textarea' rows="2" placeholder='Enter Remarks Here'/>
+                    </Col>
+                </Row>
+                <div align="right">
+                    <Button outline className='me-1' color='primary'>Preview</Button>
+                    <Button color='primary'>Share</Button>
+                </div>
+            </div>
+
+            <div>
+                <div className="d-flex flex-row justify-content-between align-items-center">
+                    <CardTitle tag='h4' className="mt-2"><FileText size={20}/> &nbsp;Share Offer Letter</CardTitle>
+                </div>
+                <Row className='mb-2'>
+                    <Col sm='12'>
+                        <Input type='textarea' rows="2" placeholder='Enter Remarks Here'/>
+                    </Col>
+                </Row>
+                <div align="right">
+                    <Button outline className='me-1' color='primary'>Preview</Button>
+                    <Button color='primary'>Share</Button>
+                </div>
+            </div>
+
         </div>
     )
 }

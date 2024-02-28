@@ -35,7 +35,7 @@ const DefaultLogin = () => {
     }
 
     const loginHandler = async () => {
-        const result = await userLoginApi.defaultLogin(email, password)
+        const result = await userLoginApi.userLogin(email, password)
         if (result) window.open(rs.dashboard, '_self')
     }
 

@@ -1,0 +1,64 @@
+@import '../../../../@core/scss/base/bootstrap-extended/variables';
+
+$primary-color: $primary;
+
+.title {
+  .refno {
+    display: block;
+    font-weight: 500;
+    font-size: 21px;
+    line-height: 25.6px;
+    color: $primary-color;
+  }
+
+  .name {
+    font-weight: 500;
+    font-size: 14px;
+    line-height: 23px;
+  }
+}
+
+.payment-slip-section {
+  margin-top: 20px;
+
+  .name {
+    font-weight: 400;
+    font-size: 12px;
+    line-height: 14.63px;
+  }
+}
+
+.slip-form {
+  .img-slip {
+    margin-top: 5px;
+    margin-bottom: 10px;
+  }
+
+  .form {
+    margin-top: 10px;
+    font-weight: 400;
+
+    .form-section {
+      margin-bottom: 20px;
+
+      .invalid {
+        border: 1px solid #EA5455;
+        background-color: transparent;
+      }
+
+      .valid {
+        background-color: transparent;
+      }
+    }
+
+    .btn-approve {
+      margin-top: 10px;
+      width: 100%;
+    }
+
+    .lbl-or {
+      margin-top: 25px;
+      color: #5E5873;
+    }
+  }
+}

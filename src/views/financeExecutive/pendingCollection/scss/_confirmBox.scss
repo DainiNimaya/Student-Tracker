@@ -1,0 +1,28 @@
+@import '../../../../@core/scss/base/bootstrap-extended/variables';
+#pc-confirm{
+
+  .modal-content{
+    .modal-header{
+      .modal-title{
+        color: $primary;
+      }
+    }
+
+    .modal-body{
+      div #icon-alert{
+        width: 35px;
+        height: 35px;
+        color: $primary;
+      }
+
+      .checkbox-div{
+        padding: 1rem 0 1rem 3rem;
+
+        div{
+          margin-right: 4rem;
+        }
+      }
+    }
+  }
+
+}

@@ -1,9 +1,8 @@
 import React, {useEffect, useState} from "react"
 import {Card, CardBody, CardHeader, CardTitle, Col, Row} from "reactstrap"
 import ListSelect from '@components/list-select'
-import * as ApiCounsellor from "@api/counsellor"
-import * as Api from "@api/haa"
-import CourseModal from '@components/course-modal'
+import * as ApiCounsellor from "@api/counselor_"
+import * as Api from "@api/haa_"
 import SideModel from '@components/list-select/list-select-side-model'
 import {HelpCircle} from "react-feather"
 import ConfirmBox from "@components/confirm-box"
@@ -64,44 +63,7 @@ const CourseSetup = (props) => {
         switch (name) {
             case 'courseId':
                 await setSelectedValues({schoolId: selectedValues.schoolId, courseId: id})
-                res = await Api.getAllLevelsByCourse(id)
-                res = res.map(item => {
-                    return {...item, name: item.levelName, id: item.levelId}
-                })
-                await setLevels(res)
                 break
-        }
-    }
-
-    const onRemove = async (name, id) => {
-        let res
-        switch (name) {
-            case 'moduleId':
-                res = await Api.deleteModulesByLevel(selectedValues.courseId, selectedValues.levelId.id, id)
-                if (res) {
-                    const data = []
-                    modules.map(item => item.moduleId !== id && data.push(item))
-                    await setModules([...data])
-                }
-                break
-        }
-        setCb2(false)
-    }
-
-    const handleModals = (type) => {
-        switch (type) {
-            case 'add':
-                setManageType('add')
-                setModuleOpen(true)
-                break
-            case 'edit':
-                setManageType('edit')
-                setModuleOpen(true)
-                break
-            case 'close':
-                setCourseOpen(false)
-                break
-
         }
     }
 
@@ -126,7 +88,7 @@ const CourseSetup = (props) => {
 
         switch (type) {
             case 'MODULE':
-                await Api.saveCourseSetupLevel(data)
+                // await Api.saveCourseSetupLevel(data)
                 await onSelect('levelId', selectedValues.levelId)
                 await toggleModal('module')
                 break
@@ -166,23 +128,6 @@ const CourseSetup = (props) => {
         data[name] = res
         setModelLists(data)
         toggleModal(name)
-    }
-
-    const handleModuleModals = (type) => {
-        switch (type) {
-            case 'add':
-                // setManageType('add')
-                // setModuleOpen(true)
-                break
-            case 'edit':
-                // setManageType('edit')
-                // setModuleOpen(true)
-                break
-            case 'close':
-                setModuleModalOpen(false)
-                break
-
-        }
     }
 
     const onModuleSave = async () => {

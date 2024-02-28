@@ -3,13 +3,9 @@ import {Card, CardBody, CardHeader, CardTitle, Col, Row} from "reactstrap"
 import ListSelect from '@components/list-select'
 import AddClassStudentModel from '@components/add-class-student'
 import SideModel from '@components/list-select/list-select-side-model'
-import * as ApiCounsellor from "@api/counsellor"
-import * as Api from "@api/haa"
-import moment from "moment"
+import * as ApiCounsellor from "@api/counselor_"
+import * as Api from "@api/haa_"
 import {DATE_FORMAT, CLASS_SETUP_EXPORT_TEMPLATE_CSV_HEADER} from '@const'
-import * as ApiIt from "@api/itAdmin"
-import Select from "react-select"
-import classnames from "classnames"
 import {selectThemeColors} from '@utils'
 import ExportMenu from '@components/export-menu'
 import {basicInfo} from '@configs/basicInfomationConfig'
@@ -40,17 +36,10 @@ const App = () => {
     const csvLinkEl = useRef(null)
 
     useEffect(async () => {
-        await getAllSchools()
         await getAllCourses()
         await getAllModules()
     }, [])
 
-    const getAllSchools = async () => {
-        const res = await ApiIt.getAllSchools()
-        setSchools(res.map(item => {
-            return {...item, name: item.label, id: item.value}
-        }))
-    }
 
     const getAllCourses = async (schoolId) => {
         const res = await ApiCounsellor.getAllCourses(schoolId ? `courses?schoolId=${schoolId.value}` : undefined)
@@ -81,28 +70,6 @@ const App = () => {
     const onSelect = async (name, id) => {
         let res
         switch (name) {
-            case 'schoolId':
-                await setSelectedValues({
-                    schoolId: id,
-                    courseId: undefined,
-                    moduleId: undefined,
-                    class: undefined,
-                    student: undefined
-                })
-                await getAllCourses(id)
-                await getAllModules(id)
-                break
-
-            case 'course':
-                setSelectedValues({
-                    ...selectedValues,
-                    course: id,
-                    moduleId: undefined,
-                    class: undefined,
-                    student: undefined
-                })
-                await getAllModules(selectedValues.schoolId, id)
-                break
             case 'moduleId':
                 setSelectedValues({...selectedValues, moduleId: id, class: undefined, student: undefined})
                 res = await Api.getAllModuleClasses(id)
@@ -122,15 +89,6 @@ const App = () => {
                 })
                 setStudents(res)
                 break
-            case 'student':
-                setSelectedValues({...selectedValues, student: id})
-                res = await Api.getAllClassesForChangeClass(selectedValues.class.id, id.id)
-                res = res.map(item => {
-                    return {...item, label: item.className, value: item.classId}
-                })
-                setClassesChange(res)
-                toggleModal('changeClass')
-                break
         }
     }
 
@@ -138,7 +96,7 @@ const App = () => {
         let res = []
         switch (name) {
             case 'class':
-                res = await Api.getAllBatches(`batches?moduleId=${selectedValues.moduleId}`)
+                res = await Api.getAllBatches_(`batches?moduleId=${selectedValues.moduleId}`)
                 if (res) {
                     setSelectedClass(undefined)
                     setBatches(res.map(item => {
@@ -154,46 +112,29 @@ const App = () => {
     }
 
     const onSave = async (name, data) => {
-        let res = undefined
+        const res = undefined
         switch (name) {
             case 'class':
                 const batches = (data.batchId && data.batchId.length > 0) ? data.batchId.map(item => {
                     return item.value
                 }) : []
 
-                res = await Api.saveClass(selectedValues.moduleId,
-                    {
-                        ...data,
-                        batches,
-                        from: moment(data.startDate).format(DATE_FORMAT),
-                        to: moment(data.endDate).format(DATE_FORMAT)
-                    })
-                if (res) {
-                    toggleModal(name)
-                    await onSelect('moduleId', selectedValues.moduleId)
-                }
-                break
-            case 'changeClass':
-                res = await Api.changeClass({
-                    studentId: selectedValues.student.id,
-                    newClassId: data.value,
-                    currentClassId: selectedValues.class.id
-                })
-                if (res) {
-                    toggleModal(name)
-                    await onSelect('class', selectedValues.class)
-                }
+                // res = await Api.saveClass(selectedValues.moduleId,
+                //     {
+                //         ...data,
+                //         batches,
+                //         from: moment(data.startDate).format(DATE_FORMAT),
+                //         to: moment(data.endDate).format(DATE_FORMAT)
+                //     })
+                // if (res) {
+                //     toggleModal(name)
+                //     await onSelect('moduleId', selectedValues.moduleId)
+                // }
                 break
         }
     }
 
     const exportData = async () => {
-        const res = await Api.getAllModuleStudents(selectedValues.moduleId)
-        if (res.length > 0) {
-            setExports(res)
-            return {content: res}
-            //csvLinkEl.current.link.click()
-        }
     }
 
     const onEdit = async (name, data) => {

@@ -1,0 +1,226 @@
+@import '../../../@core/scss/base/bootstrap-extended/variables';
+$grey-light: #F3F2F7;
+$grey-light-dark: #B9B9C3;
+$primary: $primary;
+$grey-dark: #6E6B7B;
+$grey-dark-dark: #5E5873;
+$selector-default: #D8D6DE;
+$selector-blue: #00CFE8;
+$selector-blue-bold: #0083e8;
+$selector-warning: #FF9F43;
+$selector-success: #28C76F;
+$selector-secondary: #EFEFEF;
+
+.assign-class {
+  .class-section {
+    padding: 20px 0px 20px 0;
+    margin-top: 10px;
+
+    .lbl-class {
+      font-size: 18px;
+      font-weight: 500;
+      line-height: 23px;
+    }
+  }
+
+  .available-class-section {
+    border: 1px solid #D8D6DE;
+    padding: 20px;
+    border-radius: 6px;
+
+    .lbl-title {
+      margin-left: 10px;
+      font-weight: 500;
+      font-size: 18px;
+    }
+
+    .header-section {
+      display: flex;
+      width: 100%;
+      justify-content: space-between;
+
+      .date-section {
+        display: flex;
+        max-width: 400px;
+      }
+
+      .date-section > label {
+        width: 200px;
+        padding: 8px 0;
+        margin-right: 10px;
+      }
+    }
+  }
+
+  .timeline-footer {
+    display: flex;
+    justify-content: flex-end;
+
+    .slot-section {
+      display: flex;
+      margin-right: 20px;
+
+      .slot-brick {
+        height: 18px;
+        width: 18px;
+        margin-right: 10px;
+        border-radius: 3px;
+      }
+
+      .brick-success {
+        background-color: #28C76F;
+      }
+
+      .brick-default {
+        border: 1px solid #B9B9C3;
+      }
+    }
+
+  }
+
+  .error-btnGroup {
+    border: 1px solid red;
+    padding: 2px;
+    border-radius: 6px;
+  }
+
+  .sc-hKwDye > div {
+    width: 100%;
+  }
+
+  .default {
+    border: 2px solid $selector-default;
+    border-radius: 3px;
+  }
+
+  .class-week {
+    background-color: $selector-blue;
+    border-radius: 3px;
+    color: #fff;
+  }
+
+  .exam-week {
+    background-color: $selector-warning;
+    border-radius: 3px;
+    color: #fff;
+  }
+
+  .study-leave-week {
+    background-color: $selector-success;
+    border-radius: 3px;
+    color: #fff;
+  }
+
+  .holiday-week {
+    background-color: $selector-secondary;
+    border-radius: 3px;
+    color: $grey-light-dark;
+  }
+
+  .extra-week {
+    background-color: $selector-blue-bold;
+    border-radius: 100%;
+    color: #fff;
+  }
+
+  .selector {
+    height: 20px;
+    width: 20px;
+    margin: 0 8px 0 0;
+    text-align: center;
+    padding: 3px 5px;
+  }
+
+  .slot-no {
+    font-weight: bold;
+  }
+
+  .slot-info {
+    color: $selector-blue;
+  }
+
+  .slot-extra {
+    color: $selector-blue-bold;
+  }
+
+  .slot-warning {
+    color: $selector-warning;
+  }
+
+  .slot-success {
+    color: $selector-success;
+  }
+
+  .slot-second {
+    color: $grey-light-dark;
+  }
+}
+
+//
+//.fc{
+//  overflow: hidden;
+//}
+
+.fc-header-toolbar {
+  display: none !important;
+}
+
+.fc-timegrid-slot {
+  line-height: 10px;
+}
+
+//tbody tr:nth-child(2){
+//  display: none;
+//}
+//
+//tbody tr:nth-child(4){
+//  display: none;
+//}
+//
+//tbody tr:nth-child(6){
+//  display: none;
+//}
+//
+//tbody tr:nth-child(8){
+//  display: none;
+//}
+//
+//tbody tr:nth-child(10){
+//  display: none;
+//}
+//
+//tbody tr:nth-child(12){
+//  display: none;
+//}
+//
+//tbody tr:nth-child(14){
+//  display: none;
+//}
+//
+//tbody tr:nth-child(16){
+//  display: none;
+//}
+//
+//tbody tr:nth-child(18){
+//  display: none;
+//}
+//
+//tbody tr:nth-child(20){
+//  display: none;
+//}
+//
+//tbody tr:nth-child(22){
+//  display: none;
+//}
+
+//tbody tr{
+//  height: 30px;
+//}
+
+.fc-event-time {
+  display: none;
+}
+
+.table-academic > div:nth-child(2) {
+  overflow: visible !important;
+}

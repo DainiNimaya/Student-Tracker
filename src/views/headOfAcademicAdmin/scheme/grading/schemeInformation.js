@@ -7,7 +7,6 @@ import DataTable from "react-data-table-component"
 import GradeSchemeEditor from "@components/scheme-editor"
 import {schemeEditorErrors, gradingTableErrors} from '@formError/headOfAcademicAdmin'
 import {schemeEditorValidation, gradingTableValidation} from '@validations/headOfAcademicAdmin'
-import * as Api from '@api/haa'
 import {capitalize} from '@commonFunc'
 import {OVERALL_MARK_CALCULATION} from '@const'
 import {showError, getCookieUserData, findObject} from '@utils'
@@ -163,7 +162,6 @@ class SchemeInformation extends Component {
 
     onSave = async () => {
         const {form, gradingTableData} = this.state
-        await Api.updateGradingSchemes(form, gradingTableData)
         this.schemeEditorModalHandler(false)
         await this.props.getAllGradingSchemes()
         await this.props.updateGradingData()

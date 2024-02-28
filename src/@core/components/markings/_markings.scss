@@ -1,0 +1,166 @@
+.top-header-label {
+  margin-top: 20px;
+  font-weight: 500;
+  font-size: 18px;
+}
+
+.select-section {
+  display: flex;
+  margin: 20px 0 10px 0;
+
+  .lbl {
+    padding: 8px 0;
+    margin-right: 20px;
+  }
+
+  .select-school {
+    width: 400px;
+  }
+}
+
+.assessment-marking-sheet {
+  .remark-container {
+    display: flex;
+  }
+
+  .remark-select {
+    min-width: 150px;
+  }
+
+  .remark-input {
+    min-width: 200px;
+  }
+
+  .top-custom-btn {
+    height: 36px !important;
+    padding-top: 8px !important;
+  }
+
+  .mr-2 {
+    margin-right: 2rem;
+  }
+
+  .ml-2 {
+    margin-left: 2rem;
+  }
+
+  .custom-header {
+    display: flex;
+    justify-content: space-between;
+
+    .header-label {
+      font-weight: 500;
+      font-size: 18px;
+      padding: 20px 0;
+    }
+
+    .icn-header {
+      margin: 20px 0;
+      cursor: pointer;
+    }
+  }
+
+  .title-header-data {
+    display: block;
+    color: #000;
+    font-weight: 500;
+  }
+
+  .tbl-section {
+    margin-top: 25px;
+
+    .selectall-section {
+      margin-bottom: 15px;
+    }
+
+    .selectall-section > label {
+      margin-left: 10px;
+    }
+
+    .repeat-expand {
+      margin-bottom: 20px;
+      display: flex;
+
+      .data {
+        margin-left: 10px;
+      }
+    }
+  }
+
+  .lbl-success {
+    color: #28C76F;
+  }
+
+  .lbl-danger {
+    color: #EA5455
+  }
+
+  .lbl-warning {
+    color: #FF9F43
+  }
+
+  .status-section {
+    display: flex;
+    padding-top: 25px;
+    border-top: 1px solid #EBE9F1;
+    margin-top: 20px;
+  }
+
+  .status-section > label {
+    margin-right: 20px;
+    padding: 7px 0;
+  }
+
+  .status-select {
+    width: 300px;
+  }
+
+  .lbl-haa-expanded {
+    font-weight: 500;
+    font-size: 14px;
+    padding: 10px 0;
+  }
+
+  .btn-copy {
+    margin: 5px 0;
+  }
+
+  .btn-copy-right {
+    margin: 5px 0 5px 20px;
+  }
+
+  .link-csv-template {
+    margin-right: 20px;
+    padding: 5px 0;
+  }
+}
+
+.side-form-section {
+  margin-top: 30px;
+
+  .form-switch-group {
+    display: flex;
+    justify-content: space-between;
+    padding: 10px 0;
+  }
+
+  .btn-section {
+    margin-top: 30px;
+  }
+}
+
+.remark {
+  margin-bottom: 10px;
+  border-bottom: 1px solid #d7d5d5;
+  padding-bottom: 10px;
+
+  .remark-content {
+    width: 100%;
+    font-weight: 500;
+    margin-bottom: 5px;
+  }
+
+  .person {
+    display: block;
+  }
+}

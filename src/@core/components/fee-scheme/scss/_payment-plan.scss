@@ -1,0 +1,154 @@
+.hof-payment-plans{
+
+  .react-dataTable{
+
+    .rdt_TableBody{
+
+      .rdt_TableRow {
+
+        //border: none;
+        //margin: 5px 0;
+        .rdt_TableCell > div {
+          width: 100%;
+        }
+
+        .rdt_TableCell {
+
+
+          div {
+            label{
+              font-size: 1rem;
+              width: 100%;
+              padding: 0.5rem 1rem;
+              background-clip: padding-box;
+              border: 1px solid #d8d6de;
+              border-radius: 0.357rem;
+              background: #EFEFEF;
+            }
+          }
+
+          p{
+            margin-bottom: 0;
+            font-size: 14px;
+            line-height: 21px;
+          }
+
+          #edit-btn{
+            padding-top: 2px;
+            padding-bottom: 2px;
+
+            .edit-icon{
+              width: 13px;
+            }
+
+            span{
+              font-size: 12px;
+              padding-left: 5px;
+            }
+          }
+
+          .remove-icon{
+            width: 18px;
+            color: #EA5455;
+            cursor: pointer;
+          }
+        }
+
+        #cell-1-undefined{
+          div div input{
+            cursor: pointer;
+          }
+        }
+      }
+    }
+  }
+
+  .heading{
+    font-size: 18px;
+    font-weight: 500;
+    color: #5E5873;
+    margin-top: 20px;
+
+    #icon{
+      margin-right: 10px;
+    }
+  }
+
+  .editor-div{
+    margin-top: 20px;
+    margin-bottom: 30px;
+
+    div .field-row{
+
+      .col-9, .col-8{
+        padding-left: 0;
+      }
+      .col-3, .col-4, .col-6, .col-2{
+        margin: auto;
+        text-align: start;
+      }
+
+      .col-4, .col-6, .col-2{
+        text-align: end;
+      }
+
+      div #positionTop{
+        color: red;
+      }
+    }
+
+    .col-3 .field-row{
+
+      .col-4, .col-2{
+        padding-left: 0;
+        text-align: start;
+      }
+    }
+  }
+
+  .add-btn-div{
+    margin-top: 20px;
+    margin-bottom: 30px;
+    text-align: center;
+
+    button span{
+      padding: 6px;
+    }
+  }
+
+  .total-div{
+    margin-top: 20px;
+    margin-bottom: 20px;
+
+    .col-2{
+      padding: 0;
+    }
+
+    div{
+      margin: auto;
+      label{
+        font-weight: 600;
+        font-size: 18px;
+      }
+
+      #title{
+        font-size: 14px;
+      }
+    }
+  }
+
+  .save-div{
+    margin-top: 10px;
+    margin-bottom: 20px;
+    text-align: end;
+
+    p{
+      color: red;
+    }
+
+    #next-btn{
+      margin-top: 30px;
+    }
+  }
+
+}

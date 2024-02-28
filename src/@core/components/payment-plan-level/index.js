@@ -39,6 +39,7 @@ class PaymentPlanLevel extends Component {
     componentDidMount() {
         role = JSON.parse(Cookies.get(config.user)).role
         const tempData = this.props.data
+        console.log(tempData)
 
         if (this.props.smp || this.props.student) tempData['studentDetails'] = JSON.parse(sessionStorage.getItem('STUDENT_DETAILS'))
         this.setState({
@@ -276,9 +277,9 @@ class PaymentPlanLevel extends Component {
             if (item.discount && item.discount !== 0) isDiscount = true
 
             const rowData = {
-                feeDescription: <Input readOnly value={item.description}/>,
+                feeDescription: <Input readOnly value={desc}/>,
                 feeType: <Input readOnly
-                                value={item.feeType ? capitalize(item.feeType.replaceAll('_', ' ').toLowerCase()) : 'N/A'}/>,
+                                value={tempFeeType ? capitalize(tempFeeType.replaceAll('_', ' ').toLowerCase()) : 'N/A'}/>,
                 dueDate: <Input readOnly
                                 value={item.dueDate ? moment(item.dueDate).format(DATE_FORMAT_TABLE) : '-'}/>,
                 amount: <Input
@@ -303,22 +304,6 @@ class PaymentPlanLevel extends Component {
                 payable: <Input style={{textAlign: 'right'}} readOnly
                                 value={`${item.amountPayable}`}/>,
                 action: <>
-                    {/*pay btn was hide as request by chamidi*/}
-                    {!isCourseTransferUI && !isDropUI && <>
-                        {item.status === 'PAID' ?
-                            <Button disabled outline color={'primary'}><Trello
-                                size={15}/> Paid&nbsp;</Button> :
-                            item.status === 'REFUNDED' ?
-                                <Button disabled outline color={'primary'}><Trello
-                                    size={15}/> Refunded</Button> :
-                                <Button
-                                    disabled={(this.props.smp ? !(isAllowEdit && this.checkAccessLevel(fee.collectPayment)) :
-                                        tempFeeType === 'REGISTRATION_FEE' ? false : !(isRegFeePaid))}
-                                    onClick={() => this.editAction(item)} outline color={'primary'}><Trello
-                                    size={15}/> Pay&nbsp;&nbsp;&nbsp;</Button>
-                        }
-                    </>
-                    }
                     {
                         this.state.data && this.state.data.studentDetails && this.state.data.studentDetails.cbNumber && <>
                             {(item.status === 'PAID' || item.status === 'REFUNDED') ?
