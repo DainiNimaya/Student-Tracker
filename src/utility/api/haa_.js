@@ -1422,3 +1422,140 @@ export const getAllClasses = async (url) => {
         // })
     return body
 }
+
+export const getStudentsForAttendance = async (url) => {
+    let body = undefined
+    // await classSetupService.getStudentsForAttendance(url)
+    //     .then(res => {
+    //         if (res.status === API_RESPONSE_STATUS[0]) {
+    //             body = res.body
+                body = {
+                    content: [
+                        {
+                            studentId: 502,
+                            studentName: "Prathihari Wijesingha",
+                            cbNumber: "CB012402",
+                            batchId: 161,
+                            batchCode: "52MSJ2023F",
+                            courseName: null,
+                            courseCode: null,
+                            remark: "Remark",
+                            attendanceAvg: 0,
+                            approvedLeaveAvg: 0,
+                            status: 'ABSENT',
+                            noOfPresents: 0,
+                            noOfAbsent: 0,
+                            noOfLateCome: 0
+                        },
+                        {
+                            studentId: 586,
+                            studentName: "indika madushan",
+                            cbNumber: "CB012403",
+                            batchId: 161,
+                            batchCode: "52MSJ2023F",
+                            courseName: null,
+                            courseCode: null,
+                            remark: "-",
+                            attendanceAvg: 0,
+                            approvedLeaveAvg: 0,
+                            status: 'PRESENT',
+                            noOfPresents: 0,
+                            noOfAbsent: 0,
+                            noOfLateCome: 0
+                        }
+                    ],
+                    pageable: {
+                        sort: {
+                           sorted: false,
+                           empty: true,
+                           unsorted: true
+                        },
+                        pageNumber: 0,
+                        pageSize: 10,
+                        offset: 0,
+                        paged: true,
+                        unpaged: false
+                    },
+                    last: false,
+                    totalElements: 2,
+                    totalPages: 1,
+                    sort: {
+                        sorted: false,
+                        empty: true,
+                        unsorted: true
+                    },
+                    size: 10,
+                    number: 0,
+                    first: true,
+                    numberOfElements: 10,
+                    empty: false
+                }
+        //     }
+        // })
+    return body
+}
+
+export const markAllAttendance = async (timelineId, action) => {
+    let body = undefined
+    await classSetupService.markAllAttendance(timelineId, action)
+        .then(res => {
+            if (res.status === API_RESPONSE_STATUS[0]) {
+                body = res
+                toast.success(res.message, {icon: true, hideProgressBar: true})
+            }
+        })
+    return body
+}
+export const saveAttendance = async (timelineId, data) => {
+    let body = undefined
+    await classSetupService.saveAttendance(timelineId, data)
+        .then(res => {
+            if (res.status === API_RESPONSE_STATUS[0]) {
+                body = res
+                toast.success(res.message, {icon: true, hideProgressBar: true})
+            }
+        })
+    return body
+}
+
+export const getAllBanks = async () => {
+    let body = []
+    // await paymentService.getAllBanks()
+    //     .then(res => {
+    //         if (res.status === API_RESPONSE_STATUS[0]) {
+                const temp =  [
+                    {
+                        id: 498,
+                        bankName: "BOC",
+                        bankCode: "8765",
+                        accountNumber: "011786555573777",
+                        branch: "Panadura",
+                        swiftCode: "12345",
+                        accountType: "LKR",
+                        visibility: true
+                    }
+                ]
+                body = temp.map(item => {
+                    item['label'] = item.bankName
+                    item['value'] = item.id
+                    return item
+                })
+        //     }
+        // })
+    return body
+}
+
+export const getDashboardStats = async (type, userId) => {
+    let body = undefined
+    // await haaService.getDashboardStats(type, userId)
+    //     .then(res => {
+    //         if (res.status === API_RESPONSE_STATUS[0]) {
+                body = {
+                    pendingProgressionApproval : 0,
+                    registeredStudents : 0,
+                    specialApprovalRequests : 0
+                }
+        //     }
+        // })
+    return body
+}

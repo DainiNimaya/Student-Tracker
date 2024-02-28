@@ -347,3 +347,20 @@ export const getAllRegisteredExport = async (data) => {
         })
     return body
 }
+
+
+export const getDashboardStats = async (type, counsellorId) => {
+    let body = undefined
+    // await counsellorService.getDashboardStats(type, counsellorId)
+    //     .then(res => {
+    //         if (res.status === API_RESPONSE_STATUS[0]) {
+                body = {
+                    inquiries: 0,
+                    followups: 0,
+                    registeredStudents: 0,
+                    registeredStudentsPast7Days: 2
+                }
+        //     }
+        // })
+    return body
+}

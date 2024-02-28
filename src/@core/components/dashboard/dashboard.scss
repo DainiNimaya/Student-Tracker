@@ -1,0 +1,81 @@
+@import "src/@core/scss/base/bootstrap-extended/variables";
+
+.fc .fc-scrollgrid {
+  border-bottom-width: 1px !important;
+}
+
+.shadow-none {
+  margin-bottom: -18px !important;
+}
+
+.indicator-container {
+  display: flex;
+  font-size: 10px;
+  justify-content: space-between;
+
+  .box {
+    height: 15px;
+    width: 15px;
+    min-width: 15px;
+    border-radius: 4px;
+    margin-right: 5px;
+    margin-left: 5px;
+  }
+
+  .box-text {
+    margin: 0 2px;
+    //padding: 3px 0;
+  }
+
+  .primary {
+    background-color: $primary;
+  }
+
+  .warning {
+    background-color: $warning;
+    //margin-left: 0 !important;
+  }
+
+  .success {
+    background-color: #3788d8;
+  }
+
+  .info {
+    background-color: $info;
+  }
+
+  .danger {
+    background-color: $danger;
+  }
+}
+
+@media only screen and (max-width: 600px) {
+  .indicator-container {
+    display: grid;
+    grid-template-columns: auto auto;
+  }
+
+  .warning {
+    margin-left: 5px !important;
+  }
+}
+
+@media only screen and (max-width: 425px) {
+  .indicator-container {
+    display: block;
+  }
+}
+
+.bg-light-exam {
+  color: #3788d8 !important;
+}
+
+.text-exam {
+  background-color: rgba(55, 136, 216, 0.12);
+}
+
+@media only screen and (max-width: 992px) {
+  .btn-quick-action {
+    height: 45px;
+  }
+}

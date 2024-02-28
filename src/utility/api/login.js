@@ -39,9 +39,8 @@ const setCookies = (res) => {
                         if (temp_5.includes(item)) activeRole = item
                         break
                     default:
-                       activeRole = {label: 'Head of Academic Admin', value: 'HEAD_OF_ACADEMIC_ADMIN', department: 2}
+                        activeRole = {label: 'Head of Academic Admin', value: 'HEAD_OF_ACADEMIC_ADMIN', department: 2}
                 }
-                // this use when role department restriction is ignored (ijse, unicloud)
                 if (activeRole === '') {
                     activeRole = res.userRoles[0]
                 }
@@ -59,7 +58,6 @@ const setCookies = (res) => {
     cookie.save(config.role, activeRole, {path: '/'})
     cookie.save(config.username, `${res.firstName} ${res.lastName}`, {path: '/'})
 
-    console.log(tempRole)
     const user = {
         userId: res.userId ? isNULL(res.userId) : null,
         profileImage: res.profileImageUrl ? isNULL(res.profileImageUrl) : null,
@@ -78,14 +76,14 @@ const setCookies = (res) => {
     return result
 }
 
-export const defaultLogin = async (email, password) => {
+export const userLogin = async (email, password) => {
     let result = false
     const body = {
         username: email,
         password,
         grant_type: 'password'
     }
-    const res = await Api.defaultLogin(qs.stringify(body))
+    const res = await Api.userLogin(qs.stringify(body))
     if (!res?.success) {
         toast.error(res.msg, {icon: true, hideProgressBar: true})
     }
