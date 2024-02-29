@@ -16,7 +16,7 @@ class classSlot extends Component {
                     </div>
                     {
                         getCookieUserData().role === config.haaRole &&
-                    <Button size={'sm'} onClick={this.props.addSlot} color={'primary'} outline><Plus
+                    <Button size={'sm'} color={'primary'} outline><Plus
                         size={15}/> {this.props.btnLbl}</Button>
                     }
                 </div>

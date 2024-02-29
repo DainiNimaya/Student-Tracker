@@ -6,17 +6,13 @@ import {MARKINGS_TABLE_COLUMN} from "./tableData"
 import CustomPagination from "@components/customPagination"
 import {Plus, Eye, Upload, X} from 'react-feather'
 import Avatar from '@components/avatar/avatar'
-import * as apiHaa from "@api/haa"
-import {CSVLink} from "react-csv"
+import * as apiHaa from "@api/haa_"
 import {MARKINGS_CSV_HEADER, FILTER_TYPES, FILTERS} from '@const'
-import moment from 'moment'
 import {getFirstTwoLetter} from '@utils'
 import {connect} from "react-redux"
 import {handleFilter} from '@store/filter'
 import Filter from "@components/filter"
 import rs from '@routes'
-import {toast} from "react-toastify"
-import ExportMenu from '@components/export-menu'
 
 
 class Markings extends React.Component {
@@ -52,31 +48,18 @@ class Markings extends React.Component {
     loadSelectionData = async () => {
 
         let res = await apiHaa.getAllBatches()
-        const batches = res.map(item => {
-            return {label: item.batchCode, value: item.batchId}
-        })
+        const batches = res
 
-        res = await apiHaa.getAllModulesForClassSetup()
-        const modules = res.map(item => {
-            return {label: item.moduleName, value: item.moduleId}
-        })
+        res = await apiHaa.getAllModulesForDropDown()
+        const modules = res
 
         res = await apiHaa.getAllCourses()
         const courses = res.map(item => {
             return {label: item.courseName, value: item.courseId}
         })
 
-        res = await apiHaa.getAllSemesters()
-        const semesters = res.map(item => {
-            return {label: item.semesterName, value: item.semesterId}
-        })
-
-        const level = await apiHaa.getLevels()
-
         this.setState({
-            levelList: level,
             courseList: courses,
-            semesterList: semesters,
             moduleList: modules,
             batchList: batches
         })
@@ -105,42 +88,6 @@ class Markings extends React.Component {
 
     handlePagination = async (val) => {
         this.getTableData(val.selected)
-    }
-
-    exportAction = async (type, size, page, isGetPages) => {
-        const res = await apiHaa.getMarkingList(this.props.filter, page !== undefined ? page : this.state.currentPage, size ? size : 10, !isGetPages)
-        const temp = []
-        if (res && res.content.length !== 0) {
-            res.content.map(marking => {
-                if (marking.studentList.length !== 0) {
-                    marking.studentList.map(student => {
-                        student['moduleName'] = marking.moduleName
-                        student['levelName'] = marking.levelName
-                        student['batchName'] = marking.batchName
-                        student['semesterName'] = marking.semesterName
-                        student['courseName'] = marking.courseName
-                        temp.push(student)
-                    })
-                } else {
-                    const student = {
-                        moduleName: marking.moduleName,
-                        levelName: marking.levelName,
-                        batchName: marking.batchName,
-                        semesterName: marking.semesterName,
-                        courseName: marking.courseName,
-                        studentName: 'No students'
-                    }
-                    temp.push(student)
-                }
-            })
-            res.content = temp
-        }
-
-        if (res?.content && res?.content.length > 0) {
-            await this.setState({exportList: res.content})
-            // this.csvLinkEl.current.link.click()
-        }
-        return res
     }
 
 
@@ -191,24 +138,6 @@ class Markings extends React.Component {
             <Card className={'haa-students-marking'} style={{height: '100%'}}>
                 <CardHeader className='flex-md-row flex-column align-md-items-center align-items-start border-bottom'>
                     <CardTitle tag='h4'>Markings</CardTitle>
-                    <div className='d-flex '>
-                        <ExportMenu
-                            headers={MARKINGS_CSV_HEADER}
-                            filename={'markings'}
-                            data={exportList}
-                            onClick={this.exportAction}
-                            btnText={'Export'}
-                            outline
-                        />
-                        {/*<Button className={'top-custom-btn'} color='secondary' outline size={'sm'}*/}
-                        {/*        onClick={() => this.exportAction()}>*/}
-                        {/*    <Upload size={15}/>*/}
-                        {/*    <span className='align-middle ml-50'> Export </span>*/}
-                        {/*</Button>*/}
-                        {/*<CSVLink data={exportList} filename={"markings.csv"} headers={MARKINGS_CSV_HEADER}*/}
-                        {/*         ref={this.csvLinkEl}>*/}
-                        {/*</CSVLink>*/}
-                    </div>
                 </CardHeader>
                 <CardBody>
                     {

@@ -1767,7 +1767,7 @@ export const loadAllClassSlots = async (data) => {
                             slotName: "FPAMI 1 Slot",
                             lecturer: "Navishka",
                             venue: "Hall 3",
-                            day: "TUESDAY",
+                            day: "2024/02/10",
                             from: "12:08:00",
                             to: "15:00:00"
                         },
@@ -1776,7 +1776,7 @@ export const loadAllClassSlots = async (data) => {
                             slotName: "Slot 2",
                             lecturer: "Navishka",
                             venue: "Hall 1",
-                            day: "MONDAY",
+                            day: "2024/02/17",
                             from: "12:00:00",
                             to: "19:00:00"
                         },
@@ -1785,12 +1785,147 @@ export const loadAllClassSlots = async (data) => {
                             slotName: "biology practical",
                             lecturer: "Navishka",
                             venue: "Hall 2",
-                            day: "WEDNESDAY",
+                            day: "2024/02/24",
                             from: "10:00:00",
                             to: "19:04:00"
                         }
                     ]
                 }
+        //     }
+        // })
+    return body
+}
+
+export const getMarkingList = async (data, page, size, dataNeeded) => {
+    let body = null
+    // const requestBody = {
+    //     batchId: data.batch ? data.batch.value : null,
+    //     courseId: data.course ? data.course.value : null,
+    //     moduleId: data.module ? data.module.value : null,
+    //     intakeId: data.intake ? data.intake.value : null,
+    //     page,
+    //     size,
+    //     dataNeeded
+    // }
+    //
+    // await markingService.getMarkingList(requestBody)
+    //     .then(res => {
+    //         if (res.status === API_RESPONSE_STATUS[0]) {
+    //             if (res.body.length !== 0) {
+                    body =  {
+                        content: [
+                            {
+                                batchId: 2889,
+                                batchName: "52MSJ2023P(Su)",
+                                moduleId: 11412,
+                                moduleName: "Advanced bio",
+                                moduleCode: "AB",
+                                courseId: 2878,
+                                courseName: "Bio Science ",
+                                courseCode: "BS",
+                                semesterName: ["Semester 2"],
+                                levelName: "Level 1",
+                                levelId: 46,
+                                schoolName: "Nursing school",
+                                schoolId: 2870,
+                                studentList: []
+                            },
+                            {
+                                batchId: 2889,
+                                batchName: "52MSJ2023P(Su)",
+                                moduleId: 10440,
+                                moduleName: "Botny",
+                                moduleCode: "B",
+                                courseId: 2878,
+                                courseName: "Bio Science ",
+                                courseCode: "BS",
+                                semesterName: ["Semester 1"],
+                                levelName: "Level 1",
+                                levelId: 46,
+                                schoolName: "Nursing school",
+                                schoolId: 2870,
+                                studentList: []
+                            }
+                        ],
+                        pageable: {
+                            sort: {
+                                sorted: false,
+                                unsorted: true,
+                                empty: true
+                            },
+                            pageNumber: 0,
+                            pageSize: 10,
+                            offset: 0,
+                            paged: true,
+                            unpaged: false
+                        },
+                        last: false,
+                        totalElements: 2,
+                        totalPages: 1,
+                        first: true,
+                        number: 0,
+                        sort: {
+                            sorted: false,
+                            unsorted: true,
+                            empty: true
+                        },
+                        numberOfElements: 10,
+                        size: 10,
+                        empty: false
+                    }
+        //         }
+        //     }
+        // })
+    return body
+}
+
+export const getMarkingStudentList = async (data, batch, module, page, size, dataNeeded) => {
+    let body = null
+    // const requestBody = {
+    //     batchId: batch,
+    //     studentName: data.name ? data.name : null,
+    //     examStatus: data.status ? data.status.value : null,
+    //     cbNumber: data.cb ? data.cb : null,
+    //     moduleAssessmentId: module,
+    //     page,
+    //     size,
+    //     dataNeeded
+    // }
+    //
+    //
+    // await markingService.getMarkingStudentList(requestBody)
+    //     .then(res => {
+    //         if (res.status === API_RESPONSE_STATUS[0]) {
+    //             if (res.body.length !== 0) {
+                    body = {
+                        content: [],
+                        pageable: {
+                            sort: {
+                                sorted: false,
+                                unsorted: true,
+                                empty: true
+                            },
+                            pageNumber: 0,
+                            pageSize: 10,
+                            offset: 0,
+                            paged: true,
+                            unpaged: false
+                        },
+                        last: false,
+                        totalElements: 2,
+                        totalPages: 1,
+                        first: true,
+                        number: 0,
+                        sort: {
+                            sorted: false,
+                            unsorted: true,
+                            empty: true
+                        },
+                        numberOfElements: 10,
+                        size: 10,
+                        empty: false
+                    }
+        //         }
         //     }
         // })
     return body

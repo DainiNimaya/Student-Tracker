@@ -6,7 +6,7 @@ import {STUDENT_MARKINGS_TABLE_COLUMN} from "./tableData"
 import CustomPagination from "@components/customPagination"
 import {Eye, X} from 'react-feather'
 import Avatar from '@components/avatar/avatar'
-import * as apiHaa from "@api/haa"
+import * as apiHaa from "@api/haa_"
 import {
     STUDENTS_MARKINGS_CSV_HEADER,
     FILTER_TYPES,
@@ -83,14 +83,14 @@ class ViewMarkings extends React.Component {
     }
 
     exportAction = async (type, size, page, isGetPages) => {
-        const batch = this.state.data.batchId
-        const module = this.state.data.moduleId
-        const res = await apiHaa.getMarkingStudentList(this.props.filter, batch, module, page !== undefined ? page : this.state.currentPage, size ? size : 10, !isGetPages)
-        if (res?.content && res?.content.length > 0) {
-            await this.setState({exportList: res.content})
-            // this.csvLinkEl.current.link.click()
-        }
-        return res
+        // const batch = this.state.data.batchId
+        // const module = this.state.data.moduleId
+        // const res = await apiHaa.getMarkingStudentList(this.props.filter, batch, module, page !== undefined ? page : this.state.currentPage, size ? size : 10, !isGetPages)
+        // if (res?.content && res?.content.length > 0) {
+        //     await this.setState({exportList: res.content})
+        //     // this.csvLinkEl.current.link.click()
+        // }
+        // return res
     }
 
     navigateToSMP = (data) => {
@@ -162,30 +162,6 @@ class ViewMarkings extends React.Component {
                 tableBody.push({
                     name: <Avatar count={count} name={item.studentName} code={item.cbNo}/>,
                     batch: data.batchName,
-                    // diagnostic: <div>
-                    //     <p>{item.diagnosticType}</p>
-                    //     <p id={'mark'}>{item.diagnosticAssessment}</p>
-                    //     <Badge
-                    //         color={`light-${item.diagnosticGrade === GRADES.a ? COLOR_STATUS[0] : item.diagnosticGrade === GRADES.b
-                    //             ? COLOR_STATUS[2] : item.diagnosticGrade === GRADES.f ? COLOR_STATUS[1] : COLOR_STATUS[6]}`}
-                    //         pill>{item.diagnosticGrade}</Badge>
-                    // </div>,
-                    // formative: <div>
-                    //     <p>{item.formativeType}</p>
-                    //     <p id={'mark'}>{item.formativeAssessment}</p>
-                    //     <Badge
-                    //         color={`light-${item.formativeGrade === GRADES.a ? COLOR_STATUS[0] : item.formativeGrade === GRADES.b
-                    //             ? COLOR_STATUS[2] : item.formativeGrade === GRADES.f ? COLOR_STATUS[1] : COLOR_STATUS[6]}`}
-                    //         pill>{item.formativeGrade}</Badge>
-                    // </div>,
-                    // summary: <div>
-                    //     <p>{item.summativeType}</p>
-                    //     <p id={'mark'}>{item.summativeAssessment}</p>
-                    //     <Badge
-                    //         color={`light-${item.summativeGrade === GRADES.a ? COLOR_STATUS[0] : item.summativeGrade === GRADES.b
-                    //             ? COLOR_STATUS[2] : item.summativeGrade === GRADES.f ? COLOR_STATUS[1] : COLOR_STATUS[6]}`}
-                    //         pill>{item.summativeGrade}</Badge>
-                    // </div>,
                     average: <div>
                         <p>{`${Number(item.average).toFixed(0)}%`}</p>
                         <Badge
