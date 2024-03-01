@@ -43,78 +43,27 @@ public class AuthorizationServerConfig extends AuthorizationServerConfigurerAdap
     @Autowired
     private UserDetailsService userDetailsService;
 
-    // Injecting necessary components
-//    private final AuthenticationManager authenticationManager;
-//    private final BCryptPasswordEncoder encoder;
-//    private final CustomTokenEnhancer customTokenEnhancer;
-
-//    public AuthorizationServerConfig(AuthenticationManager authenticationManager, BCryptPasswordEncoder bCryptPasswordEncoder,
-//                                     CustomTokenEnhancer customTokenEnhancer){
-//        this.authenticationManager = authenticationManager;
-//        this.encoder = bCryptPasswordEncoder;
-//        this.customTokenEnhancer = customTokenEnhancer;
-//    }
-//
-//    // Configuring client details for OAuth2 clients
-//    @Override
-//    public void configure(ClientDetailsServiceConfigurer configurer) throws Exception {
-//        configurer
-//                .inMemory()
-//                .withClient(CLIENT_ID)
-//                .secret(CLIENT_SECRET)
-//                .authorizedGrantTypes(GRANT_TYPE_PASSWORD, AUTHORIZATION_CODE, REFRESH_TOKEN, IMPLICIT)
-//                .scopes(SCOPE_READ, SCOPE_WRITE, TRUST)
-//                .accessTokenValiditySeconds(ACCESS_TOKEN_VALIDITY_SECONDS)
-//                .refreshTokenValiditySeconds(REFRESH_TOKEN_VALIDITY_SECONDS);
-//    }
-//
-//    @Override
-//    public void configure(AuthorizationServerEndpointsConfigurer endpoints) throws Exception {
-//        // Setting up a chain of token enhancers
-//        TokenEnhancerChain enhancerChain = new TokenEnhancerChain();
-//        enhancerChain.setTokenEnhancers(Arrays.asList(tokenEnhancer(), accessTokenConverter()));
-//
-//        // Configuring authorization server endpoints
-//        endpoints.tokenStore(tokenStore())
-//                .tokenEnhancer(enhancerChain)
-//                .authenticationManager(authenticationManager)
-//                .accessTokenConverter(accessTokenConverter())
-//                .pathMapping("/oauth/token", "/v1/authorize")  // Mapping the token endpoint to a custom URL
-//                .exceptionTranslator(exception -> {
-//                    if (exception instanceof InvalidGrantException)
-//                        return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(new CustomOauthException("invalid credentials."));
-//                    else
-//                        return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(new CustomOauthException((exception.getMessage()) != null ?
-//                                exception.getMessage(): "Sorry, something went wrong."));
-//                });
-//    }
-//
-//    // Bean definition for creating a JwtAccessTokenConverter
-//    @Bean
-//    public JwtAccessTokenConverter accessTokenConverter() {
-//        JwtAccessTokenConverter converter = new JwtAccessTokenConverter();
-//        converter.setSigningKey(TOKEN_SIGN_IN_KEY);
-//        return converter;
-//    }
-//
-//    // Bean definition for creating a JwtTokenStore
-//    @Bean
-//    public TokenStore tokenStore() {
-//        return new JwtTokenStore(accessTokenConverter());
-//    }
-//
-//    // Bean definition for custom TokenEnhancer
-//    @Bean
-//    public TokenEnhancer tokenEnhancer() {
-//        return customTokenEnhancer;
-//    }
-
+    @Autowired
+    private CustomTokenEnhancer customTokenEnhancer; // Inject the CustomTokenEnhancer
 
     @Override
     public void configure(AuthorizationServerEndpointsConfigurer endpoints) throws Exception {
         endpoints.tokenStore(tokenStore)
                 .authenticationManager(authenticationManager)
-                .userDetailsService(userDetailsService);
+                .userDetailsService(userDetailsService)
+                .tokenEnhancer(customTokenEnhancer); // Set the custom token enhancer;
+    }
+
+    @Bean
+    public TokenStore tokenStore() {
+        return new JwtTokenStore(accessTokenConverter());
+    }
+
+    @Bean
+    public JwtAccessTokenConverter accessTokenConverter() {
+        JwtAccessTokenConverter converter = new JwtAccessTokenConverter();
+        converter.setSigningKey("your-signing-key"); // Set your signing key here
+        return converter;
     }
 
     @Bean

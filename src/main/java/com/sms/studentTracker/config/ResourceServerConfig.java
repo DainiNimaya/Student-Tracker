@@ -18,14 +18,14 @@ public class ResourceServerConfig extends ResourceServerConfigurerAdapter {
 
     @Override
     public void configure(ResourceServerSecurityConfigurer resources) {
-        resources.resourceId(RESOURCE_ID).stateless(false);
+        resources.stateless(false);
     }
 
     @Override
     public void configure(HttpSecurity http) throws Exception {
-        http.authorizeRequests()
-                .antMatchers("/users/**").hasRole("ACADEMIC_ADMIN")
-                .antMatchers("/test/*").authenticated();
+        http.authorizeRequests().
+        antMatchers("/**").permitAll() // Allow access to all endpoints
+                .anyRequest().authenticated(); // Require authentication for any other endpoint
     }
 
 }
