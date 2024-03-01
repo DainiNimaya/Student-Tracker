@@ -34,7 +34,7 @@ import * as markingService from '@service/markingService'
 import * as emailService from '@service/emailService'
 import * as acceptanceService from '@service/acceptanceService'
 
-import {API_RESPONSE_STATUS, DATE_FORMAT_2} from '@const'
+import {API_RESPONSE_STATUS, DATE_FORMAT_2, ROLES, LECTURER_TYPES} from '@const'
 import Cookies from "js-cookie"
 import config from '@storage'
 import React from "react"
@@ -43,9 +43,9 @@ import {
     gradingSchemesRequestDataObject,
     assessmentSchemesRequestDataObject,
     assessmentSchemeTypeRequestDataObject,
-    getCookieUserData
+    getCookieUserData,
+    findObject
 } from '@utils'
-import moment from "moment"
 
 const successMessage = "Operation Success"
 
@@ -1367,7 +1367,6 @@ export const getAllClasses = async (url) => {
     //     .then(res => {
     //         if (res.status === API_RESPONSE_STATUS[0]) {
     //             body = res.body
-    console.log("e")
                 body = {
                     content: [
                         {
@@ -1928,5 +1927,367 @@ export const getMarkingStudentList = async (data, batch, module, page, size, dat
         //         }
         //     }
         // })
+    return body
+}
+
+export const getAllStudent = async (data, page, userId, size, dataNeeded) => {
+    //
+    // const cb = data.cb === undefined || data.cb.trim() === '' ? null : data.cb.trim()
+    // const name = data.name === undefined || data.name === null || data.name.trim() === '' ? null : data.name.trim()
+    // const courseId = data.course === undefined || data.course === null || data.course.value === 'All' ? null : data.course.value
+    // const batchId = data.batch === undefined || data.batch === null || data.batch.value === 'All' ? null : data.batch.value
+    // const counselor = data.counselor === undefined || data.counselor === null || data.counselor.value === 'All' ? null : data.counselor.value
+    // const nicPassport = data.nicPassport === undefined || data.nicPassport.trim() === '' ? null : data.nicPassport.trim()
+    // const contact = data.contact === undefined || data.contact.trim() === '' ? null : data.contact.trim().substring(0, 1) === '0' ? data.contact.trim().substring(1) : data.contact.trim()
+    // const levelId = data.level === undefined || data.level === null ? null : data.level.value
+    // const intakeId = data.intake === undefined || data.intake === null ? null : data.intake.value
+    // const registeredDate = (data.date === undefined || data.date === null || data?.date?.length === 0) ? null : data.date
+    //
+    // let url = `students?${page === '' ? '' : `page=${page}`}`
+    //
+    // if (dataNeeded) {
+    //     url += `&dataNeeded=${dataNeeded}`
+    // }
+    //
+    // if (name) {
+    //     url += `&name=${name}`
+    // }
+    //
+    // if (cb) {
+    //     url += `&cbNumber=${cb}`
+    // }
+    //
+    // if (courseId) {
+    //     url += `&courseId=${courseId}`
+    // }
+    //
+    // if (batchId) {
+    //     url += `&batchId=${batchId}`
+    // }
+    //
+    // if (contact) {
+    //     url += `&contactNo=${contact}`
+    // }
+    //
+    // if (nicPassport) {
+    //     url += `&nic=${nicPassport}`
+    // }
+    //
+    // if (counselor) {
+    //     url += `&counsellorId=${counselor}`
+    // }
+    //
+    // if (userId) {
+    //     url += `&userId=${userId}`
+    // }
+    //
+    // if (size) {
+    //     url += `&size=${size}`
+    // }
+    //
+    // if (levelId) {
+    //     url += `&levelId=${levelId}`
+    // }
+    //
+    // if (intakeId) {
+    //     url += `&intakeId=${intakeId}`
+    // }
+    //
+    // if (registeredDate) {
+    //     url += `&registerStartDate=${moment(registeredDate[0]).format(DATE_FORMAT_2)}&registerEndDate=${moment(registeredDate[1]).format(DATE_FORMAT_2)}`
+    // }
+    //
+    let body = []
+    // await studentService.getAllStudent(url)
+    //     .then(res => {
+    //         if (res.status === 0) {
+                body = {
+                    content: [
+                        {
+                            cbNumber: "SID000056",
+                            batchCode: "52MSJ2023P(Su)",
+                            batchId: 2889,
+                            courseName: "Bio Science ",
+                            courseCode: "BS",
+                            studentId: 11486,
+                            inquiryId: 11457,
+                            studentName: "Sachidu Himansa",
+                            studentMobile: null,
+                            studentEmail: "unicloudlecture@gmail.com",
+                            uniId: null,
+                            sms: true,
+                            levelId: 46,
+                            levelName: "Level 1",
+                            paymentPlanId: 2661,
+                            courseId: 2878,
+                            planName: "Annual ",
+                            paymentPlanName: "Annual ",
+                            studentCoursePaymentPlanId: 11491,
+                            intakeId: 39,
+                            name: "Aug/Sep",
+                            branchId: 17,
+                            branchName: "Panadura",
+                            personalEmail: "unicloudlecture@gmail.com",
+                            gender: "MALE",
+                            address: "Malamulla",
+                            dateOfBirth: "2000-02-03",
+                            nic: "678990005v",
+                            studentAcceptanceLetterId: null,
+                            studentAcceptanceLetterStatus: null,
+                            letterType: null,
+                            acceptanceLetterSharedStatus: null,
+                            requestedDate: null,
+                            acceptanceLetterName: null,
+                            remark: null,
+                            studentDropReqId: null,
+                            offerLetterName: null,
+                            offerLetterType: null,
+                            qualificationList: [
+                                {
+                                    qualificationId: 11490,
+                                    qualificationName: "G.C.E O/L",
+                                    indexNumber: "1234567",
+                                    level: "3",
+                                    year: "2019",
+                                    school: "Panadura",
+                                    transcript: null,
+                                    otherAttachment: null,
+                                    results: []
+                                }
+                            ]
+                        }
+                    ],
+                    pageable: {
+                        sort: {
+                            sorted: false,
+                            unsorted: true,
+                            empty: true
+                        },
+                        pageNumber: 0,
+                        pageSize: 10,
+                        offset: 0,
+                        paged: true,
+                        unpaged: false
+                    },
+                    last: false,
+                    totalElements: 2,
+                    totalPages: 1,
+                    first: true,
+                    number: 0,
+                    sort: {
+                        sorted: false,
+                        unsorted: true,
+                        empty: true
+                    },
+                    numberOfElements: 10,
+                    size: 10,
+                    empty: false
+                }
+        //     }
+        // })
+    return body
+}
+
+export const filterUser = async (data, page) => {
+
+    const body = {dataList: [], elements: 0, pages: 0}
+    // const url = `users?page=${page}&size=10${data.name === null || data.name === undefined || data.name.trim() === '' ? '' : `&employeeName=${data.name.trim()}`}${data.employeeNo === null || data.employeeNo === undefined || data.employeeNo.trim() === '' ? '' : `&employeeNumber=${Number(data.employeeNo.trim())}`}${data.department === null || data.department === undefined || data.department.label === 'All' ? '' : `&departmentId=${data.department.value}`}${data.role === null || data.role === undefined || data.role.label === 'All' ? '' : `&userRole=${data.role.value}`}${data.school === null || data.school === undefined || data.school.label === 'All' ? '' : `&schoolId=${data.school.value}`}`
+    // await userService.filterUser(url)
+    //     .then(res => {
+    //         if (res !== undefined) {
+    //             if (res.status === 0) {
+    //                 if (res.body !== undefined && res.body.content.length !== 0) {
+                        const temp =  {
+                            content: [
+                                {
+                                    userId: 10862,
+                                    role: "LECTURER",
+                                    userRoles: ["LECTURER"],
+                                    email: "dchamidiwijesuriya@gmail.com",
+                                    firstName: "Wijini Amanda Wijayabandara",
+                                    lastName: "",
+                                    gender: "FEMALE",
+                                    dateOfBirth: null,
+                                    profileImageUrl: "https://amrak-dev-resources.unicloud360.com/pp/dchamidiwijesuriya@gmail.comprofileImg",
+                                    mobileNumber: "",
+                                    landNumber: "",
+                                    nic: "",
+                                    empNo: "5472",
+                                    createdAt: null,
+                                    userStatus: "INACTIVE",
+                                    schoolList: [],
+                                    department: {
+                                       departmentId: 2,
+                                       departmentName: "Academic Department"
+                                    },
+                                    branchList: [],
+                                    courseList: [],
+                                    lectureType: "FULL_TIME",
+                                    lecCostPerHour: null,
+                                    designation: "Lecturer",
+                                    passwordExist: false
+                                }
+                            ],
+                            pageable: {
+                                sort: {
+                                    sorted: false,
+                                    unsorted: true,
+                                    empty: true
+                                },
+                                pageNumber: 0,
+                                pageSize: 10,
+                                offset: 0,
+                                paged: true,
+                                unpaged: false
+                            },
+                            last: false,
+                            totalElements: 2,
+                            totalPages: 1,
+                            first: true,
+                            number: 0,
+                            sort: {
+                                sorted: false,
+                                unsorted: true,
+                                empty: true
+                            },
+                            numberOfElements: 10,
+                            size: 10,
+                            empty: false
+                        }
+
+                        temp.content.map(data => {
+
+                            if (!data.userRoles.includes('GUEST')) {
+
+                                const schools = []
+                                const branches = []
+                                const courses = []
+                                let mobileNumber = ''
+                                let landNumber = ''
+                                let lectureType = {}
+                                const roleListString = []
+
+                                if (data.mobileNumber !== null) {
+                                    mobileNumber = data.mobileNumber.substring(0, 1) === "0" ? `+94${data.mobileNumber.substring(1)}` :
+                                        data.mobileNumber.substring(0, 2) === "94" ? `+${data.mobileNumber}` : data.mobileNumber
+                                }
+
+                                if (data.landNumber !== null) {
+                                    landNumber = data.landNumber.substring(0, 1) === "0" ? `+94${data.landNumber.substring(1)}` :
+                                        data.landNumber.substring(0, 2) === "94" ? `+${data.landNumber}` : data.landNumber
+                                }
+
+                                if (data.branchList !== undefined && data.branchList.length !== 0) {
+                                    data.branchList.map(branch => {
+                                        branches.push({value: branch.branchId, label: branch.branchName})
+                                    })
+                                }
+
+                                if (data.courseList !== undefined && data.courseList.length !== 0) {
+                                    data.courseList.map(course => {
+                                        courses.push({value: course.courseId, label: course.courseName})
+                                    })
+                                }
+
+                                if (data.lectureType !== '' && data.lectureType !== null) {
+                                    LECTURER_TYPES.map(lectType => {
+                                        if (lectType.value === data.lectureType) lectureType = lectType
+                                    })
+                                }
+
+                                if (data.userRoles !== '' && data.userRoles !== null) {
+                                    const rolesArray = Object.values(ROLES)
+                                    data.userRoles.map(item => {
+                                        const role = findObject(rolesArray, item)
+                                        if (role) roleListString.push(role)
+                                    })
+                                }
+
+                                body.dataList.push({
+                                    name: data.firstName !== null ? `${data.firstName}` : `Not Given`,
+                                    id: data.userId,
+                                    department: data.department !== null ? data.department : null,
+                                    school: schools,
+                                    status: data.userStatus,
+                                    nic: data.nic,
+                                    email: data.email,
+                                    mobile: mobileNumber,
+                                    landline: landNumber,
+                                    employeeNo: data.empNo !== null ? data.empNo : '',
+                                    program: courses,
+                                    branch: branches,
+                                    img: data.profileImageUrl,
+                                    gender: data.gender,
+                                    lecturerType: lectureType,
+                                    lecturerCost: data.lecCostPerHour,
+                                    roleList: roleListString,
+                                    designation: data.designation,
+                                    passwordExist: data.passwordExist
+                                })
+                            }
+                        })
+
+                        body.elements = temp.totalElements
+                        body.pages = temp.totalPages
+                        body.numberOfElements = temp.numberOfElements,
+                        body.offset = temp.pageable.offset
+                //     }
+                // }
+        //     }
+        // })
+    return body
+}
+
+export const getAllIntakes = async () => {
+    let body = []
+    // await intakeService.getAllIntakes()
+    //     .then(res => {
+    //         if (res.status === API_RESPONSE_STATUS[0]) {
+                body =  [
+                    {
+                        intakeId: 38,
+                        intakeCode: "June/July",
+                        startDate: null,
+                        endDate: null,
+                        intakeName: "Fall Intake",
+                        duration: 0,
+                        noOfStudents: 52,
+                        ongoing: false,
+                        courseName: ["Medical Science"],
+                        assignedBatched: ["52MSJ2023F", " 52MSJ2023P(Sa)", "52MSJ2023P(NE)"]
+                    },
+                    {
+                        intakeId: 39,
+                        intakeCode: "Aug/Sep",
+                        startDate: null,
+                        endDate: null,
+                        intakeName: "Summer Intake",
+                        duration: 0,
+                        noOfStudents: 3,
+                        ongoing: false,
+                        courseName: ["Bio Science "],
+                        assignedBatched: ["52MSJ2023P(Su)","Ink32"]
+                    }
+                ]
+        //     }
+        // })
+    return body
+}
+
+export const createEditConfig = async (data) => {
+
+    let body = 1
+    await configService.createEditConfig(data, data.id)
+        .then(res => {
+            if (res !== undefined) {
+                if (res.status === 0) {
+                    toast.success(data.courseId === null ? "Added successfully." : "Details updated successfully", {
+                        icon: true,
+                        hideProgressBar: true
+                    })
+                    body = res.status
+                }
+            }
+        })
     return body
 }

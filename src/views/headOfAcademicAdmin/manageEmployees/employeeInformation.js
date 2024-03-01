@@ -16,7 +16,7 @@ import rs from '@routes'
 import ConfirmBox from "@components/confirm-box"
 
 // service
-import * as employeInfoApi from '@api/itAdmin'
+import * as employeInfoApi from '@api/haa_'
 import {connect} from "react-redux"
 import {handleFilter} from '@store/filter'
 import Filter from "@components/filter"
@@ -60,13 +60,10 @@ class EmployeeInformation extends React.Component {
     }
 
     loadSelectionValues = async () => {
+        console.log('de')
         const userList = await employeInfoApi.filterUser(this.props.filter, this.state.currentPage)
-        const schoolList = await employeInfoApi.getAllSchools()
-        const departmentList = await employeInfoApi.getAllDepartments()
         this.setState({
-            schoolOption: schoolList,
             data: userList.dataList,
-            departmentOption: departmentList,
             totalPages: userList.pages,
             totalElements: userList.elements,
             offset: userList.offset,
@@ -97,11 +94,11 @@ class EmployeeInformation extends React.Component {
     }
 
     changeStatus = async (id, status) => {
-        const result = await employeInfoApi.updateUserStatus(id, status)
-        if (result === 0) {
-            this.onFilterAction(this.state.currentPage)
-            this.setState({ isConfirm:false })
-        }
+        // const result = await employeInfoApi.updateUserStatus(id, status)
+        // if (result === 0) {
+        //     this.onFilterAction(this.state.currentPage)
+        //     this.setState({ isConfirm:false })
+        // }
     }
 
     handleConfirm = (type,id,status) => {

@@ -1,7 +1,7 @@
 import React from 'react'
 import AssessmentTable from './commonTbl'
 import {ASSESSMENT_TYPE_TABLE_COLUMN} from "./tableData"
-import * as apiHaa from '@api/haa'
+import * as apiHaa from '@api/haa_'
 
 class AssessmentType extends React.Component {
 

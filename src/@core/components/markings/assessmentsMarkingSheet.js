@@ -10,7 +10,7 @@ import {
     ASSESSMENT_MARKING_SHEET_HAA_ENTER_COLUMNS
 } from "./tableData"
 import CustomPagination from "@components/customPagination"
-import * as Api from '@api/lecturer'
+import * as Api from '@api/lecturer_'
 import {
     GRADES,
     COLOR_STATUS,
@@ -220,15 +220,6 @@ class AssessmentsMarkingSheet extends Component {
         return filter ? array.findIndex(i => i.cbDocketNumber === filter.cbDocketNumber) : -1
     }
 
-    onExportData = async () => {
-        const propState = this.props.location.state
-        const res = await Api.getAssessmentStudentsByAssessmentIdAndAssessmentDateIdExport(propState.assessmentId, propState.assessmentDateId, (getCookieUserData().role === config.haaRole) ? this.state.status.value : null)
-        if (res) {
-            this.setState({exportDataList: res})
-            this.csvLinkEl.current.link.click()
-        }
-    }
-
     onTableInputHandler = async (index, e, type) => {
         const rows = [...this.state.markingSheetList]
         let res = null
@@ -412,11 +403,11 @@ class AssessmentsMarkingSheet extends Component {
             })
         }
 
-        const res = await Api.saveStudentMarks(propState.assessmentId, propState.assessmentDateId, data, propState.repeatRecommendation)
-        if (res) {
-            await this.clearTableData()
-            await this.getAllAssessmentStudents()
-        }
+        // const res = await Api.saveStudentMarks(propState.assessmentId, propState.assessmentDateId, data, propState.repeatRecommendation)
+        // if (res) {
+        //     await this.clearTableData()
+        //     await this.getAllAssessmentStudents()
+        // }
     }
 
     clearTableData = async () => {

@@ -19,16 +19,16 @@ export const ASSESSMENT_MARKING_SHEET_ENTER_COLUMNS = [
         name: 'ABSENT',
         selector: row => row.absent,
         width: '100px'
-    }, {
-        name: 'MODERATED MARKS',
-        selector: row => row.moderatedMarks,
-        width: '190px',
-        right: true
-    }, {
-        name: 'ACTUAL MARKS',
-        selector: row => row.actualMarks,
-        width: '150px',
-        right: true
+    // }, {
+    //     name: 'MODERATED MARKS',
+    //     selector: row => row.moderatedMarks,
+    //     width: '190px',
+    //     right: true
+    // }, {
+    //     name: 'ACTUAL MARKS',
+    //     selector: row => row.actualMarks,
+    //     width: '150px',
+    //     right: true
     }, {
         name: 'GRADE',
         selector: row => row.grade,
@@ -63,16 +63,16 @@ export const ASSESSMENT_MARKING_SHEET_VIEW_COLUMNS = [
         name: 'ABSENT',
         selector: row => row.absent,
         width: '100px'
-    }, {
-        name: 'MODERATED MARKS',
-        selector: row => row.moderatedMarks,
-        width: '190px',
-        right: true
-    }, {
-        name: 'ACTUAL MARKS',
-        selector: row => row.actualMarks,
-        width: '150px',
-        right: true
+    // }, {
+    //     name: 'MODERATED MARKS',
+    //     selector: row => row.moderatedMarks,
+    //     width: '190px',
+    //     right: true
+    // }, {
+    //     name: 'ACTUAL MARKS',
+    //     selector: row => row.actualMarks,
+    //     width: '150px',
+    //     right: true
     }, {
         name: 'GRADE',
         selector: row => row.grade,

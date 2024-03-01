@@ -4,13 +4,9 @@ import {User, FileText, HelpCircle} from "react-feather"
 import './_markings.scss'
 import ListSelect from '@components/list-select'
 import SideModel from '@components/list-select/list-select-side-model'
-import * as ApiCounsellor from "@api/counsellor"
-import * as Api from "@api/haa"
-import * as ApiLecturer from "@api/lecturer"
-import * as ApiIt from "@api/itAdmin"
-import * as ApiHos from "@api/hos"
-import classnames from "classnames"
-import Select from "react-select"
+import * as ApiCounsellor from "@api/counselor_"
+import * as Api from "@api/haa_"
+import * as ApiLecturer from "@api/lecturer_"
 import {selectThemeColors, createAssessmentSaveDataObject, getCookieUserData, findObject} from '@utils'
 import Cookies from "js-cookie"
 import config from '@storage'
@@ -54,7 +50,6 @@ const Index = (props) => {
     const [removeConfirmation, setRemoveConfirmation] = useState(false)
 
     useEffect(async () => {
-        await getAllSchools()
         await getAllCourses()
         await getAllModules()
         await loadUsers()
@@ -78,13 +73,6 @@ const Index = (props) => {
         })
     }
 
-    const getAllSchools = async () => {
-        const res = await ApiIt.getAllSchools()
-        setSchools(res.map(item => {
-            return {...item, name: item.label, id: item.value}
-        }))
-    }
-
     const getAllCourses = async (schoolId) => {
         const res = await ApiCounsellor.getAllCourses(`courses${schoolId ? `?schoolId=${schoolId.value}` : ''}`)
         setCourses(res.map(item => {
@@ -93,11 +81,7 @@ const Index = (props) => {
     }
 
     const getAllModules = async (school, course, lecturerId) => {
-        // let res = await getCookieUserData().role === config.lecturer ? await ApiLecturer.getAllModulesByLecturerId(getCookieUserData().userId) : await Api.getAllModulesForMarking(school, course, lecturerId)
-        let
-            res = (loggedRole.role === config.lecturer || loggedRole.role === config.hosRole)
-                ? await ApiLecturer.getAllModulesByLecturerId(!lecturerId ? getCookieUserData().userId : lecturerId, course?.value)
-                : await Api.getModulesBySemester(school, course, lecturerId)
+        let res = await Api.getModulesBySemester(school, course, lecturerId)
         let count = 0
         res = res.map(item => {
             const d = {...item, name: item.moduleName, id: item.moduleId, code: item.moduleCode, count}
@@ -219,52 +203,27 @@ const Index = (props) => {
     }
 
     const loadUsers = async () => {
-        let res = []
-        if (getCookieUserData().role === config.lecturer) {
-            res = await Api.getLecturers()
-        } else {
-            if (getCookieUserData().role === config.hosRole) {
-                setSelectedValues({
-                    ...selectedValues,
-                    lecturerId: isFirstTime ? {label: loggedRole.firstName, value: loggedRole.userId} : undefined
-                })
-            }
-
-            res = await ApiHos.getLecturersRelatedToUser(getCookieUserData().userId)
-            const resTemp = await Api.getAllHeadOfSchool()
-            const hosUsers = []
-            resTemp.map(item => {
-                const found = findObject(res, item.userId)
-                if (!found) {
-                    hosUsers.push({
-                        label: item.firstName,
-                        value: item.userId
-                    })
-                }
-            })
-            res = [...res, ...hosUsers]
-        }
-
+        const res = await Api.getLecturers()
         setLecturers(res)
         // res = await Api.getModerators()
         setModerators(res)
     }
 
     const onSave = async (data) => {
-        const res = await Api.saveAssessmentDate(selectedValues.assessmentId, createAssessmentSaveDataObject(data, selectedValues.moduleId))
-        if (res) {
-            toggleModal('assessment')
-            if (assessmentDate) {
-                await onSelect('assessmentId', selectedValues)
-            } else {
-                setAssessmentDate({...assessmentDate, assessmentDateId: res})
-                setModelOpen({
-                    assessment: false,
-                    studentList: false,
-                    student: true
-                })
-            }
-        }
+        // const res = await Api.saveAssessmentDate(selectedValues.assessmentId, createAssessmentSaveDataObject(data, selectedValues.moduleId))
+        // if (res) {
+        //     toggleModal('assessment')
+        //     if (assessmentDate) {
+        //         await onSelect('assessmentId', selectedValues)
+        //     } else {
+        //         setAssessmentDate({...assessmentDate, assessmentDateId: res})
+        //         setModelOpen({
+        //             assessment: false,
+        //             studentList: false,
+        //             student: true
+        //         })
+        //     }
+        // }
     }
 
     const onPublish = (e) => {
@@ -276,12 +235,6 @@ const Index = (props) => {
     }
 
     const onRemoveHandler = async () => {
-        const res = await Api.deleteAssessmentHaa(selectedValues.assessmentId, selectedData.assessmentDateId)
-        if (res) {
-            setSelectedData(null)
-            setRemoveConfirmation(false)
-            await onSelect('assessmentId', selectedValues)
-        }
     }
 
     const user = JSON.parse(Cookies.get(config.user)).role
@@ -294,23 +247,6 @@ const Index = (props) => {
                     tag='h4'>{isRepeat ? 'Repeat Recommendation' : isAssessment ? 'Assignment' : 'Marking'}</CardTitle>
             </CardHeader>
             <CardBody>
-                <div className={'top-header-label d-flex align-items-center'}><User size={20}/> <span
-                    style={{marginLeft: "5px"}}>General Information</span></div>
-                {
-                    user === config.haaRole && <div className={'select-section'}>
-                        <label className={'lbl'}>School</label>
-                        <Select
-                            theme={selectThemeColors}
-                            className={classnames('react-select select-school')}
-                            classNamePrefix='select'
-                            value={selectedValues.school}
-                            options={schools}
-                            isClearable={true}
-                            onChange={data => onSelect('school', data)}
-                            placeholder="Select School"
-                        />
-                    </div>
-                }
                 <div>
                     <Row className="align-items-center">
                         {getCookieUserData().role === config.hosRole ? <Col md={3}>

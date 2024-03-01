@@ -2,7 +2,7 @@ import React from 'react'
 import './scss/_configuration.scss'
 import IntakeTable from './commonTbl'
 import {INTAKE_TABLE_COLUMN} from "./tableData"
-import * as apiHaa from '@api/haa'
+import * as apiHaa from '@api/haa_'
 
 class Intake extends React.Component {
 

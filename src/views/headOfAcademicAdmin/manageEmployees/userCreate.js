@@ -32,11 +32,7 @@ import themeConfig from '@configs/themeConfig'
 
 const UserCreate = (props) => {
 
-    const [schoolOption, setSchoolOption] = useState([])
-    const [programOption, setProgramOption] = useState([])
-    const [branchOption, setBranchOption] = useState([])
     const [roleOption, setRoleOption] = useState([])
-    const [departmentOption, setDepartmentOption] = useState([])
 
     const [role, setRole] = useState([])
     const [avatar, setAvatar] = useState(DEFAULT_AVATAR)
@@ -95,25 +91,8 @@ const UserCreate = (props) => {
     }, [])
 
     const loadSelectionValues = async () => {
-        const departmentList = await userCreationApi.getAllDepartments()
-        const branchList = await userCreationApi.getAllBranches()
-        const schoolList = await userCreationApi.getAllSchools()
-        const programList = await userCreationApi.getAllPrograms()
         const tempRoles = []
         const rolesArray = Object.values(ROLES)
-        rolesArray.map(item => {
-            if (item.value !== config.studentRole &&
-              item.value !== config.itExecutiveRole && item.value !== config.receptionistRole &&
-            item.value !== config.financeAssistantManagerRole && item.value !== config.studentLifeManagerRole &&
-            item.value !== config.studentSupportServiceManagerRole) {
-                tempRoles.push(item)
-            }
-        })
-
-        setDepartmentOption(departmentList)
-        setBranchOption(branchList)
-        setSchoolOption(schoolList)
-        props.location.state === null && setProgramOption(programList)
         setRoleOption(tempRoles)
     }
 
@@ -124,9 +103,6 @@ const UserCreate = (props) => {
                 {icon: true, hideProgressBar: true})
             if (basicInfo.roleRestrictionInUserCreation) handleRoleOptions(e)
             setRole(e)
-            setSchool([])
-            setBranch([])
-            setProgram([])
         } else {
             if (basicInfo.roleRestrictionInUserCreation) handleRoleOptions(e)
             setRole(e)
@@ -175,16 +151,6 @@ const UserCreate = (props) => {
             }
         }
 
-        if (basicInfo.roleRestrictionInUserCreation) {
-            let isValidDepartment = false
-            role.map(item => {
-                if (item.department === department.value) isValidDepartment = true
-            })
-            if (!isValidDepartment) {
-                toast.error("Roles are not match with the department.", {icon: true, hideProgressBar: true})
-                return
-            }
-        }
 
         const data = {
             role,
