@@ -18,4 +18,9 @@ public class BatchDTO {
     private Date endDate;
     private int capacity;
     private Date orientationDate;
+
+    public BatchDTO(long batchId, String batchName) {
+        this.batchId = batchId;
+        this.batchName = batchName;
+    }
 }

@@ -19,6 +19,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -59,5 +60,12 @@ public class BatchServiceImpl implements BatchService {
             log.error("Method saveBatch : " + e.getMessage(), e);
             throw e;
         }
+    }
+
+    @Override
+    public List<BatchDTO> getBatch(String intakeId) {
+        System.out.println(intakeId);
+        List<BatchDTO> dto = batchRepository.getBatch(intakeId);
+        return dto;
     }
 }

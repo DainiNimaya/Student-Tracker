@@ -13,6 +13,8 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.List;
+
 @Service
 @RequiredArgsConstructor
 @Log4j2
@@ -24,15 +26,25 @@ public class IntakeServiceImpl implements IntakeService{
 
     @Override
     public IntakeDTO saveIntake(ManageIntakeDTO manageIntakeDTO) {
-        log.info("Start function saveIntake : {}", manageIntakeDTO);
+        try{
+            log.info("Start function saveIntake : {}", manageIntakeDTO);
 
-        IntakeEntity intakeEntity = new IntakeEntity();
-        intakeEntity.setIntakeName(manageIntakeDTO.getIntakeName());
+            IntakeEntity intakeEntity = new IntakeEntity();
+            intakeEntity.setIntakeName(manageIntakeDTO.getIntakeName());
 
-        intakeRepository.save(intakeEntity);
+            intakeRepository.save(intakeEntity);
 
-        IntakeDTO intakeDTO = modelMapper.map(intakeEntity, IntakeDTO.class);
-        return intakeDTO;
+            IntakeDTO intakeDTO = modelMapper.map(intakeEntity, IntakeDTO.class);
+            return intakeDTO;
+        } catch (Exception e) {
+            log.error("Method saveIntake : " + e.getMessage(), e);
+            throw e;
+        }
+    }
 
+    @Override
+    public List<IntakeDTO> getIntake() {
+        List<IntakeDTO> dto = intakeRepository.getIntake();
+        return dto;
     }
 }

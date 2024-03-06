@@ -20,4 +20,8 @@ public class CourseDTO {
     private StudyMode studyMode;
     private long programmeId;
 
+    public CourseDTO(long courseId, String courseName) {
+        this.courseId = courseId;
+        this.courseName = courseName;
+    }
 }

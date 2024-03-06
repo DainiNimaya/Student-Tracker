@@ -29,25 +29,25 @@ public class BeanConfig {
 
 
 
-    @Bean
-    @Primary
-    public JavaMailSender getJavaMailSender() {
-
-        JavaMailSenderImpl mailSender = new JavaMailSenderImpl();
-        mailSender.setHost(environment.getRequiredProperty("spring.mail.host"));
-        mailSender.setPort(Integer.parseInt(environment.getRequiredProperty("spring.mail.port")));
-
-        mailSender.setUsername(environment.getProperty("spring.mail.username"));
-        mailSender.setPassword(environment.getProperty("spring.mail.password"));
-
-        Properties props = mailSender.getJavaMailProperties();
-        props.put("mail.transport.protocol", "smtp");
-        props.put("mail.smtp.auth", "true");
-        props.put("mail.smtp.starttls.enable", "true");
-        props.put("mail.debug", "true");
-
-        return mailSender;
-    }
+//    @Bean
+//    @Primary
+//    public JavaMailSender getJavaMailSender() {
+//
+//        JavaMailSenderImpl mailSender = new JavaMailSenderImpl();
+//        mailSender.setHost(environment.getRequiredProperty("spring.mail.host"));
+//        mailSender.setPort(Integer.parseInt(environment.getRequiredProperty("spring.mail.port")));
+//
+//        mailSender.setUsername(environment.getProperty("spring.mail.username"));
+//        mailSender.setPassword(environment.getProperty("spring.mail.password"));
+//
+//        Properties props = mailSender.getJavaMailProperties();
+//        props.put("mail.transport.protocol", "smtp");
+//        props.put("mail.smtp.auth", "true");
+//        props.put("mail.smtp.starttls.enable", "true");
+//        props.put("mail.debug", "true");
+//
+//        return mailSender;
+//    }
 
 
 }

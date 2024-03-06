@@ -109,19 +109,19 @@ public class UserServiceImpl implements UserDetailsService, UserService {
             UserDTO userDTO = modelMapper.map(userEntity, UserDTO.class);
             userDTO.setPassword(null);
 
-            SimpleDateFormat dateFormat = new SimpleDateFormat("MMMM dd, yyyy");
-            StringBuilder body = new StringBuilder();
-            body.append("Dear Customer,\n\n");
-            body.append("We hope this message finds you well. We wanted to inform your first time password.\n\n");
-
-            body.append("\n");
-            body.append("Date: ").append(dateFormat.format(new Date())).append("\n");
-            body.append("Password : ").append(newPassword).append("\n");
-
-            body.append("Thank you for choosing our service. If you have any questions or need further assistance, feel free to reach out.\n\n");
-            body.append("Best Regards,\nYour Service Team");
-
-            mailSender.sendEmail(addNewUserRequestDTO.getEmail(), "User Credentials Information", body.toString());
+//            SimpleDateFormat dateFormat = new SimpleDateFormat("MMMM dd, yyyy");
+//            StringBuilder body = new StringBuilder();
+//            body.append("Dear Customer,\n\n");
+//            body.append("We hope this message finds you well. We wanted to inform your first time password.\n\n");
+//
+//            body.append("\n");
+//            body.append("Date: ").append(dateFormat.format(new Date())).append("\n");
+//            body.append("Password : ").append(newPassword).append("\n");
+//
+//            body.append("Thank you for choosing our service. If you have any questions or need further assistance, feel free to reach out.\n\n");
+//            body.append("Best Regards,\nYour Service Team");
+//
+//            mailSender.sendEmail(addNewUserRequestDTO.getEmail(), "User Credentials Information", body.toString());
 
             return userDTO;
         }

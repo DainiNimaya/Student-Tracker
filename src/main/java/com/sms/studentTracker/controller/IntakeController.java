@@ -12,6 +12,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @CrossOrigin
 @RestController
 @Log4j2
@@ -24,15 +26,17 @@ public class IntakeController {
         this.intakeService = intakeService;
     }
 
-    @GetMapping
-    public ResponseEntity listIntake(){
-        return new ResponseEntity<>("Hello", HttpStatus.OK);
-    }
-
     @PostMapping("/save")
     public ResponseEntity saveIntake(@RequestBody ManageIntakeDTO manageIntakeDTO){
         IntakeDTO intakeDTO = intakeService.saveIntake(manageIntakeDTO);
         CommonResponseDTO commonResponseDTO = new CommonResponseDTO(true,"Intake saved successfully", intakeDTO);
+        return new ResponseEntity<>(commonResponseDTO, HttpStatus.OK);
+    }
+
+    @GetMapping
+    public ResponseEntity getIntake(){
+        List<IntakeDTO> intakeDTO = intakeService.getIntake();
+        CommonResponseDTO commonResponseDTO = new CommonResponseDTO(true,"Get all intakes", intakeDTO);
         return new ResponseEntity<>(commonResponseDTO, HttpStatus.OK);
     }
 
