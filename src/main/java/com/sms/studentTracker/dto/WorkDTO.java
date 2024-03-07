@@ -10,6 +10,9 @@ import java.util.Date;
 @AllArgsConstructor
 @ToString
 public class WorkDTO {
+
+    private long workId;
+    private long studentId;
     private String companyName;
     private String address;
     private String position;
