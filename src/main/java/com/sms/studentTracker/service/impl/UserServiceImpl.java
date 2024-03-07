@@ -98,7 +98,7 @@ public class UserServiceImpl implements UserDetailsService, UserService {
             userEntity.setEmail(addNewUserRequestDTO.getEmail());
             userEntity.setUserRole(addNewUserRequestDTO.getUserRole());
             userEntity.setMobileNumber(addNewUserRequestDTO.getMobileNumber());
-            userEntity.setPassword(passwordEncoder.encode(addNewUserRequestDTO.getPassword()));
+            userEntity.setPassword(newPassword);
             userEntity.setGender(addNewUserRequestDTO.getGender());
             userEntity.setDob(addNewUserRequestDTO.getDob());
             userEntity.setNic(addNewUserRequestDTO.getNic());
