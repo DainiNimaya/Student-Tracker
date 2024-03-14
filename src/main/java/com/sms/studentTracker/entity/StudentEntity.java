@@ -68,4 +68,6 @@ public class StudentEntity {
 
     @Column
     private boolean isCriminalConviction;
+
+
 }

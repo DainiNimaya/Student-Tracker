@@ -32,4 +32,23 @@ public class StudentDTO {
     private String disabledDesc;
     private boolean isCriminalConviction;
 
+    public StudentDTO(long studentId, String fullName, String preferedName, String email, String countryOfBirth, String nationality, String applyingCountry, String address, String mobile1, String mobile2, Gender gender, String statement, String paymentDoneBy, boolean isDiabled, String disabledDesc, boolean isCriminalConviction) {
+        this.studentId = studentId;
+//        this.userId = userId;
+        this.fullName = fullName;
+        this.preferedName = preferedName;
+        this.email = email;
+        this.countryOfBirth = countryOfBirth;
+        this.nationality = nationality;
+        this.applyingCountry = applyingCountry;
+        this.address = address;
+        this.mobile1 = mobile1;
+        this.mobile2 = mobile2;
+        this.gender = gender;
+        this.statement = statement;
+        this.paymentDoneBy = paymentDoneBy;
+        this.isDiabled = isDiabled;
+        this.disabledDesc = disabledDesc;
+        this.isCriminalConviction = isCriminalConviction;
+    }
 }

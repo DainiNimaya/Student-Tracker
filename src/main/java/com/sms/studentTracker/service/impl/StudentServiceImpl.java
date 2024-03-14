@@ -7,27 +7,27 @@ import com.sms.studentTracker.dto.WorkDTO;
 import com.sms.studentTracker.dto.request.AddUserRequestDTO;
 import com.sms.studentTracker.dto.request.InquiryRequestDTO;
 import com.sms.studentTracker.dto.request.ManageStudentDTO;
-import com.sms.studentTracker.entity.EQualificationEntity;
-import com.sms.studentTracker.entity.StudentEntity;
-import com.sms.studentTracker.entity.UserEntity;
-import com.sms.studentTracker.entity.WorkEntity;
+import com.sms.studentTracker.entity.*;
 import com.sms.studentTracker.enums.Role;
 import com.sms.studentTracker.enums.UserStatus;
-import com.sms.studentTracker.repository.EducationQualificationRepository;
-import com.sms.studentTracker.repository.StudentRepository;
-import com.sms.studentTracker.repository.UserRepository;
-import com.sms.studentTracker.repository.WorkRepository;
+import com.sms.studentTracker.repository.*;
 import com.sms.studentTracker.service.InquiryService;
 import com.sms.studentTracker.service.StudentService;
 import com.sms.studentTracker.service.UserService;
+import com.sms.studentTracker.utils.EmailSender;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
 import org.modelmapper.ModelMapper;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -37,21 +37,24 @@ import java.util.Optional;
 public class StudentServiceImpl implements StudentService {
 
     private final StudentRepository studentRepository;
+    private final CourseRepository courseRepository;
     private final EducationQualificationRepository educationQualificationRepository;
     private final WorkRepository workRepository;
     private final UserRepository userRepository;
     private final ModelMapper modelMapper;
 
+    @Autowired
+    @Qualifier("emailSender")
+    private EmailSender mailSender;
+
 
     @Override
-    public StudentDTO saveStudent(StudentDTO studentDTO) {
+    public StudentEntity saveStudent(StudentEntity entity1) {
         try{
-            log.info("Start function saveStudent : {}", studentDTO);
+            log.info("Start function saveStudent : {}", entity1);
 
-            StudentEntity studentEntity = modelMapper.map(studentDTO, StudentEntity.class);
-            StudentEntity entity = studentRepository.save(studentEntity);
-            studentDTO.setStudentId(entity.getStudentId());
-            return studentDTO;
+            StudentEntity entity = studentRepository.save(entity1);
+            return entity;
         } catch (Exception e) {
             log.error("Method saveStudent : " + e.getMessage(), e);
             throw e;
@@ -69,9 +72,15 @@ public class StudentServiceImpl implements StudentService {
                 throw new UsernameNotFoundException("User account not found");
             }
 
+            UserEntity userEntity = user.get();
+            userEntity.setStatus(UserStatus.ACTIVE);
+            userEntity.setUserRole(Role.STUDENT);
+
+            userRepository.save(userEntity);
+
             StudentEntity studentEntity = new StudentEntity();
             studentEntity.setStudentId(studentDTO.getStudentId());
-            studentEntity.setUserEntity(user.get());
+            studentEntity.setUserEntity(userEntity);
             studentEntity.setFullName(studentDTO.getFullName());
             studentEntity.setPreferedName(studentDTO.getPreferedName());
             studentEntity.setEmail(studentDTO.getEmail());
@@ -124,5 +133,89 @@ public class StudentServiceImpl implements StudentService {
             log.error("Method updateStudent : " + e.getMessage(), e);
             throw e;
         }
+    }
+
+    @Override
+    public boolean shareStudentCourseDetail(long studentId, long courseId) {
+        try{
+            log.info("Start function shareStudentCourseDetail - student:"+ studentId + " course:"+courseId);
+
+            Optional<StudentEntity> student = studentRepository.findByStudentId(studentId);
+            if (!student.isPresent()) {
+                log.error("shareStudentCourseDetail() :Student account not found");
+                throw new UsernameNotFoundException("Student account not found");
+            }
+
+            Optional<CourseEntity> course = courseRepository.findByCourseId(courseId);
+            if (!course.isPresent()) {
+                log.error("shareStudentCourseDetail() :Course details not found");
+                throw new UsernameNotFoundException("Course details not found");
+            }
+
+            Optional<UserEntity> user = userRepository.findByEmail(student.get().getEmail());
+
+            if (user.get().getUserRole() ==  Role.STUDENT) {
+//                SimpleDateFormat dateFormat = new SimpleDateFormat("MMMM dd, yyyy");
+//                StringBuilder body = new StringBuilder();
+//                body.append("Dear Student,\n\n");
+//                body.append("We hope this message finds you well. We want to share your course details with this mail.\n\n");
+//
+//                body.append("\n");
+//                body.append("Date: ").append(dateFormat.format(new Date())).append("\n");
+//                body.append("Course details : https://studentTracker.lk/course-details/"+course.get().getCourseCode()).append("\n");
+//
+//                body.append("Thank you for choosing our service. If you have any questions or need further assistance, feel free to reach out.\n\n");
+//                body.append("Best Regards,\nYour Service Team");
+//
+//                mailSender.sendEmail(student.get().getEmail(), "Course Details Doc", body.toString());
+            }
+
+            return true;
+        } catch (Exception e) {
+            log.error("Method shareStudentCourseDetail : " + e.getMessage(), e);
+            throw e;
+        }
+    }
+
+    @Override
+    public boolean shareStudentOfferLetter(long studentId) {
+        try{
+            log.info("Start function shareStudentOfferLetter - student:"+ studentId);
+
+            Optional<StudentEntity> student = studentRepository.findByStudentId(studentId);
+            if (!student.isPresent()) {
+                log.error("shareStudentCourseDetail() :Student account not found");
+                throw new UsernameNotFoundException("Student account not found");
+            }
+
+            Optional<UserEntity> user = userRepository.findByEmail(student.get().getEmail());
+
+            if (user.get().getUserRole() ==  Role.STUDENT) {
+//                SimpleDateFormat dateFormat = new SimpleDateFormat("MMMM dd, yyyy");
+//                StringBuilder body = new StringBuilder();
+//                body.append("Dear Student,\n\n");
+//                body.append("We hope this message finds you well. We want to share your course details with this mail.\n\n");
+//
+//                body.append("\n");
+//                body.append("Date: ").append(dateFormat.format(new Date())).append("\n");
+//                body.append("Course details : https://studentTracker.lk/course-details/"+course.get().getCourseCode()).append("\n");
+//
+//                body.append("Thank you for choosing our service. If you have any questions or need further assistance, feel free to reach out.\n\n");
+//                body.append("Best Regards,\nYour Service Team");
+//
+//                mailSender.sendEmail(student.get().getEmail(), "Course Details Doc", body.toString());
+            }
+
+            return true;
+        } catch (Exception e) {
+            log.error("Method shareStudentOfferLetter : " + e.getMessage(), e);
+            throw e;
+        }
+    }
+
+    @Override
+    public List<StudentDTO> getStudents() {
+        List<StudentDTO> dto = studentRepository.getStudent();
+        return dto;
     }
 }

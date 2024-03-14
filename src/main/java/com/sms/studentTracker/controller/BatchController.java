@@ -34,7 +34,7 @@ public class BatchController {
         return new ResponseEntity<>(commonResponseDTO, HttpStatus.OK);
     }
 
-    @GetMapping
+    @PostMapping
     public ResponseEntity getBatch(@RequestBody ReqBatchDTO reqBatchDTO){
         List<BatchDTO> batch = batchService.getBatch(reqBatchDTO.getIntakeId());
         CommonResponseDTO commonResponseDTO = new CommonResponseDTO(true,"Get all batches", batch);

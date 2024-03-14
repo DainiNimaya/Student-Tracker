@@ -38,6 +38,7 @@ public class InquiryServiceImpl implements InquiryService {
 
 
     @Override
+    @Transactional(propagation = Propagation.REQUIRED, rollbackFor = Exception.class)
     public boolean saveInquiry(InquiryRequestDTO inquiryRequestDTO) {
         try{
             log.info("Start function saveInquiry : {}", inquiryRequestDTO);
@@ -62,14 +63,14 @@ public class InquiryServiceImpl implements InquiryService {
                 throw new UsernameNotFoundException("Can't create a user account");
             }
 
-            StudentDTO studentDTO = new StudentDTO();
-            studentDTO.setUserId(userDTO.getId());
-            studentDTO.setFullName(inquiryRequestDTO.getName());
-            studentDTO.setPreferedName(inquiryRequestDTO.getName());
-            studentDTO.setEmail(inquiryRequestDTO.getEmail());
-            studentDTO.setMobile1(inquiryRequestDTO.getMobile());
+            StudentEntity entity = new StudentEntity();
+            entity.setUserEntity(modelMapper.map(userDTO, UserEntity.class));
+            entity.setFullName(inquiryRequestDTO.getName());
+            entity.setPreferedName(inquiryRequestDTO.getName());
+            entity.setEmail(inquiryRequestDTO.getEmail());
+            entity.setMobile1(inquiryRequestDTO.getMobile());
 
-            studentDTO =  studentService.saveStudent(studentDTO);
+            entity =  studentService.saveStudent(entity);
 
             Optional<CourseEntity> courseEntity = courseRepository.findByCourseId(inquiryRequestDTO.getCourseId());
             if (!courseEntity.isPresent()) {
@@ -78,7 +79,7 @@ public class InquiryServiceImpl implements InquiryService {
             }
 
             StudentCourseEntity studentCourseEntity = new StudentCourseEntity();
-            studentCourseEntity.setStudentEntity(modelMapper.map(studentDTO, StudentEntity.class));
+            studentCourseEntity.setStudentEntity(entity);
             studentCourseEntity.setCourseEntity(courseEntity.get());
 
             studentCourseRepository.save(studentCourseEntity);
@@ -90,7 +91,7 @@ public class InquiryServiceImpl implements InquiryService {
             }
 
             StudentBatchEntity studentBatchEntity = new StudentBatchEntity();
-            studentBatchEntity.setStudentEntity(modelMapper.map(studentDTO, StudentEntity.class));
+            studentBatchEntity.setStudentEntity(entity);
             studentBatchEntity.setBatchEntity(batchEntity.get());
 
             studentBatchRepository.save(studentBatchEntity);

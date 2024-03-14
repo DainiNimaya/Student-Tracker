@@ -3,7 +3,8 @@ package com.sms.studentTracker.service.impl;
 import com.sms.studentTracker.dto.UserDTO;
 import com.sms.studentTracker.dto.request.AddUserRequestDTO;
 import com.sms.studentTracker.entity.UserEntity;
-import com.sms.studentTracker.exception.CustomOauthException;
+import com.sms.studentTracker.exception.CustomException;
+//import com.sms.studentTracker.exception.CustomOauthException;
 import com.sms.studentTracker.repository.UserRepository;
 import com.sms.studentTracker.service.UserService;
 import com.sms.studentTracker.utils.EmailSender;
@@ -45,8 +46,8 @@ public class UserServiceImpl implements UserDetailsService, UserService {
     @Autowired
     private PasswordGenerator passwordGenerator;
 
-    @Autowired
-    private PasswordEncoder passwordEncoder;
+//    @Autowired
+//    private PasswordEncoder passwordEncoder;
 
 
     public UserDetails loadUserByUsername(String userId) throws UsernameNotFoundException {
@@ -104,6 +105,8 @@ public class UserServiceImpl implements UserDetailsService, UserService {
             userEntity.setNic(addNewUserRequestDTO.getNic());
             userEntity.setStatus(addNewUserRequestDTO.getStatus());
 
+            System.out.println(userEntity);
+
             userEntity = userRepository.save(userEntity);
 
             UserDTO userDTO = modelMapper.map(userEntity, UserDTO.class);
@@ -111,7 +114,7 @@ public class UserServiceImpl implements UserDetailsService, UserService {
 
 //            SimpleDateFormat dateFormat = new SimpleDateFormat("MMMM dd, yyyy");
 //            StringBuilder body = new StringBuilder();
-//            body.append("Dear Customer,\n\n");
+//            body.append("Dear Student,\n\n");
 //            body.append("We hope this message finds you well. We wanted to inform your first time password.\n\n");
 //
 //            body.append("\n");
@@ -134,7 +137,7 @@ public class UserServiceImpl implements UserDetailsService, UserService {
             // Check if a user with the given email exists
             Optional<UserEntity> byUserEmail = userRepository.findByEmail(userEmail);
             if (!byUserEmail.isPresent()) {
-                throw new CustomOauthException("User email not found.");
+                throw new CustomException(1,"User email not found.");
             } else {
                 // Create and return UserDto
                 return new UserDTO(

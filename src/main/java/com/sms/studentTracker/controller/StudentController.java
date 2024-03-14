@@ -10,6 +10,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @CrossOrigin
 @RestController
 @Log4j2
@@ -28,4 +30,39 @@ public class StudentController {
         CommonResponseDTO commonResponseDTO = new CommonResponseDTO(true,"Student details updated successfully", null);
         return new ResponseEntity<>(commonResponseDTO, HttpStatus.OK);
     }
+
+    @GetMapping("/{studentId}/course/{courseId}/share-course-details")
+    public ResponseEntity shareStudentCourseDetail(@PathVariable("studentId") long studentId, @PathVariable("courseId") long courseId){
+        boolean result = studentService.shareStudentCourseDetail(studentId, courseId);
+        CommonResponseDTO commonResponseDTO = new CommonResponseDTO(true,"Share course details successfully", null);
+        return new ResponseEntity<>(commonResponseDTO, HttpStatus.OK);
+    }
+
+    @GetMapping("/{studentId}/share-offer-letter")
+    public ResponseEntity shareStudentOfferLetter(@PathVariable("studentId") long studentId){
+        boolean result = studentService.shareStudentOfferLetter(studentId);
+        CommonResponseDTO commonResponseDTO = new CommonResponseDTO(true,"Share offer letter successfully", null);
+        return new ResponseEntity<>(commonResponseDTO, HttpStatus.OK);
+    }
+
+    @GetMapping
+    public ResponseEntity getStudentDetails(){
+        List<StudentDTO> students = studentService.getStudents();
+        CommonResponseDTO commonResponseDTO = new CommonResponseDTO(true,"Get student details successfully", students);
+        return new ResponseEntity<>(commonResponseDTO, HttpStatus.OK);
+    }
+
+//    @GetMapping
+//    public ResponseEntity getStudentEducationDetails(){
+//        List<StudentDTO> students = studentService.getStudents();
+//        CommonResponseDTO commonResponseDTO = new CommonResponseDTO(true,"Get student details successfully", students);
+//        return new ResponseEntity<>(commonResponseDTO, HttpStatus.OK);
+//    }
+//
+//    @GetMapping
+//    public ResponseEntity getStudentWorkDetails(){
+//        List<StudentDTO> students = studentService.getStudents();
+//        CommonResponseDTO commonResponseDTO = new CommonResponseDTO(true,"Get student details successfully", students);
+//        return new ResponseEntity<>(commonResponseDTO, HttpStatus.OK);
+//    }
 }
